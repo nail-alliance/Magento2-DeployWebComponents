@@ -1,0 +1,399 @@
+// BOF <collection-color-swatch-sampler> 
+function k() {
+}
+function G(e) {
+  return e();
+}
+function q() {
+  return /* @__PURE__ */ Object.create(null);
+}
+function E(e) {
+  e.forEach(G);
+}
+function P(e) {
+  return typeof e == "function";
+}
+function Q(e, t) {
+  return e != e ? t == t : e !== t || e && typeof e == "object" || typeof e == "function";
+}
+let T;
+function I(e, t) {
+  return T || (T = document.createElement("a")), T.href = t, e === T.href;
+}
+function U(e) {
+  return Object.keys(e).length === 0;
+}
+function b(e, t) {
+  e.appendChild(t);
+}
+function S(e, t, n) {
+  e.insertBefore(t, n || null);
+}
+function A(e) {
+  e.parentNode.removeChild(e);
+}
+function Z(e, t) {
+  for (let n = 0; n < e.length; n += 1)
+    e[n] && e[n].d(t);
+}
+function w(e) {
+  return document.createElement(e);
+}
+function R(e) {
+  return document.createTextNode(e);
+}
+function N() {
+  return R(" ");
+}
+function ee(e, t, n, o) {
+  return e.addEventListener(t, n, o), () => e.removeEventListener(t, n, o);
+}
+function f(e, t, n) {
+  n == null ? e.removeAttribute(t) : e.getAttribute(t) !== n && e.setAttribute(t, n);
+}
+function te(e) {
+  return Array.from(e.childNodes);
+}
+function ne(e, t) {
+  t = "" + t, e.wholeText !== t && (e.data = t);
+}
+function W(e, t, n, o) {
+  n === null ? e.style.removeProperty(t) : e.style.setProperty(t, n, o ? "important" : "");
+}
+function re(e) {
+  const t = {};
+  for (const n of e)
+    t[n.name] = n.value;
+  return t;
+}
+let C;
+function x(e) {
+  C = e;
+}
+function le() {
+  if (!C)
+    throw new Error("Function called outside component initialization");
+  return C;
+}
+function oe(e) {
+  le().$$.on_mount.push(e);
+}
+const v = [], z = [], H = [], B = [], ie = Promise.resolve();
+let O = !1;
+function se() {
+  O || (O = !0, ie.then(V));
+}
+function D(e) {
+  H.push(e);
+}
+const L = /* @__PURE__ */ new Set();
+let M = 0;
+function V() {
+  const e = C;
+  do {
+    for (; M < v.length; ) {
+      const t = v[M];
+      M++, x(t), ae(t.$$);
+    }
+    for (x(null), v.length = 0, M = 0; z.length; )
+      z.pop()();
+    for (let t = 0; t < H.length; t += 1) {
+      const n = H[t];
+      L.has(n) || (L.add(n), n());
+    }
+    H.length = 0;
+  } while (v.length);
+  for (; B.length; )
+    B.pop()();
+  O = !1, L.clear(), x(e);
+}
+function ae(e) {
+  if (e.fragment !== null) {
+    e.update(), E(e.before_update);
+    const t = e.dirty;
+    e.dirty = [-1], e.fragment && e.fragment.p(e.ctx, t), e.after_update.forEach(D);
+  }
+}
+const ce = /* @__PURE__ */ new Set();
+function ue(e, t) {
+  e && e.i && (ce.delete(e), e.i(t));
+}
+function fe(e, t, n, o) {
+  const { fragment: a, after_update: c } = e.$$;
+  a && a.m(t, n), o || D(() => {
+    const r = e.$$.on_mount.map(G).filter(P);
+    e.$$.on_destroy ? e.$$.on_destroy.push(...r) : E(r), e.$$.on_mount = [];
+  }), c.forEach(D);
+}
+function de(e, t) {
+  const n = e.$$;
+  n.fragment !== null && (E(n.on_destroy), n.fragment && n.fragment.d(t), n.on_destroy = n.fragment = null, n.ctx = []);
+}
+function he(e, t) {
+  e.$$.dirty[0] === -1 && (v.push(e), se(), e.$$.dirty.fill(0)), e.$$.dirty[t / 31 | 0] |= 1 << t % 31;
+}
+function _e(e, t, n, o, a, c, r, s = [-1]) {
+  const u = C;
+  x(e);
+  const i = e.$$ = {
+    fragment: null,
+    ctx: [],
+    props: c,
+    update: k,
+    not_equal: a,
+    bound: q(),
+    on_mount: [],
+    on_destroy: [],
+    on_disconnect: [],
+    before_update: [],
+    after_update: [],
+    context: new Map(t.context || (u ? u.$$.context : [])),
+    callbacks: q(),
+    dirty: s,
+    skip_bound: !1,
+    root: t.target || u.$$.root
+  };
+  r && r(i.root);
+  let h = !1;
+  if (i.ctx = n ? n(e, t.props || {}, (l, m, ...y) => {
+    const $ = y.length ? y[0] : m;
+    return i.ctx && a(i.ctx[l], i.ctx[l] = $) && (!i.skip_bound && i.bound[l] && i.bound[l]($), h && he(e, l)), m;
+  }) : [], i.update(), h = !0, E(i.before_update), i.fragment = o ? o(i.ctx) : !1, t.target) {
+    if (t.hydrate) {
+      const l = te(t.target);
+      i.fragment && i.fragment.l(l), l.forEach(A);
+    } else
+      i.fragment && i.fragment.c();
+    t.intro && ue(e.$$.fragment), fe(e, t.target, t.anchor, t.customElement), V();
+  }
+  x(u);
+}
+let Y;
+typeof HTMLElement == "function" && (Y = class extends HTMLElement {
+  constructor() {
+    super(), this.attachShadow({ mode: "open" });
+  }
+  connectedCallback() {
+    const { on_mount: e } = this.$$;
+    this.$$.on_disconnect = e.map(G).filter(P);
+    for (const t in this.$$.slotted)
+      this.appendChild(this.$$.slotted[t]);
+  }
+  attributeChangedCallback(e, t, n) {
+    this[e] = n;
+  }
+  disconnectedCallback() {
+    E(this.$$.on_disconnect);
+  }
+  $destroy() {
+    de(this, 1), this.$destroy = k;
+  }
+  $on(e, t) {
+    if (!P(t))
+      return k;
+    const n = this.$$.callbacks[e] || (this.$$.callbacks[e] = []);
+    return n.push(t), () => {
+      const o = n.indexOf(t);
+      o !== -1 && n.splice(o, 1);
+    };
+  }
+  $set(e) {
+    this.$$set && !U(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
+  }
+});
+function F(e) {
+  return e.replace("Gelish Soak-Off Gel Polish ", "").replace(" Soak-Off Gel Polish", "").replace("Gel Polish ", "").replace("Gelish Xpress ", "").replace("Morgan Taylor ", "").replace(", 0.5 fl oz.", "").replace(", 1.5 oz.", "").replace(", 0.5 fl oz.", "").replace("Dip Powder", "").replace("Nail Lacquer", "").replace(", 0.5 oz.", "").replace("Gelish ", "").replace("cr\xE8me ", "").replace("cr&amp;egrave;me ", "");
+}
+function ge(e, t) {
+  return Math.sqrt(
+    Math.pow(e.red - t.red, 2) + Math.pow(e.green - t.green, 2) + Math.pow(e.blue - t.blue, 2)
+  );
+}
+function me(e) {
+  for (let c = 100; c >= 0; c = c - 2) {
+    var n = e.createLinearGradient(0, 0, 1280, 0);
+    const r = [0, 100, c], s = [
+      `hsl(180,${r[1]}%,${r[2]}%)`,
+      `hsl(225,${r[1]}%,${r[2]}%)`,
+      `hsl(270,${r[1]}%,${r[2]}%)`,
+      `hsl(315,${r[1]}%,${r[2]}%)`,
+      `hsl(360,${r[1]}%,${r[2]}%)`,
+      `hsl(360,${r[1]}%,${r[2]}%)`,
+      `hsl(360,${r[1]}%,${r[2]}%)`,
+      `hsl(360,${r[1]}%,${r[2]}%)`,
+      `hsl(360,${r[1]}%,${r[2]}%)`,
+      `hsl(0,${r[1]}%,${r[2]}%)`,
+      `hsl(45,${r[1]}%,${r[2]}%)`,
+      `hsl(90,${r[1]}%,${r[2]}%)`,
+      `hsl(135,${r[1]}%,${r[2]}%)`
+    ];
+    for (var o = 0; o < s.length - 1; o++) {
+      var a = (o / s.length).toFixed(2);
+      n.addColorStop(a || 0, s[o]);
+    }
+    n.addColorStop(1, s[s.length - 1]), e.fillStyle = n, e.fillRect(0, 50 - c / 2, 1280, 2);
+  }
+}
+function X(e, t, n) {
+  const o = e.slice();
+  return o[8] = t[n], o;
+}
+function pe(e) {
+  let t, n, o, a, c;
+  return {
+    c() {
+      t = w("img"), I(t.src, n = e[8].product_swatch_image) || f(t, "src", n), f(t, "alt", ""), f(t, "srcset", o = e[8].product_swatch_image_2x + " 2x"), f(t, "data-rgb", a = e[8].rgb), f(t, "data-distance", c = e[8].distance);
+    },
+    m(r, s) {
+      S(r, t, s);
+    },
+    p(r, s) {
+      s &amp; 4 && !I(t.src, n = r[8].product_swatch_image) && f(t, "src", n), s &amp; 4 && o !== (o = r[8].product_swatch_image_2x + " 2x") && f(t, "srcset", o), s &amp; 4 && a !== (a = r[8].rgb) && f(t, "data-rgb", a), s &amp; 4 && c !== (c = r[8].distance) && f(t, "data-distance", c);
+    },
+    d(r) {
+      r && A(t);
+    }
+  };
+}
+function be(e) {
+  let t, n, o;
+  return {
+    c() {
+      t = w("div"), f(t, "class", "missing-swatch"), f(t, "data-rgb", n = e[8].rgb), f(t, "data-distance", o = e[8].distance), W(t, "background-color", "rgb(" + e[8].red + ", " + e[8].green + ", " + e[8].blue + ")");
+    },
+    m(a, c) {
+      S(a, t, c);
+    },
+    p(a, c) {
+      c &amp; 4 && n !== (n = a[8].rgb) && f(t, "data-rgb", n), c &amp; 4 && o !== (o = a[8].distance) && f(t, "data-distance", o), c &amp; 4 && W(t, "background-color", "rgb(" + a[8].red + ", " + a[8].green + ", " + a[8].blue + ")");
+    },
+    d(a) {
+      a && A(t);
+    }
+  };
+}
+function J(e) {
+  let t, n, o, a, c, r = e[8].sku + "", s, u, i, h = F(e[8].name) + "", l, m;
+  function y(d, g) {
+    return g &amp; 4 && (o = null), o == null && (o = d[8].product_swatch_image.slice(-5) == "/.jpg"), o ? be : pe;
+  }
+  let $ = y(e, -1), _ = $(e);
+  return {
+    c() {
+      t = w("li"), n = w("a"), _.c(), a = N(), c = w("p"), s = R(r), u = N(), i = w("p"), m = N(), f(c, "class", "sku"), f(i, "class", "name"), f(n, "href", l = "https://" + e[0] + "/" + e[8].url_key + ".html");
+    },
+    m(d, g) {
+      S(d, t, g), b(t, n), _.m(n, null), b(n, a), b(n, c), b(c, s), b(n, u), b(n, i), i.innerHTML = h, b(t, m);
+    },
+    p(d, g) {
+      $ === ($ = y(d, g)) && _ ? _.p(d, g) : (_.d(1), _ = $(d), _ && (_.c(), _.m(n, a))), g &amp; 4 && r !== (r = d[8].sku + "") && ne(s, r), g &amp; 4 && h !== (h = F(d[8].name) + "") && (i.innerHTML = h), g &amp; 5 && l !== (l = "https://" + d[0] + "/" + d[8].url_key + ".html") && f(n, "href", l);
+    },
+    d(d) {
+      d && A(t), _.d();
+    }
+  };
+}
+function $e(e) {
+  let t, n, o, a, c, r, s = e[2], u = [];
+  for (let i = 0; i < s.length; i += 1)
+    u[i] = J(X(e, s, i));
+  return {
+    c() {
+      t = w("div"), n = w("canvas"), o = N(), a = w("ul");
+      for (let i = 0; i < u.length; i += 1)
+        u[i].c();
+      this.c = k, f(n, "width", "1280"), f(n, "height", "48"), f(t, "class", "swatch-selector");
+    },
+    m(i, h) {
+      S(i, t, h), b(t, n), e[6](n), b(t, o), b(t, a);
+      for (let l = 0; l < u.length; l += 1)
+        u[l].m(a, null);
+      c || (r = ee(n, "click", e[3]), c = !0);
+    },
+    p(i, [h]) {
+      if (h &amp; 5) {
+        s = i[2];
+        let l;
+        for (l = 0; l < s.length; l += 1) {
+          const m = X(i, s, l);
+          u[l] ? u[l].p(m, h) : (u[l] = J(m), u[l].c(), u[l].m(a, null));
+        }
+        for (; l < u.length; l += 1)
+          u[l].d(1);
+        u.length = s.length;
+      }
+    },
+    i: k,
+    o: k,
+    d(i) {
+      i && A(t), e[6](null), Z(u, i), c = !1, r();
+    }
+  };
+}
+function we(e, t, n) {
+  let { categories_id: o } = t, { store_id: a } = t, { store_domain: c = "upgrade.nailtechsupply.com" } = t, r, s = [], u;
+  oe(() => {
+    u = r.getContext("2d"), me(u), fetch(`https://${c}/rest/V1/nailalliance/category/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ value: o, store_id: a })
+    }).then((l) => l.json()).then((l) => {
+      n(2, s = l);
+    }).catch((l) => console.error(l));
+  });
+  function i(l) {
+    const m = l.offsetX, y = l.offsetY, $ = u.getImageData(m, y, 1, 1), [_, d, g] = $.data, K = { red: _, green: d, blue: g };
+    for (let p = 0; p < s.length; p++) {
+      const j = {
+        red: s[p].red,
+        green: s[p].green,
+        blue: s[p].blue
+      };
+      n(2, s[p].distance = ge(K, j), s), isNaN(s[p].distance) && n(2, s[p].distance = 1e5, s);
+    }
+    s.sort((p, j) => p.distance < j.distance ? -1 : 1);
+  }
+  function h(l) {
+    z[l ? "unshift" : "push"](() => {
+      r = l, n(1, r);
+    });
+  }
+  return e.$$set = (l) => {
+    "categories_id" in l && n(4, o = l.categories_id), "store_id" in l && n(5, a = l.store_id), "store_domain" in l && n(0, c = l.store_domain);
+  }, [
+    c,
+    r,
+    s,
+    i,
+    o,
+    a,
+    h
+  ];
+}
+class ye extends Y {
+  constructor(t) {
+    super(), this.shadowRoot.innerHTML = "<style>*{font-family:'Helvetica Neue', Helvetica, sans-serif;color:#6A6B6B}.swatch-selector{max-width:1280px;width:100%}canvas{width:100%;height:48px}.missing-swatch{width:160px;height:160px;margin:20px;border:none;border-radius:100px}ul{margin:0;padding:0;list-style:none;display:flex;gap:16px;justify-content:space-around;flex-wrap:wrap}ul li{max-width:200px}ul li a{display:block;color:inherit;text-decoration:none;flex-grow:1}p{margin:14px 0;text-align:center}p.sku{font-size:1.525em}p.name{font-weight:500;font-size:1.875em;text-transform:uppercase;line-height:1em}</style>", _e(
+      this,
+      {
+        target: this.shadowRoot,
+        props: re(this.attributes),
+        customElement: !0
+      },
+      we,
+      $e,
+      Q,
+      {
+        categories_id: 4,
+        store_id: 5,
+        store_domain: 0
+      },
+      null
+    ), t && (t.target && S(t.target, this, t.anchor), t.props && (this.$set(t.props), V()));
+  }
+  static get observedAttributes() {
+    return ["categories_id", "store_id", "store_domain"];
+  }
+}
+customElements.define("collection-color-swatch-sampler", ye);
+  
+// EOF <collection-color-swatch-sampler> -->

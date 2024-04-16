@@ -1,0 +1,536 @@
+var xt = Object.defineProperty;
+var bt = (t, e, s) => e in t ? xt(t, e, { enumerable: !0, configurable: !0, writable: !0, value: s }) : t[e] = s;
+var b = (t, e, s) => (bt(t, typeof e != "symbol" ? e + "" : e, s), s);
+function F() {
+}
+function rt(t) {
+  return t();
+}
+function lt() {
+  return /* @__PURE__ */ Object.create(null);
+}
+function $e(t) {
+  t.forEach(rt);
+}
+function at(t) {
+  return typeof t == "function";
+}
+function ct(t, e) {
+  return t != t ? e == e : t !== e || t && typeof t == "object" || typeof t == "function";
+}
+let fe;
+function j(t, e) {
+  return t === e ? !0 : (fe || (fe = document.createElement("a")), fe.href = e, t === fe.href);
+}
+function it(t) {
+  return t.split(",").map((e) => e.trim().split(" ").filter(Boolean));
+}
+function A(t, e) {
+  const s = it(t.srcset), i = it(e || "");
+  return i.length === s.length && i.every(
+    ([r, u], o) => u === s[o][1] && // We need to test both ways because Vite will create an a full URL with
+    // `new URL(asset, import.meta.url).href` for the client when `base: './'`, and the
+    // relative URLs inside srcset are not automatically resolved to absolute URLs by
+    // browsers (in contrast to img.src). This means both SSR and DOM code could
+    // contain relative or absolute URLs.
+    (j(s[o][0], r) || j(r, s[o][0]))
+  );
+}
+function _t(t) {
+  return Object.keys(t).length === 0;
+}
+function l(t, e) {
+  t.appendChild(e);
+}
+function yt(t, e, s) {
+  const i = Ct(t);
+  if (!i.getElementById(e)) {
+    const r = p("style");
+    r.id = e, r.textContent = s, wt(i, r);
+  }
+}
+function Ct(t) {
+  if (!t)
+    return document;
+  const e = t.getRootNode ? t.getRootNode() : t.ownerDocument;
+  return e && /** @type {ShadowRoot} */
+  e.host ? (
+    /** @type {ShadowRoot} */
+    e
+  ) : t.ownerDocument;
+}
+function wt(t, e) {
+  return l(
+    /** @type {Document} */
+    t.head || t,
+    e
+  ), e.sheet;
+}
+function ye(t, e, s) {
+  t.insertBefore(e, s || null);
+}
+function R(t) {
+  t.parentNode && t.parentNode.removeChild(t);
+}
+function p(t) {
+  return document.createElement(t);
+}
+function Ot(t) {
+  return document.createTextNode(t);
+}
+function d() {
+  return Ot(" ");
+}
+function n(t, e, s) {
+  s == null ? t.removeAttribute(e) : t.getAttribute(e) !== s && t.setAttribute(e, s);
+}
+function Et(t) {
+  return Array.from(t.childNodes);
+}
+function Nt(t) {
+  const e = {};
+  return t.childNodes.forEach(
+    /** @param {Element} node */
+    (s) => {
+      e[s.slot || "default"] = !0;
+    }
+  ), e;
+}
+let Ce;
+function G(t) {
+  Ce = t;
+}
+const z = [], ot = [];
+let P = [];
+const pt = [], Tt = /* @__PURE__ */ Promise.resolve();
+let be = !1;
+function St() {
+  be || (be = !0, Tt.then(we));
+}
+function _e(t) {
+  P.push(t);
+}
+const xe = /* @__PURE__ */ new Set();
+let L = 0;
+function we() {
+  if (L !== 0)
+    return;
+  const t = Ce;
+  do {
+    try {
+      for (; L < z.length; ) {
+        const e = z[L];
+        L++, G(e), jt(e.$$);
+      }
+    } catch (e) {
+      throw z.length = 0, L = 0, e;
+    }
+    for (G(null), z.length = 0, L = 0; ot.length; )
+      ot.pop()();
+    for (let e = 0; e < P.length; e += 1) {
+      const s = P[e];
+      xe.has(s) || (xe.add(s), s());
+    }
+    P.length = 0;
+  } while (z.length);
+  for (; pt.length; )
+    pt.pop()();
+  be = !1, xe.clear(), G(t);
+}
+function jt(t) {
+  if (t.fragment !== null) {
+    t.update(), $e(t.before_update);
+    const e = t.dirty;
+    t.dirty = [-1], t.fragment && t.fragment.p(t.ctx, e), t.after_update.forEach(_e);
+  }
+}
+function At(t) {
+  const e = [], s = [];
+  P.forEach((i) => t.indexOf(i) === -1 ? e.push(i) : s.push(i)), s.forEach((i) => i()), P = e;
+}
+const ve = /* @__PURE__ */ new Set();
+let Lt;
+function ut(t, e) {
+  t && t.i && (ve.delete(t), t.i(e));
+}
+function zt(t, e, s, i) {
+  if (t && t.o) {
+    if (ve.has(t))
+      return;
+    ve.add(t), Lt.c.push(() => {
+      ve.delete(t), i && (s && t.d(1), i());
+    }), t.o(e);
+  } else
+    i && i();
+}
+function Pt(t) {
+  t && t.c();
+}
+function dt(t, e, s) {
+  const { fragment: i, after_update: r } = t.$$;
+  i && i.m(e, s), _e(() => {
+    const u = t.$$.on_mount.map(rt).filter(at);
+    t.$$.on_destroy ? t.$$.on_destroy.push(...u) : $e(u), t.$$.on_mount = [];
+  }), r.forEach(_e);
+}
+function ht(t, e) {
+  const s = t.$$;
+  s.fragment !== null && (At(s.after_update), $e(s.on_destroy), s.fragment && s.fragment.d(e), s.on_destroy = s.fragment = null, s.ctx = []);
+}
+function Ft(t, e) {
+  t.$$.dirty[0] === -1 && (z.push(t), St(), t.$$.dirty.fill(0)), t.$$.dirty[e / 31 | 0] |= 1 << e % 31;
+}
+function ft(t, e, s, i, r, u, o = null, c = [-1]) {
+  const f = Ce;
+  G(t);
+  const a = t.$$ = {
+    fragment: null,
+    ctx: [],
+    // state
+    props: u,
+    update: F,
+    not_equal: r,
+    bound: lt(),
+    // lifecycle
+    on_mount: [],
+    on_destroy: [],
+    on_disconnect: [],
+    before_update: [],
+    after_update: [],
+    context: new Map(e.context || (f ? f.$$.context : [])),
+    // everything else
+    callbacks: lt(),
+    dirty: c,
+    skip_bound: !1,
+    root: e.target || f.$$.root
+  };
+  o && o(a.root);
+  let _ = !1;
+  if (a.ctx = s ? s(t, e.props || {}, (h, y, ...k) => {
+    const B = k.length ? k[0] : y;
+    return a.ctx && r(a.ctx[h], a.ctx[h] = B) && (!a.skip_bound && a.bound[h] && a.bound[h](B), _ && Ft(t, h)), y;
+  }) : [], a.update(), _ = !0, $e(a.before_update), a.fragment = i ? i(a.ctx) : !1, e.target) {
+    if (e.hydrate) {
+      const h = Et(e.target);
+      a.fragment && a.fragment.l(h), h.forEach(R);
+    } else
+      a.fragment && a.fragment.c();
+    e.intro && ut(t.$$.fragment), dt(t, e.target, e.anchor), we();
+  }
+  G(f);
+}
+let vt;
+typeof HTMLElement == "function" && (vt = class extends HTMLElement {
+  constructor(e, s, i) {
+    super();
+    /** The Svelte component constructor */
+    b(this, "$$ctor");
+    /** Slots */
+    b(this, "$$s");
+    /** The Svelte component instance */
+    b(this, "$$c");
+    /** Whether or not the custom element is connected */
+    b(this, "$$cn", !1);
+    /** Component props data */
+    b(this, "$$d", {});
+    /** `true` if currently in the process of reflecting component props back to attributes */
+    b(this, "$$r", !1);
+    /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
+    b(this, "$$p_d", {});
+    /** @type {Record<string, Function[]>} Event listeners */
+    b(this, "$$l", {});
+    /** @type {Map<Function, Function>} Event listener unsubscribe functions */
+    b(this, "$$l_u", /* @__PURE__ */ new Map());
+    this.$$ctor = e, this.$$s = s, i && this.attachShadow({ mode: "open" });
+  }
+  addEventListener(e, s, i) {
+    if (this.$$l[e] = this.$$l[e] || [], this.$$l[e].push(s), this.$$c) {
+      const r = this.$$c.$on(e, s);
+      this.$$l_u.set(s, r);
+    }
+    super.addEventListener(e, s, i);
+  }
+  removeEventListener(e, s, i) {
+    if (super.removeEventListener(e, s, i), this.$$c) {
+      const r = this.$$l_u.get(s);
+      r && (r(), this.$$l_u.delete(s));
+    }
+  }
+  async connectedCallback() {
+    if (this.$$cn = !0, !this.$$c) {
+      let s = function(o) {
+        return () => {
+          let c;
+          return {
+            c: function() {
+              c = p("slot"), o !== "default" && n(c, "name", o);
+            },
+            /**
+             * @param {HTMLElement} target
+             * @param {HTMLElement} [anchor]
+             */
+            m: function(_, h) {
+              ye(_, c, h);
+            },
+            d: function(_) {
+              _ && R(c);
+            }
+          };
+        };
+      };
+      var e = s;
+      if (await Promise.resolve(), !this.$$cn)
+        return;
+      const i = {}, r = Nt(this);
+      for (const o of this.$$s)
+        o in r && (i[o] = [s(o)]);
+      for (const o of this.attributes) {
+        const c = this.$$g_p(o.name);
+        c in this.$$d || (this.$$d[c] = ge(c, o.value, this.$$p_d, "toProp"));
+      }
+      this.$$c = new this.$$ctor({
+        target: this.shadowRoot || this,
+        props: {
+          ...this.$$d,
+          $$slots: i,
+          $$scope: {
+            ctx: []
+          }
+        }
+      });
+      const u = () => {
+        this.$$r = !0;
+        for (const o in this.$$p_d)
+          if (this.$$d[o] = this.$$c.$$.ctx[this.$$c.$$.props[o]], this.$$p_d[o].reflect) {
+            const c = ge(
+              o,
+              this.$$d[o],
+              this.$$p_d,
+              "toAttribute"
+            );
+            c == null ? this.removeAttribute(this.$$p_d[o].attribute || o) : this.setAttribute(this.$$p_d[o].attribute || o, c);
+          }
+        this.$$r = !1;
+      };
+      this.$$c.$$.after_update.push(u), u();
+      for (const o in this.$$l)
+        for (const c of this.$$l[o]) {
+          const f = this.$$c.$on(o, c);
+          this.$$l_u.set(c, f);
+        }
+      this.$$l = {};
+    }
+  }
+  // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
+  // and setting attributes through setAttribute etc, this is helpful
+  attributeChangedCallback(e, s, i) {
+    var r;
+    this.$$r || (e = this.$$g_p(e), this.$$d[e] = ge(e, i, this.$$p_d, "toProp"), (r = this.$$c) == null || r.$set({ [e]: this.$$d[e] }));
+  }
+  disconnectedCallback() {
+    this.$$cn = !1, Promise.resolve().then(() => {
+      this.$$cn || (this.$$c.$destroy(), this.$$c = void 0);
+    });
+  }
+  $$g_p(e) {
+    return Object.keys(this.$$p_d).find(
+      (s) => this.$$p_d[s].attribute === e || !this.$$p_d[s].attribute && s.toLowerCase() === e
+    ) || e;
+  }
+});
+function ge(t, e, s, i) {
+  var u;
+  const r = (u = s[t]) == null ? void 0 : u.type;
+  if (e = r === "Boolean" && typeof e != "boolean" ? e != null : e, !i || !s[t])
+    return e;
+  if (i === "toAttribute")
+    switch (r) {
+      case "Object":
+      case "Array":
+        return e == null ? null : JSON.stringify(e);
+      case "Boolean":
+        return e ? "" : null;
+      case "Number":
+        return e ?? null;
+      default:
+        return e;
+    }
+  else
+    switch (r) {
+      case "Object":
+      case "Array":
+        return e && JSON.parse(e);
+      case "Boolean":
+        return e;
+      case "Number":
+        return e != null ? +e : e;
+      default:
+        return e;
+    }
+}
+function gt(t, e, s, i, r, u) {
+  let o = class extends vt {
+    constructor() {
+      super(t, s, r), this.$$p_d = e;
+    }
+    static get observedAttributes() {
+      return Object.keys(e).map(
+        (c) => (e[c].attribute || c).toLowerCase()
+      );
+    }
+  };
+  return Object.keys(e).forEach((c) => {
+    Object.defineProperty(o.prototype, c, {
+      get() {
+        return this.$$c && c in this.$$c ? this.$$c[c] : this.$$d[c];
+      },
+      set(f) {
+        var a;
+        f = ge(c, f, e), this.$$d[c] = f, (a = this.$$c) == null || a.$set({ [c]: f });
+      }
+    });
+  }), i.forEach((c) => {
+    Object.defineProperty(o.prototype, c, {
+      get() {
+        var f;
+        return (f = this.$$c) == null ? void 0 : f[c];
+      }
+    });
+  }), u && (o = u(o)), t.element = /** @type {any} */
+  o, o;
+}
+class $t {
+  constructor() {
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    b(this, "$$");
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    b(this, "$$set");
+  }
+  /** @returns {void} */
+  $destroy() {
+    ht(this, 1), this.$destroy = F;
+  }
+  /**
+   * @template {Extract<keyof Events, string>} K
+   * @param {K} type
+   * @param {((e: Events[K]) => void) | null | undefined} callback
+   * @returns {() => void}
+   */
+  $on(e, s) {
+    if (!at(s))
+      return F;
+    const i = this.$$.callbacks[e] || (this.$$.callbacks[e] = []);
+    return i.push(s), () => {
+      const r = i.indexOf(s);
+      r !== -1 && i.splice(r, 1);
+    };
+  }
+  /**
+   * @param {Partial<Props>} props
+   * @returns {void}
+   */
+  $set(e) {
+    this.$$set && !_t(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
+  }
+}
+const kt = "4";
+typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(kt);
+function Bt(t) {
+  yt(t, "svelte-1p90851", "h1.svelte-1p90851.svelte-1p90851.svelte-1p90851,p.svelte-1p90851.svelte-1p90851.svelte-1p90851{font-family:'ITC Avant Garde Gothic Pro';text-align:center;font-weight:300;margin:0 auto}.main.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding-bottom:50px;max-width:1240px;margin:0 auto}.first-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{display:flex;padding:0 5vw;align-items:center;background-color:#def4f7;gap:5vw;line-height:0}.first-banner.svelte-1p90851 .banner-image.svelte-1p90851 img.svelte-1p90851{max-width:40vw}.banner-text1.svelte-1p90851.svelte-1p90851.svelte-1p90851{color:#039FB1;margin:0 auto}.banner-text1.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:57px;line-height:45px;font-weight:600}.banner-text1.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:85%;padding-top:10px;font-size:23px;line-height:24px}.second-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{display:flex;padding:0 5vw;align-items:center;background-color:#FFFFFF;justify-content:space-between;gap:80px;line-height:0}.second-banner.svelte-1p90851 .banner-image.svelte-1p90851 img.svelte-1p90851{max-width:25vw}.banner-text2.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:80%;font-size:30px;line-height:35px;color:#707070}.banner-text2.svelte-1p90851 span.svelte-1p90851.svelte-1p90851{font-style:italic;font-weight:600}.third-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:0 5vw}.banner-text3.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:70px 0 50px}.banner-text3.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:50px;line-height:56px;color:#18AFC0}.banner-text3.svelte-1p90851 span.svelte-1p90851.svelte-1p90851{font-weight:600}.third-banner-product-details.svelte-1p90851.svelte-1p90851.svelte-1p90851{display:flex;align-items:flex-start;flex-wrap:wrap;gap:30px;justify-content:space-evenly;align-items:end;max-width:100%;margin:0 auto}.product.svelte-1p90851.svelte-1p90851.svelte-1p90851{width:30%;font-family:'ITC Avant Garde Pro XLt';text-align:center}.product.svelte-1p90851 a.svelte-1p90851.svelte-1p90851{text-decoration:none}.product.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:25px;line-height:21px;font-weight:600;color:#707070;margin:10px auto 0;width:80%}.product.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{font-size:16px;line-height:23px;color:#707070;margin:20px auto;height:8vh;width:80%}.product.svelte-1p90851 button.svelte-1p90851.svelte-1p90851{font-size:20px;line-height:19px;letter-spacing:0.8px;color:#FFFFFF;background-color:#A6A9AC;border:none;border-radius:10px;padding:11px 15px 10px 15px;margin:auto;width:80%}@media screen and (max-width: 991px){.banner-text1.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:50px}.banner-text1.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{font-size:20px}.second-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{gap:50px}.banner-text2.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:90%;font-size:20px;line-height:30px}.product.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851,.product.svelte-1p90851 p.svelte-1p90851.svelte-1p90851,.product.svelte-1p90851 button.svelte-1p90851.svelte-1p90851{width:100%}}@media screen and (max-width: 769px){.main.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding-bottom:30px}.first-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{gap:0}.banner-text1.svelte-1p90851.svelte-1p90851.svelte-1p90851,.banner-text2.svelte-1p90851.svelte-1p90851.svelte-1p90851,.banner-text3.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:10px}.banner-text1.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:40px;line-height:40px}.banner-text1.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:80%;padding-top:5px;font-size:17px;line-height:20px}.second-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{gap:30px}.banner-text2.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:90%;font-size:19px;line-height:25px}.banner-text3.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:50px 0 30px}.banner-text3.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:40px;line-height:40px}.product.svelte-1p90851 img.svelte-1p90851.svelte-1p90851{max-width:20vw}.product.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:20px}.product.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{font-size:15px;line-height:20px;height:7vh}.product.svelte-1p90851 button.svelte-1p90851.svelte-1p90851{font-size:17px;line-height:17px}}@media screen and (max-width: 479px){.main.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding-bottom:20px}.first-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:0;gap:0}.banner-text1.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:10px}.banner-text1.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:25px}.banner-text1.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{width:80%;padding-top:0px;font-size:13px;line-height:17px}.second-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:0;gap:0}.banner-text2.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{font-size:12px;line-height:15px}.third-banner.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:0;gap:0}.banner-text3.svelte-1p90851.svelte-1p90851.svelte-1p90851{padding:25px 0 20px}.banner-text3.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:20px;line-height:25px}.product.svelte-1p90851.svelte-1p90851.svelte-1p90851{width:40%}.third-banner-product-details.svelte-1p90851.svelte-1p90851.svelte-1p90851{gap:20px}.product.svelte-1p90851 h1.svelte-1p90851.svelte-1p90851{font-size:17px;line-height:20px;width:100%}.product.svelte-1p90851 p.svelte-1p90851.svelte-1p90851{font-size:12px;line-height:15px;margin:10px auto;height:8vh;width:100%}.product.svelte-1p90851 button.svelte-1p90851.svelte-1p90851{font-size:12px;line-height:15px;padding:11px 10px 10px;width:100%}}");
+}
+function Gt(t) {
+  let e, s, i, r, u, o, c, f, a, _, h, y, k, B, Oe, I, Ee, U, Ne, M, Y, Te, D, v, w, Se, je, Ae, W, Le, q, ze, H, K, Pe, J, g, O, Fe, ke, Be, V, Ge, X, Re, Q, Z, Ie, ee, $, E, Ue, Me, Ye, te, De, se, We, ne, le, qe, ie, m, N, He, Ke, Je, oe, Ve, pe, Xe, re, ae, Qe, ce, x, T, Ze, et, tt, ue, st, me, nt, de, he;
+  return {
+    c() {
+      e = p("div"), s = p("div"), s.innerHTML = '<div class="banner-image svelte-1p90851"><img src="/img/SubCategory/Lacquer/Screen Shot 2022-11-08 at 12.24.12 PM.jpg" srcset="/img/SubCategory/Lacquer/Screen Shot 2022-11-08 at 12.24.12 PM@2x.jpg 2x" alt="brown skin model" class="svelte-1p90851"/></div> <div class="banner-text1 svelte-1p90851"><h1 class="svelte-1p90851">GEL POLISH</h1> <p class="svelte-1p90851">Your favorite gel that last up to 21 days</p></div>', i = d(), r = p("div"), r.innerHTML = '<div class="banner-text2 svelte-1p90851"><p class="svelte-1p90851">With <span class="svelte-1p90851">Entity One Color Couture Soak-Off Nail Gel</span> we created a unique formulation of gel with smoother application, better curing and longer wear.</p></div> <div class="banner-image svelte-1p90851"><img src="/img/SubCategory/Gel/8619-ENT-CORE-ItalyModel-Poster-PowerPink-MC-FNL.jpg" srcset="/img/SubCategory/Gel/8619-ENT-CORE-ItalyModel-Poster-PowerPink-MC-FNL@2x.jpg 2x" alt="entity pink bottle with model" class="svelte-1p90851"/></div>', u = d(), o = p("div"), c = p("div"), c.innerHTML = '<h1 class="svelte-1p90851">The perfect <span class="svelte-1p90851">Combo</span> <br/>To get the best results</h1>', f = d(), a = p("div"), _ = p("div"), h = p("a"), y = p("img"), Oe = d(), I = p("h1"), I.textContent = "Base Coat", Ee = d(), U = p("p"), U.textContent = "Designed to be used before applying any Entity Gel Color for maximum adhesion.", Ne = d(), M = p("button"), M.textContent = "BUY NOW", Te = d(), D = p("div"), v = p("a"), w = p("img"), Ae = d(), W = p("h1"), W.textContent = "Color", Le = d(), q = p("p"), q.textContent = "Ultra-luxe formula for the richest color payoff", ze = d(), H = p("button"), H.textContent = "PICK COLOR", Pe = d(), J = p("div"), g = p("a"), O = p("img"), Be = d(), V = p("h1"), V.textContent = "Top Coat", Ge = d(), X = p("p"), X.textContent = "Finish off your manicure with this easy soak off top coat.", Re = d(), Q = p("button"), Q.textContent = "BUY NOW", Ie = d(), ee = p("div"), $ = p("a"), E = p("img"), Ye = d(), te = p("h1"), te.textContent = "Nu Bond", De = d(), se = p("p"), se.textContent = "Improves the adhesion of acrylic, gel and gel polish", We = d(), ne = p("button"), ne.textContent = "BUY NOW", qe = d(), ie = p("div"), m = p("a"), N = p("img"), Je = d(), oe = p("h1"), oe.textContent = "No Wipe Top Coat", Ve = d(), pe = p("p"), pe.textContent = "Universal top coat that can be used over gel polish, Studio One, acrylics and hard gels", Xe = d(), re = p("button"), re.textContent = "BUY NOW", Qe = d(), ce = p("div"), x = p("a"), T = p("img"), tt = d(), ue = p("h1"), ue.textContent = "LED Light", st = d(), me = p("p"), nt = d(), de = p("button"), de.textContent = "BUY NOW", n(s, "class", "first-banner svelte-1p90851"), n(r, "class", "second-banner svelte-1p90851"), n(c, "class", "banner-text3 svelte-1p90851"), j(y.src, k = "/img/SubCategory/Gel/101237-ENTITYONECOLORCOUTURESOAKOFFBASECOAT.jpg") || n(y, "src", k), A(y, B = "/img/SubCategory/Gel/101237-ENTITYONECOLORCOUTURESOAKOFFBASECOAT@2x.jpg 2x") || n(y, "srcset", B), n(y, "alt", "entity gel base"), n(y, "class", "svelte-1p90851"), n(I, "class", "svelte-1p90851"), n(U, "class", "svelte-1p90851"), n(M, "class", "svelte-1p90851"), n(h, "href", Y = /*domain_name*/
+      t[0] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html"), n(h, "class", "svelte-1p90851"), n(_, "class", "product svelte-1p90851"), j(w.src, Se = "/img/SubCategory/Gel/Eocc-Barefootandbeautiful-Gel-Bottle-C4 copy.jpg") || n(w, "src", Se), A(w, je = "/img/SubCategory/Gel/Eocc-Barefootandbeautiful-Gel-Bottle-C4 copy@2x.jpg 2x") || n(w, "srcset", je), n(w, "alt", "entity pink bottle"), n(w, "class", "svelte-1p90851"), n(W, "class", "svelte-1p90851"), n(q, "class", "svelte-1p90851"), n(H, "class", "svelte-1p90851"), n(v, "href", K = /*domain_name*/
+      t[0] + "/gel-polish/gel-polish-colors.html"), n(v, "class", "svelte-1p90851"), n(D, "class", "product svelte-1p90851"), j(O.src, Fe = "/img/SubCategory/Gel/101236-ENTITYONECOLORCOUTURESOAKOFFTOPCOAT.jpg") || n(O, "src", Fe), A(O, ke = "/img/SubCategory/Gel/101236-ENTITYONECOLORCOUTURESOAKOFFTOPCOAT@2x.jpg 2x") || n(O, "srcset", ke), n(O, "alt", "entity gel top"), n(O, "class", "svelte-1p90851"), n(V, "class", "svelte-1p90851"), n(X, "class", "svelte-1p90851"), n(Q, "class", "svelte-1p90851"), n(g, "href", Z = /*domain_name*/
+      t[0] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html"), n(g, "class", "svelte-1p90851"), n(J, "class", "product svelte-1p90851"), j(E.src, Ue = "/img/SubCategory/Gel/101153-NUBONDNON-ACIDPRIMER.jpg") || n(E, "src", Ue), A(E, Me = "/img/SubCategory/Gel/101153-NUBONDNON-ACIDPRIMER@2x.jpg 2x") || n(E, "srcset", Me), n(E, "alt", "entity nu bond"), n(E, "class", "svelte-1p90851"), n(te, "class", "svelte-1p90851"), n(se, "class", "svelte-1p90851"), n(ne, "class", "svelte-1p90851"), n($, "href", le = /*domain_name*/
+      t[0] + "/nu-bond.html"), n($, "class", "svelte-1p90851"), n(ee, "class", "product svelte-1p90851"), j(N.src, He = "/img/SubCategory/Gel/ENT-5101997-NoWipeTopCoat.jpg") || n(N, "src", He), A(N, Ke = "/img/SubCategory/Gel/ENT-5101997-NoWipeTopCoat@2x.jpg 2x") || n(N, "srcset", Ke), n(N, "alt", "entity no wipe top"), n(N, "class", "svelte-1p90851"), n(oe, "class", "svelte-1p90851"), n(pe, "class", "svelte-1p90851"), n(re, "class", "svelte-1p90851"), n(m, "href", ae = /*domain_name*/
+      t[0] + "/no-wipe-top-coat.html"), n(m, "class", "svelte-1p90851"), n(ie, "class", "product svelte-1p90851"), j(T.src, Ze = "/img/SubCategory/Gel/5880001-ENTITYPROLED-1.jpg") || n(T, "src", Ze), A(T, et = "/img/SubCategory/Gel/5880001-ENTITYPROLED-1@2x.jpg 2x") || n(T, "srcset", et), n(T, "alt", "entity LED Light"), n(T, "class", "svelte-1p90851"), n(ue, "class", "svelte-1p90851"), n(me, "class", "svelte-1p90851"), n(de, "class", "svelte-1p90851"), n(x, "href", he = /*domain_name*/
+      t[0] + "/entity-beauty-entity-pro-led-5880001.html"), n(x, "class", "svelte-1p90851"), n(ce, "class", "product svelte-1p90851"), n(a, "class", "third-banner-product-details svelte-1p90851"), n(o, "class", "third-banner svelte-1p90851"), n(e, "class", "main svelte-1p90851");
+    },
+    m(C, S) {
+      ye(C, e, S), l(e, s), l(e, i), l(e, r), l(e, u), l(e, o), l(o, c), l(o, f), l(o, a), l(a, _), l(_, h), l(h, y), l(h, Oe), l(h, I), l(h, Ee), l(h, U), l(h, Ne), l(h, M), l(a, Te), l(a, D), l(D, v), l(v, w), l(v, Ae), l(v, W), l(v, Le), l(v, q), l(v, ze), l(v, H), l(a, Pe), l(a, J), l(J, g), l(g, O), l(g, Be), l(g, V), l(g, Ge), l(g, X), l(g, Re), l(g, Q), l(a, Ie), l(a, ee), l(ee, $), l($, E), l($, Ye), l($, te), l($, De), l($, se), l($, We), l($, ne), l(a, qe), l(a, ie), l(ie, m), l(m, N), l(m, Je), l(m, oe), l(m, Ve), l(m, pe), l(m, Xe), l(m, re), l(a, Qe), l(a, ce), l(ce, x), l(x, T), l(x, tt), l(x, ue), l(x, st), l(x, me), l(x, nt), l(x, de);
+    },
+    p(C, [S]) {
+      S & /*domain_name*/
+      1 && Y !== (Y = /*domain_name*/
+      C[0] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html") && n(h, "href", Y), S & /*domain_name*/
+      1 && K !== (K = /*domain_name*/
+      C[0] + "/gel-polish/gel-polish-colors.html") && n(v, "href", K), S & /*domain_name*/
+      1 && Z !== (Z = /*domain_name*/
+      C[0] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html") && n(g, "href", Z), S & /*domain_name*/
+      1 && le !== (le = /*domain_name*/
+      C[0] + "/nu-bond.html") && n($, "href", le), S & /*domain_name*/
+      1 && ae !== (ae = /*domain_name*/
+      C[0] + "/no-wipe-top-coat.html") && n(m, "href", ae), S & /*domain_name*/
+      1 && he !== (he = /*domain_name*/
+      C[0] + "/entity-beauty-entity-pro-led-5880001.html") && n(x, "href", he);
+    },
+    i: F,
+    o: F,
+    d(C) {
+      C && R(e);
+    }
+  };
+}
+function Rt(t, e, s) {
+  let { domain_name: i } = e;
+  return t.$$set = (r) => {
+    "domain_name" in r && s(0, i = r.domain_name);
+  }, [i];
+}
+class mt extends $t {
+  constructor(e) {
+    super(), ft(this, e, Rt, Gt, ct, { domain_name: 0 }, Bt);
+  }
+  get domain_name() {
+    return this.$$.ctx[0];
+  }
+  set domain_name(e) {
+    this.$$set({ domain_name: e }), we();
+  }
+}
+customElements.define("entitybeauty-gel", gt(mt, { domain_name: {} }, [], [], !0));
+function It(t) {
+  let e, s, i, r;
+  return i = new mt({
+    props: { domain_name: "https://entitybeauty.com" }
+  }), {
+    c() {
+      e = p("link"), s = d(), Pt(i.$$.fragment), n(e, "rel", "stylesheet"), n(e, "href", "app.css");
+    },
+    m(u, o) {
+      l(document.head, e), ye(u, s, o), dt(i, u, o), r = !0;
+    },
+    p: F,
+    i(u) {
+      r || (ut(i.$$.fragment, u), r = !0);
+    },
+    o(u) {
+      zt(i.$$.fragment, u), r = !1;
+    },
+    d(u) {
+      u && R(s), R(e), ht(i, u);
+    }
+  };
+}
+class Ut extends $t {
+  constructor(e) {
+    super(), ft(this, e, null, It, ct, {});
+  }
+}
+gt(Ut, {}, [], [], !0);

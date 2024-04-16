@@ -1,0 +1,19 @@
+{
+    "name": "nailalliance/webcomponents",
+    "description": "Injectable web components for CMS & beyond",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
+    "require": {
+      "php": "~7.0.0 || ~8.00 || ~8.10"
+    },
+    "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+        "Nailalliance\\WebComponents\\": ""
+      }
+    }
+  }

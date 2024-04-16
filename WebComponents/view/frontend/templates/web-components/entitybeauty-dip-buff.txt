@@ -1,0 +1,547 @@
+var ti = Object.defineProperty;
+var ii = (t, e, l) => e in t ? ti(t, e, { enumerable: !0, configurable: !0, writable: !0, value: l }) : t[e] = l;
+var _ = (t, e, l) => (ii(t, typeof e != "symbol" ? e + "" : e, l), l);
+function H() {
+}
+function It(t) {
+  return t();
+}
+function Gt() {
+  return /* @__PURE__ */ Object.create(null);
+}
+function Re(t) {
+  t.forEach(It);
+}
+function Wt(t) {
+  return typeof t == "function";
+}
+function Yt(t, e) {
+  return t != t ? e == e : t !== e || t && typeof t == "object" || typeof t == "function";
+}
+let Te;
+function w(t, e) {
+  return t === e ? !0 : (Te || (Te = document.createElement("a")), Te.href = e, t === Te.href);
+}
+function Mt(t) {
+  return t.split(",").map((e) => e.trim().split(" ").filter(Boolean));
+}
+function D(t, e) {
+  const l = Mt(t.srcset), r = Mt(e || "");
+  return r.length === l.length && r.every(
+    ([m, f], a) => f === l[a][1] && // We need to test both ways because Vite will create an a full URL with
+    // `new URL(asset, import.meta.url).href` for the client when `base: './'`, and the
+    // relative URLs inside srcset are not automatically resolved to absolute URLs by
+    // browsers (in contrast to img.src). This means both SSR and DOM code could
+    // contain relative or absolute URLs.
+    (w(l[a][0], m) || w(m, l[a][0]))
+  );
+}
+function si(t) {
+  return Object.keys(t).length === 0;
+}
+function s(t, e) {
+  t.appendChild(e);
+}
+function li(t, e, l) {
+  const r = ni(t);
+  if (!r.getElementById(e)) {
+    const m = n("style");
+    m.id = e, m.textContent = l, ri(r, m);
+  }
+}
+function ni(t) {
+  if (!t)
+    return document;
+  const e = t.getRootNode ? t.getRootNode() : t.ownerDocument;
+  return e && /** @type {ShadowRoot} */
+  e.host ? (
+    /** @type {ShadowRoot} */
+    e
+  ) : t.ownerDocument;
+}
+function ri(t, e) {
+  return s(
+    /** @type {Document} */
+    t.head || t,
+    e
+  ), e.sheet;
+}
+function Ue(t, e, l) {
+  t.insertBefore(e, l || null);
+}
+function Y(t) {
+  t.parentNode && t.parentNode.removeChild(t);
+}
+function n(t) {
+  return document.createElement(t);
+}
+function ai(t) {
+  return document.createTextNode(t);
+}
+function o() {
+  return ai(" ");
+}
+function i(t, e, l) {
+  l == null ? t.removeAttribute(e) : t.getAttribute(e) !== l && t.setAttribute(e, l);
+}
+function mi(t) {
+  return Array.from(t.childNodes);
+}
+function oi(t) {
+  const e = {};
+  return t.childNodes.forEach(
+    /** @param {Element} node */
+    (l) => {
+      e[l.slot || "default"] = !0;
+    }
+  ), e;
+}
+let Ie;
+function W(t) {
+  Ie = t;
+}
+const G = [], Ht = [];
+let M = [];
+const Ut = [], vi = /* @__PURE__ */ Promise.resolve();
+let Me = !1;
+function ci() {
+  Me || (Me = !0, vi.then(We));
+}
+function He(t) {
+  M.push(t);
+}
+const Ge = /* @__PURE__ */ new Set();
+let R = 0;
+function We() {
+  if (R !== 0)
+    return;
+  const t = Ie;
+  do {
+    try {
+      for (; R < G.length; ) {
+        const e = G[R];
+        R++, W(e), fi(e.$$);
+      }
+    } catch (e) {
+      throw G.length = 0, R = 0, e;
+    }
+    for (W(null), G.length = 0, R = 0; Ht.length; )
+      Ht.pop()();
+    for (let e = 0; e < M.length; e += 1) {
+      const l = M[e];
+      Ge.has(l) || (Ge.add(l), l());
+    }
+    M.length = 0;
+  } while (G.length);
+  for (; Ut.length; )
+    Ut.pop()();
+  Me = !1, Ge.clear(), W(t);
+}
+function fi(t) {
+  if (t.fragment !== null) {
+    t.update(), Re(t.before_update);
+    const e = t.dirty;
+    t.dirty = [-1], t.fragment && t.fragment.p(t.ctx, e), t.after_update.forEach(He);
+  }
+}
+function pi(t) {
+  const e = [], l = [];
+  M.forEach((r) => t.indexOf(r) === -1 ? e.push(r) : l.push(r)), l.forEach((r) => r()), M = e;
+}
+const Fe = /* @__PURE__ */ new Set();
+let ui;
+function qt(t, e) {
+  t && t.i && (Fe.delete(t), t.i(e));
+}
+function hi(t, e, l, r) {
+  if (t && t.o) {
+    if (Fe.has(t))
+      return;
+    Fe.add(t), ui.c.push(() => {
+      Fe.delete(t), r && (l && t.d(1), r());
+    }), t.o(e);
+  } else
+    r && r();
+}
+function zi(t) {
+  t && t.c();
+}
+function Jt(t, e, l) {
+  const { fragment: r, after_update: m } = t.$$;
+  r && r.m(e, l), He(() => {
+    const f = t.$$.on_mount.map(It).filter(Wt);
+    t.$$.on_destroy ? t.$$.on_destroy.push(...f) : Re(f), t.$$.on_mount = [];
+  }), m.forEach(He);
+}
+function Kt(t, e) {
+  const l = t.$$;
+  l.fragment !== null && (pi(l.after_update), Re(l.on_destroy), l.fragment && l.fragment.d(e), l.on_destroy = l.fragment = null, l.ctx = []);
+}
+function di(t, e) {
+  t.$$.dirty[0] === -1 && (G.push(t), ci(), t.$$.dirty.fill(0)), t.$$.dirty[e / 31 | 0] |= 1 << e % 31;
+}
+function Vt(t, e, l, r, m, f, a = null, v = [-1]) {
+  const p = Ie;
+  W(t);
+  const c = t.$$ = {
+    fragment: null,
+    ctx: [],
+    // state
+    props: f,
+    update: H,
+    not_equal: m,
+    bound: Gt(),
+    // lifecycle
+    on_mount: [],
+    on_destroy: [],
+    on_disconnect: [],
+    before_update: [],
+    after_update: [],
+    context: new Map(e.context || (p ? p.$$.context : [])),
+    // everything else
+    callbacks: Gt(),
+    dirty: v,
+    skip_bound: !1,
+    root: e.target || p.$$.root
+  };
+  a && a(c.root);
+  let h = !1;
+  if (c.ctx = l ? l(t, e.props || {}, (z, U, ...I) => {
+    const S = I.length ? I[0] : U;
+    return c.ctx && m(c.ctx[z], c.ctx[z] = S) && (!c.skip_bound && c.bound[z] && c.bound[z](S), h && di(t, z)), U;
+  }) : [], c.update(), h = !0, Re(c.before_update), c.fragment = r ? r(c.ctx) : !1, e.target) {
+    if (e.hydrate) {
+      const z = mi(e.target);
+      c.fragment && c.fragment.l(z), z.forEach(Y);
+    } else
+      c.fragment && c.fragment.c();
+    e.intro && qt(t.$$.fragment), Jt(t, e.target, e.anchor), We();
+  }
+  W(p);
+}
+let Xt;
+typeof HTMLElement == "function" && (Xt = class extends HTMLElement {
+  constructor(e, l, r) {
+    super();
+    /** The Svelte component constructor */
+    _(this, "$$ctor");
+    /** Slots */
+    _(this, "$$s");
+    /** The Svelte component instance */
+    _(this, "$$c");
+    /** Whether or not the custom element is connected */
+    _(this, "$$cn", !1);
+    /** Component props data */
+    _(this, "$$d", {});
+    /** `true` if currently in the process of reflecting component props back to attributes */
+    _(this, "$$r", !1);
+    /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
+    _(this, "$$p_d", {});
+    /** @type {Record<string, Function[]>} Event listeners */
+    _(this, "$$l", {});
+    /** @type {Map<Function, Function>} Event listener unsubscribe functions */
+    _(this, "$$l_u", /* @__PURE__ */ new Map());
+    this.$$ctor = e, this.$$s = l, r && this.attachShadow({ mode: "open" });
+  }
+  addEventListener(e, l, r) {
+    if (this.$$l[e] = this.$$l[e] || [], this.$$l[e].push(l), this.$$c) {
+      const m = this.$$c.$on(e, l);
+      this.$$l_u.set(l, m);
+    }
+    super.addEventListener(e, l, r);
+  }
+  removeEventListener(e, l, r) {
+    if (super.removeEventListener(e, l, r), this.$$c) {
+      const m = this.$$l_u.get(l);
+      m && (m(), this.$$l_u.delete(l));
+    }
+  }
+  async connectedCallback() {
+    if (this.$$cn = !0, !this.$$c) {
+      let l = function(a) {
+        return () => {
+          let v;
+          return {
+            c: function() {
+              v = n("slot"), a !== "default" && i(v, "name", a);
+            },
+            /**
+             * @param {HTMLElement} target
+             * @param {HTMLElement} [anchor]
+             */
+            m: function(h, z) {
+              Ue(h, v, z);
+            },
+            d: function(h) {
+              h && Y(v);
+            }
+          };
+        };
+      };
+      var e = l;
+      if (await Promise.resolve(), !this.$$cn)
+        return;
+      const r = {}, m = oi(this);
+      for (const a of this.$$s)
+        a in m && (r[a] = [l(a)]);
+      for (const a of this.attributes) {
+        const v = this.$$g_p(a.name);
+        v in this.$$d || (this.$$d[v] = Le(v, a.value, this.$$p_d, "toProp"));
+      }
+      this.$$c = new this.$$ctor({
+        target: this.shadowRoot || this,
+        props: {
+          ...this.$$d,
+          $$slots: r,
+          $$scope: {
+            ctx: []
+          }
+        }
+      });
+      const f = () => {
+        this.$$r = !0;
+        for (const a in this.$$p_d)
+          if (this.$$d[a] = this.$$c.$$.ctx[this.$$c.$$.props[a]], this.$$p_d[a].reflect) {
+            const v = Le(
+              a,
+              this.$$d[a],
+              this.$$p_d,
+              "toAttribute"
+            );
+            v == null ? this.removeAttribute(this.$$p_d[a].attribute || a) : this.setAttribute(this.$$p_d[a].attribute || a, v);
+          }
+        this.$$r = !1;
+      };
+      this.$$c.$$.after_update.push(f), f();
+      for (const a in this.$$l)
+        for (const v of this.$$l[a]) {
+          const p = this.$$c.$on(a, v);
+          this.$$l_u.set(v, p);
+        }
+      this.$$l = {};
+    }
+  }
+  // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
+  // and setting attributes through setAttribute etc, this is helpful
+  attributeChangedCallback(e, l, r) {
+    var m;
+    this.$$r || (e = this.$$g_p(e), this.$$d[e] = Le(e, r, this.$$p_d, "toProp"), (m = this.$$c) == null || m.$set({ [e]: this.$$d[e] }));
+  }
+  disconnectedCallback() {
+    this.$$cn = !1, Promise.resolve().then(() => {
+      this.$$cn || (this.$$c.$destroy(), this.$$c = void 0);
+    });
+  }
+  $$g_p(e) {
+    return Object.keys(this.$$p_d).find(
+      (l) => this.$$p_d[l].attribute === e || !this.$$p_d[l].attribute && l.toLowerCase() === e
+    ) || e;
+  }
+});
+function Le(t, e, l, r) {
+  var f;
+  const m = (f = l[t]) == null ? void 0 : f.type;
+  if (e = m === "Boolean" && typeof e != "boolean" ? e != null : e, !r || !l[t])
+    return e;
+  if (r === "toAttribute")
+    switch (m) {
+      case "Object":
+      case "Array":
+        return e == null ? null : JSON.stringify(e);
+      case "Boolean":
+        return e ? "" : null;
+      case "Number":
+        return e ?? null;
+      default:
+        return e;
+    }
+  else
+    switch (m) {
+      case "Object":
+      case "Array":
+        return e && JSON.parse(e);
+      case "Boolean":
+        return e;
+      case "Number":
+        return e != null ? +e : e;
+      default:
+        return e;
+    }
+}
+function Qt(t, e, l, r, m, f) {
+  let a = class extends Xt {
+    constructor() {
+      super(t, l, m), this.$$p_d = e;
+    }
+    static get observedAttributes() {
+      return Object.keys(e).map(
+        (v) => (e[v].attribute || v).toLowerCase()
+      );
+    }
+  };
+  return Object.keys(e).forEach((v) => {
+    Object.defineProperty(a.prototype, v, {
+      get() {
+        return this.$$c && v in this.$$c ? this.$$c[v] : this.$$d[v];
+      },
+      set(p) {
+        var c;
+        p = Le(v, p, e), this.$$d[v] = p, (c = this.$$c) == null || c.$set({ [v]: p });
+      }
+    });
+  }), r.forEach((v) => {
+    Object.defineProperty(a.prototype, v, {
+      get() {
+        var p;
+        return (p = this.$$c) == null ? void 0 : p[v];
+      }
+    });
+  }), f && (a = f(a)), t.element = /** @type {any} */
+  a, a;
+}
+class Zt {
+  constructor() {
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    _(this, "$$");
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    _(this, "$$set");
+  }
+  /** @returns {void} */
+  $destroy() {
+    Kt(this, 1), this.$destroy = H;
+  }
+  /**
+   * @template {Extract<keyof Events, string>} K
+   * @param {K} type
+   * @param {((e: Events[K]) => void) | null | undefined} callback
+   * @returns {() => void}
+   */
+  $on(e, l) {
+    if (!Wt(l))
+      return H;
+    const r = this.$$.callbacks[e] || (this.$$.callbacks[e] = []);
+    return r.push(l), () => {
+      const m = r.indexOf(l);
+      m !== -1 && r.splice(m, 1);
+    };
+  }
+  /**
+   * @param {Partial<Props>} props
+   * @returns {void}
+   */
+  $set(e) {
+    this.$$set && !si(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
+  }
+}
+const ji = "4";
+typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(ji);
+function ki(t) {
+  li(t, "svelte-jik9mz", `h1.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz,h2.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz,h3.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz,p.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{font-family:'ITC Avant Garde Gothic Pro';text-align:center;font-weight:300;margin:0 auto}.main.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding-bottom:50px;max-width:1240px;margin:0 auto}.first-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{display:flex;padding:0 5vw;align-items:center;background-color:#fce7f0;gap:5vw;line-height:0}.first-banner.svelte-jik9mz .banner-image.svelte-jik9mz img.svelte-jik9mz{max-width:40vw}.banner-text1.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{color:#e82e80;margin:0 auto}.banner-text1.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:57px;line-height:45px;font-weight:600;padding-bottom:10px}.banner-text1.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:28px;line-height:40px;font-weight:500;font-style:italic}.banner-text1.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{width:100%;font-size:23px;line-height:24px}.second-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:50px 250px}.banner-text2.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:27px;line-height:34px;color:#707070}p.svelte-jik9mz #italic.svelte-jik9mz.svelte-jik9mz{font-style:italic}.third-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{display:flex;padding:0 5vw;align-items:center;background-color:#FEF8FB;justify-content:end;gap:100px;line-height:0}.third-banner.svelte-jik9mz .banner-image.svelte-jik9mz img.svelte-jik9mz{max-width:30vw}.banner-text3.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{max-width:42vw}.banner-text3.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:23px;line-height:30px;color:#707070}.fourth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{display:flex;padding:4vh 5vw;align-items:center;justify-content:center;gap:70px}.fourth-banner.svelte-jik9mz .banner-image.svelte-jik9mz img.svelte-jik9mz{max-width:40vw}.fourth-banner.svelte-jik9mz .banner-image.svelte-jik9mz.svelte-jik9mz{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:5px}.banner-text4.svelte-jik9mz ul.svelte-jik9mz.svelte-jik9mz{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-around;gap:10px}.banner-text4.svelte-jik9mz ul li.svelte-jik9mz.svelte-jik9mz{font-family:"ITC Avant Garde Gothic Pro";font-size:20px;line-height:25px;font-weight:300;color:#707070;text-align:left}li.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz::marker{color:#ef80b1;font-size:50px}.producta.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{font-size:18px;line-height:19px;letter-spacing:0.8px;color:#FFFFFF;background-color:#A6A9AC;border:none;border-radius:10px;padding:11px 15px 10px 15px;margin:auto;width:100%}.fifth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{display:flex;padding:0 5vw;align-items:center;background-color:#FEF8FB;justify-content:end;gap:100px;line-height:0}.fifth-banner.svelte-jik9mz .banner-image.svelte-jik9mz img.svelte-jik9mz{max-width:35vw}.banner-text5.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{max-width:42vw;color:#ef80b1}.banner-text5.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:50px;line-height:70px;font-weight:400}.banner-text5.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:80px;line-height:90px;font-weight:600}.banner-text5.svelte-jik9mz h3.svelte-jik9mz.svelte-jik9mz{width:60%;font-size:30px;line-height:30px;font-weight:400}.sixth-banner-product-details.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{display:flex;align-items:end;flex-wrap:wrap;justify-content:flex-start;max-width:100%;margin:0 auto;text-align:center;gap:20px;padding:50px 5vw 0}.product.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{width:31%;font-family:'ITC Avant Garde Pro XLt';text-align:center}.product.svelte-jik9mz a.svelte-jik9mz.svelte-jik9mz{text-decoration:none}.product.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:20px;line-height:21px;font-weight:600;color:#707070;margin:15px auto;width:100%}.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:16px;line-height:23px;color:#707070;margin:15px auto;height:9vh;width:80%}.product.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{font-size:18px;line-height:19px;letter-spacing:0.8px;color:#FFFFFF;background-color:#A6A9AC;border:none;border-radius:10px;padding:11px 15px 10px 15px;margin:auto;width:80%}.product.svelte-jik9mz img.svelte-jik9mz.svelte-jik9mz{max-width:100%}@media screen and (max-width: 1024px){.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{height:5vh}.second-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:50px 100px}}@media screen and (max-width: 991px){.banner-text1.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:50px}.banner-text1.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:23px;line-height:30px}.banner-text1.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:19px}.second-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:50px}.banner-text2.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:25px;line-height:34px}.fourth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:20px}.fifth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:50px}.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{height:7vh;font-size:18px;width:100%}.product.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{max-width:100%}}@media screen and (max-width: 769px){.main.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding-bottom:30px}.first-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:0}.banner-text1.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz,.banner-text3.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:10px}.banner-text1.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:45px}.banner-text1.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:21px;line-height:25px}.banner-text1.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:18px}.second-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:40px}.banner-text2.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:24px;line-height:34px}.banner-text3.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:22px;line-height:30px}.fourth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:20px}.banner-text4.svelte-jik9mz ul li.svelte-jik9mz.svelte-jik9mz{font-family:"ITC Avant Garde Gothic Pro";font-size:18px;line-height:20px}li.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz::marker{font-size:40px}.fifth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:70px}.fifth-banner.svelte-jik9mz img.svelte-jik9mz.svelte-jik9mz{max-width:35vw}.banner-text5.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:40px;line-height:50px}.banner-text5.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:70px;line-height:70px}.banner-text5.svelte-jik9mz h3.svelte-jik9mz.svelte-jik9mz{font-size:25px;line-height:25px}.sixth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:50px 0 30px;font-size:40px;line-height:40px}.product.svelte-jik9mz img.svelte-jik9mz.svelte-jik9mz{max-width:20vw}.sixth-banner-product-details.svelte-jik9mz .product:last-child img.svelte-jik9mz.svelte-jik9mz,.product.svelte-jik9mz:nth-child(7) img.svelte-jik9mz.svelte-jik9mz{max-width:100%}.product.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:20px}.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:15px;line-height:20px}.product.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz,.producta.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{font-size:17px;line-height:17px}}@media screen and (max-width: 479px){.main.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding-bottom:20px}.first-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:0;gap:0}.banner-text1.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:30px;padding-bottom:5px}.banner-text1.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:13px;line-height:10px}.banner-text1.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:12px}.second-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:20px}.banner-text2.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:13px;line-height:20px}.third-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:20px;padding:0}.banner-text3.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{max-width:55vw}.banner-text3.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:11px;line-height:18px}.fourth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:0;padding:2vh 4vw}.banner-text4.svelte-jik9mz ul.svelte-jik9mz.svelte-jik9mz{gap:5px}.banner-text4.svelte-jik9mz ul li.svelte-jik9mz.svelte-jik9mz{font-size:12px;line-height:14px}li.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz::marker{font-size:30px}.fifth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{gap:40px;padding:0}.banner-text5.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:25px;line-height:25px}.banner-text5.svelte-jik9mz h2.svelte-jik9mz.svelte-jik9mz{font-size:45px;line-height:45px}.banner-text5.svelte-jik9mz h3.svelte-jik9mz.svelte-jik9mz{width:70%;font-size:15px;line-height:15px}.sixth-banner.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:25px 0 0;gap:0;font-size:20px;line-height:25px}.product.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{width:48%}.sixth-banner-product-details.svelte-jik9mz.svelte-jik9mz.svelte-jik9mz{padding:0;gap:10px;justify-content:space-evenly}.product.svelte-jik9mz h1.svelte-jik9mz.svelte-jik9mz{font-size:17px;line-height:20px;width:90%}.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:15px;line-height:20px;margin:10px auto;height:9vh;width:90%}.product.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{font-size:12px;line-height:15px;padding:11px 10px 10px;width:90%}.producta.svelte-jik9mz button.svelte-jik9mz.svelte-jik9mz{font-size:10px;line-height:10px;padding:8px 10px 6px;border-radius:5px;width:100%}}@media screen and (max-width: 375px){.product.svelte-jik9mz p.svelte-jik9mz.svelte-jik9mz{font-size:14px;line-height:17px;height:10vh}}`);
+}
+function gi(t) {
+  let e, l, r, m, f, a, v, p, c, h, z, U, I, S, q, J, Ye, K, qe, V, Je, X, u, Q, j, E, Ke, Ve, Xe, Z, Qe, ee, Ze, te, ie, et, se, k, O, tt, it, st, le, lt, ne, nt, re, ae, rt, me, g, N, at, mt, ot, oe, vt, ve, ct, ce, fe, ft, pe, x, P, pt, ut, ht, ue, zt, he, dt, ze, de, jt, je, b, A, kt, gt, xt, ke, bt, ge, $t, xe, be, _t, $e, $, T, yt, wt, Ct, _e, Bt, ye, Dt, we, Ce, St, Be, C, F, Et, Ot, Nt, De, Pt, Se, Ee, At, Oe, B, L, Tt, Ft, Lt, Ne, Rt, Pe, Ae;
+  return {
+    c() {
+      e = n("div"), l = n("div"), l.innerHTML = '<div class="banner-image svelte-jik9mz"><img src="/img/SubCategory/Dip&amp;Buff/ENT-win-19-125.jpg" srcset="/img/SubCategory/Dip&amp;Buff/ENT-win-19-125@2x.jpg 2x" alt="main dif and buff model" class="svelte-jik9mz"/></div> <div class="banner-text1 svelte-jik9mz"><h1 class="svelte-jik9mz">DIP OR BRUSH</h1> <h2 class="svelte-jik9mz">ACRYLIC DIP &amp; SCULPT POWDER</h2> <p class="svelte-jik9mz">Create flawless smile lines every time</p></div>', r = o(), m = n("div"), m.innerHTML = `<div class="banner-text2 svelte-jik9mz"><p class="svelte-jik9mz"><strong>Entity® Dip or Brush</strong> has no acrylic odor, cures without
+        a light and soaks off with Nail Product Remover.</p> <br/> <p class="svelte-jik9mz">Dip or Brush is <strong id="italic" class="svelte-jik9mz">easier and safer</strong> to remove than
+        traditional acrylic and hard gel applications.</p></div>`, f = o(), a = n("div"), a.innerHTML = '<div class="banner-text3 svelte-jik9mz"><p class="svelte-jik9mz">Get the colors you want in all the formulas you love with <strong id="italic" class="svelte-jik9mz">over 100 matches available</strong> in Soak Off Gel, GelLacquer and Dip or Brush.</p></div> <div class="banner-image svelte-jik9mz"><img src="/img/SubCategory/Dip&amp;Buff/14931---ENT---CORE---Dip-Or-Brush-Glam-Shot---Photoshoot5.jpg" srcset="/img/SubCategory/Dip&amp;Buff/14931---ENT---CORE---Dip-Or-Brush-Glam-Shot---Photoshoot5@2x.jpg 2x" alt="Dip or Brush jars" class="svelte-jik9mz"/></div>', v = o(), p = n("div"), c = n("div"), h = n("img"), I = o(), S = n("a"), q = n("div"), q.innerHTML = '<button class="svelte-jik9mz">BUY NOW</button>', Ye = o(), K = n("div"), K.innerHTML = '<ul class="svelte-jik9mz"><li class="svelte-jik9mz">116 total flawless colored powders</li> <li class="svelte-jik9mz">4 Perfect French Shades</li> <li class="svelte-jik9mz">Crèmes, Shimmers, Metallics and glitters</li></ul>', qe = o(), V = n("div"), V.innerHTML = '<div class="banner-text5 svelte-jik9mz"><h1 class="svelte-jik9mz">Dip it</h1> <h2 class="svelte-jik9mz">ON</h2> <h3 class="svelte-jik9mz">Works with All Dip Essentials</h3></div> <div class="banner-image svelte-jik9mz"><img src="/img/SubCategory/Dip&amp;Buff/15711-ENT-CORE-DipOrBrush-Photo-HandShot3.jpg" srcset="/img/SubCategory/Dip&amp;Buff/15711-ENT-CORE-DipOrBrush-Photo-HandShot3@2x.jpg 2x" alt="pink dip jar with hand" class="svelte-jik9mz"/></div>', Je = o(), X = n("div"), u = n("div"), Q = n("div"), j = n("a"), E = n("img"), Xe = o(), Z = n("h1"), Z.textContent = "Prep", Qe = o(), ee = n("p"), ee.textContent = "Used to remove excess oil and moisture from the nail and restore pH balance", Ze = o(), te = n("button"), te.textContent = "BUY NOW", et = o(), se = n("div"), k = n("a"), O = n("img"), st = o(), le = n("h1"), le.textContent = "Base Coat", lt = o(), ne = n("p"), ne.textContent = "Helps to protect the natural nail during wear", nt = o(), re = n("button"), re.textContent = "BUY NOW", rt = o(), me = n("div"), g = n("a"), N = n("img"), ot = o(), oe = n("h1"), oe.textContent = "Activator", vt = o(), ve = n("p"), ve.textContent = "Speeds the drying process and reducing any discoloration", ct = o(), ce = n("button"), ce.textContent = "BUY NOW", ft = o(), pe = n("div"), x = n("a"), P = n("img"), ht = o(), ue = n("h1"), ue.textContent = "Top Coat", zt = o(), he = n("p"), he.textContent = "Protects the natural nail during wear", dt = o(), ze = n("button"), ze.textContent = "BUY NOW", jt = o(), je = n("div"), b = n("a"), A = n("img"), xt = o(), ke = n("h1"), ke.textContent = "Brush Restorer", bt = o(), ge = n("p"), ge.textContent = "Is used if your brush hardens during application", $t = o(), xe = n("button"), xe.textContent = "BUY NOW", _t = o(), $e = n("div"), $ = n("a"), T = n("img"), Ct = o(), _e = n("h1"), _e.textContent = "Led Dip Ombre Gel", Bt = o(), ye = n("p"), ye.textContent = "Create everything from monochromatic fades to vibrant sunsets in a flash", Dt = o(), we = n("button"), we.textContent = "BUY NOW", St = o(), Be = n("div"), C = n("a"), F = n("img"), Nt = o(), De = n("h1"), De.textContent = "Dip or Brush Kit", Pt = o(), Se = n("button"), Se.textContent = "BUY NOW", At = o(), Oe = n("div"), B = n("a"), L = n("img"), Lt = o(), Ne = n("h1"), Ne.textContent = "Perfect French Dip Jar", Rt = o(), Pe = n("button"), Pe.textContent = "BUY NOW", i(l, "class", "first-banner svelte-jik9mz"), i(m, "class", "second-banner svelte-jik9mz"), i(a, "class", "third-banner svelte-jik9mz"), w(h.src, z = "/img/SubCategory/Dip&Buff/Screen Shot 2022-11-04 at 1.34.40 PM.jpg") || i(h, "src", z), D(h, U = "/img/SubCategory/Dip&Buff/EScreen Shot 2022-11-04 at 1.34.40 PM@2x.jpg 2x") || i(h, "srcset", U), i(h, "alt", "three dip jars blue pink white"), i(h, "class", "svelte-jik9mz"), i(q, "class", "producta svelte-jik9mz"), i(S, "href", J = /*domain_name*/
+      t[0] + "/dip-buff/dip-buff.html"), i(c, "class", "banner-image svelte-jik9mz"), i(K, "class", "banner-text4 svelte-jik9mz"), i(p, "class", "fourth-banner svelte-jik9mz"), i(V, "class", "fifth-banner svelte-jik9mz"), w(E.src, Ke = "/img/SubCategory/Dip&Buff/1-DipBuff-5102000-Prep@2x.jpg") || i(E, "src", Ke), D(E, Ve = "/img/SubCategory/Dip&Buff/1-DipBuff-5102000-Prep@2x@2x.jpg 2x") || i(E, "srcset", Ve), i(E, "alt", "entity dip Prep"), i(E, "class", "svelte-jik9mz"), i(Z, "class", "svelte-jik9mz"), i(ee, "class", "svelte-jik9mz"), i(te, "class", "svelte-jik9mz"), i(j, "href", ie = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-1-prep-0-5-fl-oz-5301000.html"), i(j, "class", "svelte-jik9mz"), i(Q, "class", "product svelte-jik9mz"), w(O.src, tt = "/img/SubCategory/Dip&Buff/2-DipBuff-5102001-Base@2x.jpg") || i(O, "src", tt), D(O, it = "/img/SubCategory/Dip&Buff/2-DipBuff-5102001-Base@2x@2x.jpg 2x") || i(O, "srcset", it), i(O, "alt", "entity dip base"), i(O, "class", "svelte-jik9mz"), i(le, "class", "svelte-jik9mz"), i(ne, "class", "svelte-jik9mz"), i(re, "class", "svelte-jik9mz"), i(k, "href", ae = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-2-base-coat-0-5-fl-oz-5301001.html"), i(k, "class", "svelte-jik9mz"), i(se, "class", "product svelte-jik9mz"), w(N.src, at = "/img/SubCategory/Dip&Buff/3-DipBuff-5102002-Activator@2x.jpg") || i(N, "src", at), D(N, mt = "/img/SubCategory/Dip&Buff/3-DipBuff-5102002-Activator@2x@2x.jpg 2x") || i(N, "srcset", mt), i(N, "alt", "entity dip activator"), i(N, "class", "svelte-jik9mz"), i(oe, "class", "svelte-jik9mz"), i(ve, "class", "svelte-jik9mz"), i(ce, "class", "svelte-jik9mz"), i(g, "href", fe = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-3-activator-0-5-fl-oz-5301002.html"), i(g, "class", "svelte-jik9mz"), i(me, "class", "product svelte-jik9mz"), w(P.src, pt = "/img/SubCategory/Dip&Buff/4-DipBuff-5102003-Top Coat.jpg") || i(P, "src", pt), D(P, ut = "/img/SubCategory/Dip&Buff/4-DipBuff-5102003-Top Coat@2x.jpg 2x") || i(P, "srcset", ut), i(P, "alt", "entity dip top"), i(P, "class", "svelte-jik9mz"), i(ue, "class", "svelte-jik9mz"), i(he, "class", "svelte-jik9mz"), i(ze, "class", "svelte-jik9mz"), i(x, "href", de = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-4-top-coat-0-5-fl-oz-5301003.html"), i(x, "class", "svelte-jik9mz"), i(pe, "class", "product svelte-jik9mz"), w(A.src, kt = "/img/SubCategory/Dip&Buff/5-DipBuff-5102004-Brush Restorer.jpg") || i(A, "src", kt), D(A, gt = "/img/SubCategory/Dip&Buff/5-DipBuff-5102004-Brush Restorer@2x.jpg 2x") || i(A, "srcset", gt), i(A, "alt", "entity dip Brush Restorer"), i(A, "class", "svelte-jik9mz"), i(ke, "class", "svelte-jik9mz"), i(ge, "class", "svelte-jik9mz"), i(xe, "class", "svelte-jik9mz"), i(b, "href", be = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-brush-restorer-0-5-fl-oz-5301004.html"), i(b, "class", "svelte-jik9mz"), i(je, "class", "product svelte-jik9mz"), w(T.src, yt = "/img/SubCategory/Dip&Buff/ENT-OMBRE-GEL@2x.jpg") || i(T, "src", yt), D(T, wt = "/img/SubCategory/Dip&Buff/ENT-OMBRE-GEL@2x@2x.jpg 2x") || i(T, "srcset", wt), i(T, "alt", "entity Led Dip Ombre Gel"), i(T, "class", "svelte-jik9mz"), i(_e, "class", "svelte-jik9mz"), i(ye, "class", "svelte-jik9mz"), i(we, "class", "svelte-jik9mz"), i($, "href", Ce = /*domain_name*/
+      t[0] + "/entity-ombr-egrave-gel.html"), i($, "class", "svelte-jik9mz"), i($e, "class", "product svelte-jik9mz"), w(F.src, Et = "/img/SubCategory/Dip&Buff/11698-ENT-Core-DBFrenchKit.jpg") || i(F, "src", Et), D(F, Ot = "/img/SubCategory/Dip&Buff/11698-ENT-Core-DBFrenchKit@2x.jpg 2x") || i(F, "srcset", Ot), i(F, "alt", "entity Dip or Brush Kit"), i(F, "class", "svelte-jik9mz"), i(De, "class", "svelte-jik9mz"), i(Se, "class", "svelte-jik9mz"), i(C, "href", Ee = /*domain_name*/
+      t[0] + "/dip-french-kit.html"), i(C, "class", "svelte-jik9mz"), i(Be, "class", "product svelte-jik9mz"), w(L.src, Tt = "/img/SubCategory/Dip&Buff/dip-n-buff-dip-jar@2x.jpg") || i(L, "src", Tt), D(L, Ft = "/img/SubCategory/Dip&Buff/dip-n-buff-dip-jar@2x@2x.jpg 2x") || i(L, "srcset", Ft), i(L, "alt", "entity Perfect French Dip Jar"), i(L, "class", "svelte-jik9mz"), i(Ne, "class", "svelte-jik9mz"), i(Pe, "class", "svelte-jik9mz"), i(B, "href", Ae = /*domain_name*/
+      t[0] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html"), i(B, "class", "svelte-jik9mz"), i(Oe, "class", "product svelte-jik9mz"), i(u, "class", "sixth-banner-product-details svelte-jik9mz"), i(X, "class", "sixth-banner svelte-jik9mz"), i(e, "class", "main svelte-jik9mz");
+    },
+    m(d, y) {
+      Ue(d, e, y), s(e, l), s(e, r), s(e, m), s(e, f), s(e, a), s(e, v), s(e, p), s(p, c), s(c, h), s(c, I), s(c, S), s(S, q), s(p, Ye), s(p, K), s(e, qe), s(e, V), s(e, Je), s(e, X), s(X, u), s(u, Q), s(Q, j), s(j, E), s(j, Xe), s(j, Z), s(j, Qe), s(j, ee), s(j, Ze), s(j, te), s(u, et), s(u, se), s(se, k), s(k, O), s(k, st), s(k, le), s(k, lt), s(k, ne), s(k, nt), s(k, re), s(u, rt), s(u, me), s(me, g), s(g, N), s(g, ot), s(g, oe), s(g, vt), s(g, ve), s(g, ct), s(g, ce), s(u, ft), s(u, pe), s(pe, x), s(x, P), s(x, ht), s(x, ue), s(x, zt), s(x, he), s(x, dt), s(x, ze), s(u, jt), s(u, je), s(je, b), s(b, A), s(b, xt), s(b, ke), s(b, bt), s(b, ge), s(b, $t), s(b, xe), s(u, _t), s(u, $e), s($e, $), s($, T), s($, Ct), s($, _e), s($, Bt), s($, ye), s($, Dt), s($, we), s(u, St), s(u, Be), s(Be, C), s(C, F), s(C, Nt), s(C, De), s(C, Pt), s(C, Se), s(u, At), s(u, Oe), s(Oe, B), s(B, L), s(B, Lt), s(B, Ne), s(B, Rt), s(B, Pe);
+    },
+    p(d, [y]) {
+      y & /*domain_name*/
+      1 && J !== (J = /*domain_name*/
+      d[0] + "/dip-buff/dip-buff.html") && i(S, "href", J), y & /*domain_name*/
+      1 && ie !== (ie = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-1-prep-0-5-fl-oz-5301000.html") && i(j, "href", ie), y & /*domain_name*/
+      1 && ae !== (ae = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-2-base-coat-0-5-fl-oz-5301001.html") && i(k, "href", ae), y & /*domain_name*/
+      1 && fe !== (fe = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-3-activator-0-5-fl-oz-5301002.html") && i(g, "href", fe), y & /*domain_name*/
+      1 && de !== (de = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-4-top-coat-0-5-fl-oz-5301003.html") && i(x, "href", de), y & /*domain_name*/
+      1 && be !== (be = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-brush-restorer-0-5-fl-oz-5301004.html") && i(b, "href", be), y & /*domain_name*/
+      1 && Ce !== (Ce = /*domain_name*/
+      d[0] + "/entity-ombr-egrave-gel.html") && i($, "href", Ce), y & /*domain_name*/
+      1 && Ee !== (Ee = /*domain_name*/
+      d[0] + "/dip-french-kit.html") && i(C, "href", Ee), y & /*domain_name*/
+      1 && Ae !== (Ae = /*domain_name*/
+      d[0] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html") && i(B, "href", Ae);
+    },
+    i: H,
+    o: H,
+    d(d) {
+      d && Y(e);
+    }
+  };
+}
+function xi(t, e, l) {
+  let { domain_name: r } = e;
+  return t.$$set = (m) => {
+    "domain_name" in m && l(0, r = m.domain_name);
+  }, [r];
+}
+class ei extends Zt {
+  constructor(e) {
+    super(), Vt(this, e, xi, gi, Yt, { domain_name: 0 }, ki);
+  }
+  get domain_name() {
+    return this.$$.ctx[0];
+  }
+  set domain_name(e) {
+    this.$$set({ domain_name: e }), We();
+  }
+}
+customElements.define("entitybeauty-dip-buff", Qt(ei, { domain_name: {} }, [], [], !0));
+function bi(t) {
+  let e, l, r, m;
+  return r = new ei({
+    props: { domain_name: "https://entitybeauty.com" }
+  }), {
+    c() {
+      e = n("link"), l = o(), zi(r.$$.fragment), i(e, "rel", "stylesheet"), i(e, "href", "app.css");
+    },
+    m(f, a) {
+      s(document.head, e), Ue(f, l, a), Jt(r, f, a), m = !0;
+    },
+    p: H,
+    i(f) {
+      m || (qt(r.$$.fragment, f), m = !0);
+    },
+    o(f) {
+      hi(r.$$.fragment, f), m = !1;
+    },
+    d(f) {
+      f && Y(l), Y(e), Kt(r, f);
+    }
+  };
+}
+class $i extends Zt {
+  constructor(e) {
+    super(), Vt(this, e, null, bi, Yt, {});
+  }
+}
+Qt($i, {}, [], [], !0);

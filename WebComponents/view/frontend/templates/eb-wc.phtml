@@ -1,0 +1,45 @@
+<?php
+/* Name: includeComponentScript
+*  Description: Render web components from .txt files 
+*  Parameters: string $filename - File's full name && bool $isAllowed - check if ecommerce needs to be filtered for a visitor
+*/
+function includeComponentScript(string $filename, bool $isAllowed)
+{
+  $filePath = dirname(__FILE__) . '/web-components/' . $filename;
+
+  if (file_exists($filePath)) {
+    $fileData = file_get_contents($filePath);
+
+    // Extract the base component name by removing the .txt extension
+    $componentName = basename($filename, '.txt');
+    // Create the full component tag with opening and closing tags
+    $componentTag = '<' . $componentName . '></' . $componentName . '>';
+
+    // Curate e-commerce for a specific page
+    if ($filename == "entitybeauty-homepage.txt" && !$isAllowed) {
+      $ecommerceFilter = '<?php echo .buybutton{display:none!important;}.buybutton h2{display:none!important;}.shop-now-btn{display:none!important;};?>';
+      $fileData = str_replace('thisisaplaceholder', $ecommerceFilter, $fileData);
+    } else {
+      $fileData = str_replace('thisisaplaceholder', "", $fileData);
+    }
+
+    // Render the script and component tag
+    echo "<script type='module'>$fileData</script>";
+    echo $componentTag;
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Gather the relevant .txt string and files
+$txtfiles = $block->getData('txtfiles');
+$componentList = explode("|", $txtfiles);
+
+// Check for international visitors...
+$isAllowed = $block->isAllowed();
+
+// Render each web component...
+foreach ($componentList as $component) {
+  includeComponentScript($component, $isAllowed);
+}

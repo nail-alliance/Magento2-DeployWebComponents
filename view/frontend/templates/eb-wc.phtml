@@ -1,4 +1,36 @@
 <?php
+
+/* Name: getComponentAttributes
+*  Description: Build a list of attributes to add to component tags (e.g. country="US")
+*/
+function getComponentAttributes()
+{
+  // TODO Add to block class later
+  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+  $storeManager = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
+  $baseUrl = $storeManager->getStore()->getBaseUrl();
+
+  $attributes = [];
+  // Example condition: add attributes based on url
+  switch ($baseUrl) {
+    case "https://entitybeauty.co.uk/":
+      $attributes['country'] = 'UK';
+      $attributes['domain_name'] = 'https://entitybeauty.co.uk/';
+      break;
+    case "https://entitybeauty.com/":
+      $attributes['country'] = 'US';
+      $attributes['domain_name'] = 'https://entitybeauty.com';
+  }
+
+  // Convert attributes array to string
+  $attrString = '';
+  foreach ($attributes as $key => $value) {
+    $attrString .= $key . '="' . $value . '" ';
+  }
+
+  return trim($attrString);  // Trim the final space
+}
+
 /* Name: includeComponentScript
 *  Description: Render web components from .txt files 
 *  Parameters: string $filename - File's full name && bool $isAllowed - check if ecommerce needs to be filtered for a visitor
@@ -13,7 +45,8 @@ function includeComponentScript(string $filename, bool $isAllowed)
     // Extract the base component name by removing the .txt extension
     $componentName = basename($filename, '.txt');
     // Create the full component tag with opening and closing tags
-    $componentTag = '<' . $componentName . '></' . $componentName . '>';
+    $attributes = getComponentAttributes($filename, $isAllowed);
+    $componentTag = "<{$componentName} {$attributes}></{$componentName}>";
 
     // Curate e-commerce for a specific page
     if ($filename == "entitybeauty-homepage.txt" && !$isAllowed) {

@@ -1,7 +1,4 @@
 <?php
-
-
-
 /* Name: getComponentAttributes
 *  Description: Build a list of attributes to add to component tags (e.g. country="US")
 */
@@ -9,6 +6,7 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
 {
 
   $attributes = [];
+
   // Example condition: add attributes based on url
   switch ($baseUrl) {
     case "https://entitybeauty.co.uk/":
@@ -56,6 +54,7 @@ function includeComponentScript(string $filename, bool $isAllowed, mixed $block)
 
     // Extract the base component name by removing the .txt extension
     $componentName = basename($filename, '.txt');
+
     // Create the full component tag with opening and closing tags
     $attributes = getComponentAttributes($baseUrl, $currentCategoryId, $currentStoreId, $componentName);
     $componentTag = "<{$componentName} {$attributes}></{$componentName}>";
@@ -86,5 +85,9 @@ $isAllowed = $block->isAllowed();
 
 // Render each web component...
 foreach ($componentList as $component) {
-  includeComponentScript($component, $isAllowed);
+  includeComponentScript($component, $isAllowed, $block);
 }
+?>
+
+<!-- Add CSS files -->
+<link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>css/style.css">

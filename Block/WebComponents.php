@@ -1,4 +1,5 @@
 <?php
+
 namespace Nailalliance\WebComponents\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -8,17 +9,18 @@ use Magento\Catalog\Model\Layer\Resolver as CatalogLayerResolver;
 class WebComponents extends \Nailalliance\EcomSwitch\Block\IpDetector
 {
     protected $storeManager;
-    protected $catalogLayer;
+    protected $catalogLayerResolver;
 
     public function __construct(
         Template\Context $context,
+        \Magento\Framework\App\Request\Http $request,
         StoreManagerInterface $storeManager,
         CatalogLayerResolver $catalogLayerResolver,
         array $data = []
     ) {
+        parent::__construct($context, $request); // Ensure parent dependencies are correctly initialized
         $this->storeManager = $storeManager;
-        $this->catalogLayer = $catalogLayerResolver->get();
-        parent::__construct($context, $data);
+        $this->catalogLayerResolver = $catalogLayerResolver;
     }
 
     public function checkAllowed()
@@ -44,13 +46,13 @@ class WebComponents extends \Nailalliance\EcomSwitch\Block\IpDetector
     public function getCurrentCategoryId()
     {
         try {
-            if ($category = $this->catalogLayer->getCurrentCategory()) {
+            $catalogLayer = $this->catalogLayerResolver->get();
+            if ($category = $catalogLayer->getCurrentCategory()) {
                 return $category->getId();
             }
         } catch (\Exception $e) {
-            return null;  // Handle the situation when the category is not available
+            return null; // Handle the situation when the category is not available
         }
         return null;
     }
 }
-?>

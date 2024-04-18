@@ -38,6 +38,18 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
   return trim($attrString);  // Trim the final space
 }
 
+// TODO: Temoroary URL trimmer for collection-color-swatch-sampler
+function getDomainName($url)
+{
+  $parsedUrl = parse_url($url);
+  $host = $parsedUrl['host'];
+  $parts = explode('.', $host);
+  if (count($parts) > 1) {
+    return $parts[count($parts) - 2] . '.' . $parts[count($parts) - 1];
+  }
+  return $host;
+}
+
 /* Name: includeComponentScript
 *  Description: Render web components from .txt files 
 *  Parameters: string $filename - File's full name && bool $isAllowed - check if ecommerce needs to be filtered for a visitor
@@ -66,12 +78,12 @@ function includeComponentScript(string $filename, bool $isAllowed, mixed $block,
     } else {
       $fileData = str_replace('thisisaplaceholder', "", $fileData);
     }
-    
+
     // Curate color swatch domain
     if ($filename == "collection-color-swatch-sampler.txt") {
-      try{
-      $fileData = str_replace('color-swatch-domain', $baseUrl, $fileData);
-      } catch(\Exception $e) {
+      try {
+        $fileData = str_replace('color-swatch-domain', getDomainName($baseUrl), $fileData);
+      } catch (\Exception $e) {
         // ...
       }
     }

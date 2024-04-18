@@ -23,7 +23,8 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
   switch ($componentName) {
     case "collection-color-swatch-sampler":
       $attributes['store_id'] = $storeId;
-      $attributes['category_id'] = $categoryId;
+      $attributes['categories_id'] = $categoryId;
+      $attribute['store_domain'] = $baseUrl;
     default:
       break;
   }
@@ -64,6 +65,15 @@ function includeComponentScript(string $filename, bool $isAllowed, mixed $block,
       $fileData = str_replace('thisisaplaceholder', $ecommerceFilter, $fileData);
     } else {
       $fileData = str_replace('thisisaplaceholder', "", $fileData);
+    }
+    
+    // Curate color swatch domain
+    if ($filename == "collection-color-swatch-sampler.txt") {
+      try{
+      $fileData = str_replace('color-swatch-domain', $baseUrl, $fileData);
+      } catch(\Exception $e) {
+        // ...
+      }
     }
 
     // Render the script and component tag

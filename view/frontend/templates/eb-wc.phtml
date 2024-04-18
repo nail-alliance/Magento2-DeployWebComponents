@@ -11,11 +11,9 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
   switch ($baseUrl) {
     case "https://entitybeauty.co.uk/":
       $attributes['country'] = 'UK';
-      $attributes['domain_name'] = 'https://entitybeauty.co.uk/';
       break;
     case "https://entitybeauty.com/":
       $attributes['country'] = 'US';
-      $attributes['domain_name'] = 'https://entitybeauty.com';
     default:
       break;
   }
@@ -28,6 +26,9 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
     default:
       break;
   }
+
+  // Apply domain to components by default
+  $attributes['domain_name'] = $baseUrl;
 
   // Convert attributes array to string
   $attrString = '';

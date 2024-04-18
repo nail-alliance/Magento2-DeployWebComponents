@@ -18,12 +18,16 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
     case "https://entitybeauty.com/":
       $attributes['country'] = 'US';
       $attributes['domain_name'] = 'https://entitybeauty.com';
+    default:
+      break;
   }
 
-  switch($componentName) {
+  switch ($componentName) {
     case "collection-color-swatch-sampler":
       $attributes['store_id'] = $storeId;
       $attributes['category_id'] = $categoryId;
+    default:
+      break;
   }
 
   // Convert attributes array to string

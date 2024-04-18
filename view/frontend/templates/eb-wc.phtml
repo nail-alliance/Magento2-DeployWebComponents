@@ -1,14 +1,12 @@
 <?php
 
+
+
 /* Name: getComponentAttributes
 *  Description: Build a list of attributes to add to component tags (e.g. country="US")
 */
-function getComponentAttributes()
+function getComponentAttributes(string $baseUrl, string $categoryId, string $storeId, string $componentName)
 {
-  // TODO Add to block class later
-  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-  $storeManager = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
-  $baseUrl = $storeManager->getStore()->getBaseUrl();
 
   $attributes = [];
   // Example condition: add attributes based on url
@@ -20,6 +18,12 @@ function getComponentAttributes()
     case "https://entitybeauty.com/":
       $attributes['country'] = 'US';
       $attributes['domain_name'] = 'https://entitybeauty.com';
+  }
+
+  switch($componentName) {
+    case "collection-color-swatch-sampler":
+      $attributes['store_id'] = $storeId;
+      $attributes['category_id'] = $categoryId;
   }
 
   // Convert attributes array to string
@@ -35,8 +39,12 @@ function getComponentAttributes()
 *  Description: Render web components from .txt files 
 *  Parameters: string $filename - File's full name && bool $isAllowed - check if ecommerce needs to be filtered for a visitor
 */
-function includeComponentScript(string $filename, bool $isAllowed)
+function includeComponentScript(string $filename, bool $isAllowed, mixed $block)
 {
+  $currentStoreId = $block->getCurrentStoreId();
+  $baseUrl = $block->getCurrentBaseUrl();
+  $currentCategoryId = $block->getCurrentCategoryId();
+
   $filePath = dirname(__FILE__) . '/web-components/' . $filename;
 
   if (file_exists($filePath)) {
@@ -45,7 +53,7 @@ function includeComponentScript(string $filename, bool $isAllowed)
     // Extract the base component name by removing the .txt extension
     $componentName = basename($filename, '.txt');
     // Create the full component tag with opening and closing tags
-    $attributes = getComponentAttributes($filename, $isAllowed);
+    $attributes = getComponentAttributes($baseUrl, $currentCategoryId, $currentStoreId, $componentName);
     $componentTag = "<{$componentName} {$attributes}></{$componentName}>";
 
     // Curate e-commerce for a specific page

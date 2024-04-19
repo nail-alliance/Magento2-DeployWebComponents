@@ -107,7 +107,11 @@ $txtfiles = $block->getData('txtfiles');
 $componentList = explode("|", $txtfiles);
 
 // Check for international visitors...
-$isAllowed = $block->isAllowed();
+if($baseUrl == "https://entitybeauty.com/") {
+  $isAllowed = $block->isAllowed();
+} else {
+  $isAllowed = true;
+}
 
 // Render each web component...
 foreach ($componentList as $component) {

@@ -331,7 +331,7 @@ function $e(e) {
   };
 }
 function we(e, t, n) {
-  let { categories_id: o } = t, { store_id: a } = t, { store_domain: c = "upgrade.nailtechsupply.com" } = t, r, s = [], u;
+  let { categories_id: o } = t, { store_id: a } = t, { store_domain: c = "color-swatch-domain" } = t, r, s = [], u;
   oe(() => {
     u = r.getContext("2d"), me(u), fetch(`https://${c}/rest/V1/nailalliance/category/`, {
       method: "POST",

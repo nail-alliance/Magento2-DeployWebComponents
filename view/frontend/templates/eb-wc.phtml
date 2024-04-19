@@ -43,16 +43,36 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
 }
 
 // TODO: Temoroary URL trimmer for collection-color-swatch-sampler
-function getDomainName($url)
-{
+function getDomainName($url) {
   $parsedUrl = parse_url($url);
-  $host = $parsedUrl['host'];
+  $host = $parsedUrl['host'] ?? '';
+
+  // A basic list of second-level domain (SLD) TLDs
+  $secondLevelDomains = [
+      'co.uk', 'gov.uk', 'org.uk', 'com.au', 'co.in', 'net.in', 'org.in', 'gen.in', 'firm.in', 'ind.in'
+  ];
+
   $parts = explode('.', $host);
-  if (count($parts) > 1) {
-    return $parts[count($parts) - 2] . '.' . $parts[count($parts) - 1];
+  $partsCount = count($parts);
+
+  // Check if the domain uses a known second-level domain
+  if ($partsCount > 1) {
+      $lastTwoParts = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
+      if (in_array($lastTwoParts, $secondLevelDomains)) {
+          if ($partsCount > 2) {
+              // Return the last three parts if second-level domain
+              return $parts[$partsCount - 3] . '.' . $lastTwoParts;
+          }
+          return $lastTwoParts; // for cases where the URL is like "example.co.uk"
+      } else {
+          // Return last two parts for normal TLDs
+          return $lastTwoParts;
+      }
   }
-  return $host;
+
+  return $host; // Return the original host if not enough parts
 }
+
 
 /* Name: includeComponentScript
 *  Description: Render web components from .txt files 

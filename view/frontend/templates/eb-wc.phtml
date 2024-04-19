@@ -18,18 +18,20 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
       break;
   }
 
+  $trimmedUrl = rtrim($baseUrl, '/');
+
   // Custom attributes for collection-color-swatch-sampler.txt
   switch ($componentName) {
     case "collection-color-swatch-sampler":
       $attributes['store_id'] = $storeId;
       $attributes['categories_id'] = $categoryId;
-      $attribute['store_domain'] = $baseUrl;
+      $attribute['store_domain'] = $trimmedUrl;
     default:
       break;
   }
 
   // Apply domain to components by default
-  $attributes['domain_name'] = $baseUrl;
+  $attributes['domain_name'] = $trimmedUrl;
 
   // Convert attributes array to string
   $attrString = '';

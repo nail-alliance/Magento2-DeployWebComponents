@@ -1,9 +1,9 @@
-var un = Object.defineProperty;
-var fn = (s, e, l) => e in s ? un(s, e, { enumerable: !0, configurable: !0, writable: !0, value: l }) : s[e] = l;
-var ee = (s, e, l) => (fn(s, typeof e != "symbol" ? e + "" : e, l), l);
-function R() {
+var mn = Object.defineProperty;
+var hn = (s, e, l) => e in s ? mn(s, e, { enumerable: !0, configurable: !0, writable: !0, value: l }) : s[e] = l;
+var ee = (s, e, l) => (hn(s, typeof e != "symbol" ? e + "" : e, l), l);
+function j() {
 }
-function gn(s, e) {
+function xn(s, e) {
   for (const l in e)
     s[l] = e[l];
   return (
@@ -11,73 +11,73 @@ function gn(s, e) {
     s
   );
 }
-function Vl(s) {
+function Kl(s) {
   return s();
 }
-function Rl() {
+function Ml() {
   return /* @__PURE__ */ Object.create(null);
 }
-function Be(s) {
-  s.forEach(Vl);
+function je(s) {
+  s.forEach(Kl);
 }
-function Kl(s) {
+function en(s) {
   return typeof s == "function";
 }
-function te(s, e) {
+function se(s, e) {
   return s != s ? e == e : s !== e || s && typeof s == "object" || typeof s == "function";
 }
-let Hs;
-function B(s, e) {
-  return s === e ? !0 : (Hs || (Hs = document.createElement("a")), Hs.href = e, s === Hs.href);
+let Xs;
+function P(s, e) {
+  return s === e ? !0 : (Xs || (Xs = document.createElement("a")), Xs.href = e, s === Xs.href);
 }
-function jl(s) {
+function Dl(s) {
   return s.split(",").map((e) => e.trim().split(" ").filter(Boolean));
 }
-function K(s, e) {
-  const l = jl(s.srcset), i = jl(e || "");
+function Y(s, e) {
+  const l = Dl(s.srcset), i = Dl(e || "");
   return i.length === l.length && i.every(
-    ([a, c], p) => c === l[p][1] && // We need to test both ways because Vite will create an a full URL with
+    ([a, u], v) => u === l[v][1] && // We need to test both ways because Vite will create an a full URL with
     // `new URL(asset, import.meta.url).href` for the client when `base: './'`, and the
     // relative URLs inside srcset are not automatically resolved to absolute URLs by
     // browsers (in contrast to img.src). This means both SSR and DOM code could
     // contain relative or absolute URLs.
-    (B(l[p][0], a) || B(a, l[p][0]))
+    (P(l[v][0], a) || P(a, l[v][0]))
   );
 }
-function hn(s) {
+function _n(s) {
   return Object.keys(s).length === 0;
 }
-function yt(s, e, l, i) {
+function zt(s, e, l, i) {
   if (s) {
-    const a = Zl(s, e, l, i);
+    const a = tn(s, e, l, i);
     return s[0](a);
   }
 }
-function Zl(s, e, l, i) {
-  return s[1] && i ? gn(l.ctx.slice(), s[1](i(e))) : l.ctx;
+function tn(s, e, l, i) {
+  return s[1] && i ? xn(l.ctx.slice(), s[1](i(e))) : l.ctx;
 }
-function $t(s, e, l, i) {
+function Lt(s, e, l, i) {
   if (s[2] && i) {
     const a = s[2](i(l));
     if (e.dirty === void 0)
       return a;
     if (typeof a == "object") {
-      const c = [], p = Math.max(e.dirty.length, a.length);
-      for (let v = 0; v < p; v += 1)
-        c[v] = e.dirty[v] | a[v];
-      return c;
+      const u = [], v = Math.max(e.dirty.length, a.length);
+      for (let r = 0; r < v; r += 1)
+        u[r] = e.dirty[r] | a[r];
+      return u;
     }
     return e.dirty | a;
   }
   return e.dirty;
 }
-function kt(s, e, l, i, a, c) {
+function Et(s, e, l, i, a, u) {
   if (a) {
-    const p = Zl(e, l, i, c);
-    s.p(p, a);
+    const v = tn(e, l, i, u);
+    s.p(v, a);
   }
 }
-function zt(s) {
+function Ct(s) {
   if (s.ctx.length > 32) {
     const e = [], l = s.ctx.length / 32;
     for (let i = 0; i < l; i++)
@@ -86,24 +86,24 @@ function zt(s) {
   }
   return -1;
 }
-function Ds(s) {
+function Fs(s) {
   return s ?? "";
 }
-const mn = typeof window < "u" ? window : typeof globalThis < "u" ? globalThis : (
+const bn = typeof window < "u" ? window : typeof globalThis < "u" ? globalThis : (
   // @ts-ignore Node typings have this
   global
 );
 function n(s, e) {
   s.appendChild(e);
 }
-function Re(s, e, l) {
-  const i = dn(s);
+function Ge(s, e, l) {
+  const i = kn(s);
   if (!i.getElementById(e)) {
     const a = o("style");
-    a.id = e, a.textContent = l, xn(i, a);
+    a.id = e, a.textContent = l, wn(i, a);
   }
 }
-function dn(s) {
+function kn(s) {
   if (!s)
     return document;
   const e = s.getRootNode ? s.getRootNode() : s.ownerDocument;
@@ -113,7 +113,7 @@ function dn(s) {
     e
   ) : s.ownerDocument;
 }
-function xn(s, e) {
+function wn(s, e) {
   return n(
     /** @type {Document} */
     s.head || s,
@@ -126,39 +126,39 @@ function O(s, e, l) {
 function S(s) {
   s.parentNode && s.parentNode.removeChild(s);
 }
-function Jl(s, e) {
+function sn(s, e) {
   for (let l = 0; l < s.length; l += 1)
     s[l] && s[l].d(e);
 }
 function o(s) {
   return document.createElement(s);
 }
-function Z(s) {
+function Q(s) {
   return document.createElementNS("http://www.w3.org/2000/svg", s);
 }
-function Qs(s) {
+function sl(s) {
   return document.createTextNode(s);
 }
 function f() {
-  return Qs(" ");
+  return sl(" ");
 }
-function Et(s, e, l, i) {
+function St(s, e, l, i) {
   return s.addEventListener(e, l, i), () => s.removeEventListener(e, l, i);
 }
 function t(s, e, l) {
   l == null ? s.removeAttribute(e) : s.getAttribute(e) !== l && s.setAttribute(e, l);
 }
-function bn(s) {
+function yn(s) {
   return Array.from(s.childNodes);
 }
-function Ql(s, e) {
+function ln(s, e) {
   e = "" + e, s.data !== e && (s.data = /** @type {string} */
   e);
 }
-function Vs(s, e, l, i) {
+function Js(s, e, l, i) {
   l == null ? s.style.removeProperty(e) : s.style.setProperty(e, l, i ? "important" : "");
 }
-function _n(s) {
+function $n(s) {
   const e = {};
   return s.childNodes.forEach(
     /** @param {Element} node */
@@ -168,141 +168,141 @@ function _n(s) {
   ), e;
 }
 let At;
-function Nt(s) {
+function Bt(s) {
   At = s;
 }
-function wn() {
+function zn() {
   if (!At)
     throw new Error("Function called outside component initialization");
   return At;
 }
-function en(s) {
-  wn().$$.on_mount.push(s);
+function nn(s) {
+  zn().$$.on_mount.push(s);
 }
-const _t = [], Xs = [];
-let wt = [];
-const Gl = [], yn = /* @__PURE__ */ Promise.resolve();
-let Zs = !1;
-function $n() {
-  Zs || (Zs = !0, yn.then(q));
+const yt = [], Ws = [];
+let $t = [];
+const Ul = [], Ln = /* @__PURE__ */ Promise.resolve();
+let el = !1;
+function En() {
+  el || (el = !0, Ln.then(I));
 }
-function Js(s) {
-  wt.push(s);
+function tl(s) {
+  $t.push(s);
 }
 const Ks = /* @__PURE__ */ new Set();
-let bt = 0;
-function q() {
-  if (bt !== 0)
+let wt = 0;
+function I() {
+  if (wt !== 0)
     return;
   const s = At;
   do {
     try {
-      for (; bt < _t.length; ) {
-        const e = _t[bt];
-        bt++, Nt(e), kn(e.$$);
+      for (; wt < yt.length; ) {
+        const e = yt[wt];
+        wt++, Bt(e), Cn(e.$$);
       }
     } catch (e) {
-      throw _t.length = 0, bt = 0, e;
+      throw yt.length = 0, wt = 0, e;
     }
-    for (Nt(null), _t.length = 0, bt = 0; Xs.length; )
-      Xs.pop()();
-    for (let e = 0; e < wt.length; e += 1) {
-      const l = wt[e];
+    for (Bt(null), yt.length = 0, wt = 0; Ws.length; )
+      Ws.pop()();
+    for (let e = 0; e < $t.length; e += 1) {
+      const l = $t[e];
       Ks.has(l) || (Ks.add(l), l());
     }
-    wt.length = 0;
-  } while (_t.length);
-  for (; Gl.length; )
-    Gl.pop()();
-  Zs = !1, Ks.clear(), Nt(s);
+    $t.length = 0;
+  } while (yt.length);
+  for (; Ul.length; )
+    Ul.pop()();
+  el = !1, Ks.clear(), Bt(s);
 }
-function kn(s) {
+function Cn(s) {
   if (s.fragment !== null) {
-    s.update(), Be(s.before_update);
+    s.update(), je(s.before_update);
     const e = s.dirty;
-    s.dirty = [-1], s.fragment && s.fragment.p(s.ctx, e), s.after_update.forEach(Js);
+    s.dirty = [-1], s.fragment && s.fragment.p(s.ctx, e), s.after_update.forEach(tl);
   }
 }
-function zn(s) {
+function Sn(s) {
   const e = [], l = [];
-  wt.forEach((i) => s.indexOf(i) === -1 ? e.push(i) : l.push(i)), l.forEach((i) => i()), wt = e;
+  $t.forEach((i) => s.indexOf(i) === -1 ? e.push(i) : l.push(i)), l.forEach((i) => i()), $t = e;
 }
-const Us = /* @__PURE__ */ new Set();
-let En;
+const qs = /* @__PURE__ */ new Set();
+let Tn;
 function M(s, e) {
-  s && s.i && (Us.delete(s), s.i(e));
+  s && s.i && (qs.delete(s), s.i(e));
 }
 function F(s, e, l, i) {
   if (s && s.o) {
-    if (Us.has(s))
+    if (qs.has(s))
       return;
-    Us.add(s), En.c.push(() => {
-      Us.delete(s), i && (l && s.d(1), i());
+    qs.add(s), Tn.c.push(() => {
+      qs.delete(s), i && (l && s.d(1), i());
     }), s.o(e);
   } else
     i && i();
 }
-function qs(s) {
+function Ys(s) {
   return (s == null ? void 0 : s.length) !== void 0 ? s : Array.from(s);
 }
 function be(s) {
   s && s.c();
 }
-function re(s, e, l) {
+function ce(s, e, l) {
   const { fragment: i, after_update: a } = s.$$;
-  i && i.m(e, l), Js(() => {
-    const c = s.$$.on_mount.map(Vl).filter(Kl);
-    s.$$.on_destroy ? s.$$.on_destroy.push(...c) : Be(c), s.$$.on_mount = [];
-  }), a.forEach(Js);
+  i && i.m(e, l), tl(() => {
+    const u = s.$$.on_mount.map(Kl).filter(en);
+    s.$$.on_destroy ? s.$$.on_destroy.push(...u) : je(u), s.$$.on_mount = [];
+  }), a.forEach(tl);
 }
-function ce(s, e) {
+function ve(s, e) {
   const l = s.$$;
-  l.fragment !== null && (zn(l.after_update), Be(l.on_destroy), l.fragment && l.fragment.d(e), l.on_destroy = l.fragment = null, l.ctx = []);
+  l.fragment !== null && (Sn(l.after_update), je(l.on_destroy), l.fragment && l.fragment.d(e), l.on_destroy = l.fragment = null, l.ctx = []);
 }
-function Ln(s, e) {
-  s.$$.dirty[0] === -1 && (_t.push(s), $n(), s.$$.dirty.fill(0)), s.$$.dirty[e / 31 | 0] |= 1 << e % 31;
+function On(s, e) {
+  s.$$.dirty[0] === -1 && (yt.push(s), En(), s.$$.dirty.fill(0)), s.$$.dirty[e / 31 | 0] |= 1 << e % 31;
 }
-function se(s, e, l, i, a, c, p = null, v = [-1]) {
-  const r = At;
-  Nt(s);
-  const u = s.$$ = {
+function le(s, e, l, i, a, u, v = null, r = [-1]) {
+  const c = At;
+  Bt(s);
+  const p = s.$$ = {
     fragment: null,
     ctx: [],
     // state
-    props: c,
-    update: R,
+    props: u,
+    update: j,
     not_equal: a,
-    bound: Rl(),
+    bound: Ml(),
     // lifecycle
     on_mount: [],
     on_destroy: [],
     on_disconnect: [],
     before_update: [],
     after_update: [],
-    context: new Map(e.context || (r ? r.$$.context : [])),
+    context: new Map(e.context || (c ? c.$$.context : [])),
     // everything else
-    callbacks: Rl(),
-    dirty: v,
+    callbacks: Ml(),
+    dirty: r,
     skip_bound: !1,
-    root: e.target || r.$$.root
+    root: e.target || c.$$.root
   };
-  p && p(u.root);
+  v && v(p.root);
   let b = !1;
-  if (u.ctx = l ? l(s, e.props || {}, (m, $, ...g) => {
-    const h = g.length ? g[0] : $;
-    return u.ctx && a(u.ctx[m], u.ctx[m] = h) && (!u.skip_bound && u.bound[m] && u.bound[m](h), b && Ln(s, m)), $;
-  }) : [], u.update(), b = !0, Be(u.before_update), u.fragment = i ? i(u.ctx) : !1, e.target) {
+  if (p.ctx = l ? l(s, e.props || {}, (h, y, ...g) => {
+    const d = g.length ? g[0] : y;
+    return p.ctx && a(p.ctx[h], p.ctx[h] = d) && (!p.skip_bound && p.bound[h] && p.bound[h](d), b && On(s, h)), y;
+  }) : [], p.update(), b = !0, je(p.before_update), p.fragment = i ? i(p.ctx) : !1, e.target) {
     if (e.hydrate) {
-      const m = bn(e.target);
-      u.fragment && u.fragment.l(m), m.forEach(S);
+      const h = yn(e.target);
+      p.fragment && p.fragment.l(h), h.forEach(S);
     } else
-      u.fragment && u.fragment.c();
-    e.intro && M(s.$$.fragment), re(s, e.target, e.anchor), q();
+      p.fragment && p.fragment.c();
+    e.intro && M(s.$$.fragment), ce(s, e.target, e.anchor), I();
   }
-  Nt(r);
+  Bt(c);
 }
-let tn;
-typeof HTMLElement == "function" && (tn = class extends HTMLElement {
+let on;
+typeof HTMLElement == "function" && (on = class extends HTMLElement {
   constructor(e, l, i) {
     super();
     /** The Svelte component constructor */
@@ -340,22 +340,22 @@ typeof HTMLElement == "function" && (tn = class extends HTMLElement {
   }
   async connectedCallback() {
     if (this.$$cn = !0, !this.$$c) {
-      let l = function(p) {
+      let l = function(v) {
         return () => {
-          let v;
+          let r;
           return {
             c: function() {
-              v = o("slot"), p !== "default" && t(v, "name", p);
+              r = o("slot"), v !== "default" && t(r, "name", v);
             },
             /**
              * @param {HTMLElement} target
              * @param {HTMLElement} [anchor]
              */
-            m: function(b, m) {
-              O(b, v, m);
+            m: function(b, h) {
+              O(b, r, h);
             },
             d: function(b) {
-              b && S(v);
+              b && S(r);
             }
           };
         };
@@ -363,12 +363,12 @@ typeof HTMLElement == "function" && (tn = class extends HTMLElement {
       var e = l;
       if (await Promise.resolve(), !this.$$cn)
         return;
-      const i = {}, a = _n(this);
-      for (const p of this.$$s)
-        p in a && (i[p] = [l(p)]);
-      for (const p of this.attributes) {
-        const v = this.$$g_p(p.name);
-        v in this.$$d || (this.$$d[v] = Fs(v, p.value, this.$$p_d, "toProp"));
+      const i = {}, a = $n(this);
+      for (const v of this.$$s)
+        v in a && (i[v] = [l(v)]);
+      for (const v of this.attributes) {
+        const r = this.$$g_p(v.name);
+        r in this.$$d || (this.$$d[r] = Vs(r, v.value, this.$$p_d, "toProp"));
       }
       this.$$c = new this.$$ctor({
         target: this.shadowRoot || this,
@@ -380,25 +380,25 @@ typeof HTMLElement == "function" && (tn = class extends HTMLElement {
           }
         }
       });
-      const c = () => {
+      const u = () => {
         this.$$r = !0;
-        for (const p in this.$$p_d)
-          if (this.$$d[p] = this.$$c.$$.ctx[this.$$c.$$.props[p]], this.$$p_d[p].reflect) {
-            const v = Fs(
-              p,
-              this.$$d[p],
+        for (const v in this.$$p_d)
+          if (this.$$d[v] = this.$$c.$$.ctx[this.$$c.$$.props[v]], this.$$p_d[v].reflect) {
+            const r = Vs(
+              v,
+              this.$$d[v],
               this.$$p_d,
               "toAttribute"
             );
-            v == null ? this.removeAttribute(this.$$p_d[p].attribute || p) : this.setAttribute(this.$$p_d[p].attribute || p, v);
+            r == null ? this.removeAttribute(this.$$p_d[v].attribute || v) : this.setAttribute(this.$$p_d[v].attribute || v, r);
           }
         this.$$r = !1;
       };
-      this.$$c.$$.after_update.push(c), c();
-      for (const p in this.$$l)
-        for (const v of this.$$l[p]) {
-          const r = this.$$c.$on(p, v);
-          this.$$l_u.set(v, r);
+      this.$$c.$$.after_update.push(u), u();
+      for (const v in this.$$l)
+        for (const r of this.$$l[v]) {
+          const c = this.$$c.$on(v, r);
+          this.$$l_u.set(r, c);
         }
       this.$$l = {};
     }
@@ -407,7 +407,7 @@ typeof HTMLElement == "function" && (tn = class extends HTMLElement {
   // and setting attributes through setAttribute etc, this is helpful
   attributeChangedCallback(e, l, i) {
     var a;
-    this.$$r || (e = this.$$g_p(e), this.$$d[e] = Fs(e, i, this.$$p_d, "toProp"), (a = this.$$c) == null || a.$set({ [e]: this.$$d[e] }));
+    this.$$r || (e = this.$$g_p(e), this.$$d[e] = Vs(e, i, this.$$p_d, "toProp"), (a = this.$$c) == null || a.$set({ [e]: this.$$d[e] }));
   }
   disconnectedCallback() {
     this.$$cn = !1, Promise.resolve().then(() => {
@@ -420,9 +420,9 @@ typeof HTMLElement == "function" && (tn = class extends HTMLElement {
     ) || e;
   }
 });
-function Fs(s, e, l, i) {
-  var c;
-  const a = (c = l[s]) == null ? void 0 : c.type;
+function Vs(s, e, l, i) {
+  var u;
+  const a = (u = l[s]) == null ? void 0 : u.type;
   if (e = a === "Boolean" && typeof e != "boolean" ? e != null : e, !i || !l[s])
     return e;
   if (i === "toAttribute")
@@ -450,38 +450,38 @@ function Fs(s, e, l, i) {
         return e;
     }
 }
-function le(s, e, l, i, a, c) {
-  let p = class extends tn {
+function ne(s, e, l, i, a, u) {
+  let v = class extends on {
     constructor() {
       super(s, l, a), this.$$p_d = e;
     }
     static get observedAttributes() {
       return Object.keys(e).map(
-        (v) => (e[v].attribute || v).toLowerCase()
+        (r) => (e[r].attribute || r).toLowerCase()
       );
     }
   };
-  return Object.keys(e).forEach((v) => {
-    Object.defineProperty(p.prototype, v, {
+  return Object.keys(e).forEach((r) => {
+    Object.defineProperty(v.prototype, r, {
       get() {
-        return this.$$c && v in this.$$c ? this.$$c[v] : this.$$d[v];
+        return this.$$c && r in this.$$c ? this.$$c[r] : this.$$d[r];
       },
-      set(r) {
-        var u;
-        r = Fs(v, r, e), this.$$d[v] = r, (u = this.$$c) == null || u.$set({ [v]: r });
+      set(c) {
+        var p;
+        c = Vs(r, c, e), this.$$d[r] = c, (p = this.$$c) == null || p.$set({ [r]: c });
       }
     });
-  }), i.forEach((v) => {
-    Object.defineProperty(p.prototype, v, {
+  }), i.forEach((r) => {
+    Object.defineProperty(v.prototype, r, {
       get() {
-        var r;
-        return (r = this.$$c) == null ? void 0 : r[v];
+        var c;
+        return (c = this.$$c) == null ? void 0 : c[r];
       }
     });
-  }), c && (p = c(p)), s.element = /** @type {any} */
-  p, p;
+  }), u && (v = u(v)), s.element = /** @type {any} */
+  v, v;
 }
-class ne {
+class ie {
   constructor() {
     /**
      * ### PRIVATE API
@@ -502,7 +502,7 @@ class ne {
   }
   /** @returns {void} */
   $destroy() {
-    ce(this, 1), this.$destroy = R;
+    ve(this, 1), this.$destroy = j;
   }
   /**
    * @template {Extract<keyof Events, string>} K
@@ -511,8 +511,8 @@ class ne {
    * @returns {() => void}
    */
   $on(e, l) {
-    if (!Kl(l))
-      return R;
+    if (!en(l))
+      return j;
     const i = this.$$.callbacks[e] || (this.$$.callbacks[e] = []);
     return i.push(l), () => {
       const a = i.indexOf(l);
@@ -524,20 +524,20 @@ class ne {
    * @returns {void}
    */
   $set(e) {
-    this.$$set && !hn(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
+    this.$$set && !_n(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
   }
 }
-const Tn = "4";
-typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(Tn);
-const { window: Sn } = mn;
-function Cn(s) {
-  Re(s, "svelte-x6v1sp", '.navigation.svelte-x6v1sp p.svelte-x6v1sp{font-family:"ITC Avant Garde Pro XLt";font-weight:500;letter-spacing:0.8px}h4.svelte-x6v1sp.svelte-x6v1sp{text-align:left;font-family:"ITC Avant Garde Pro XLt";font-size:16px;font-weight:600;letter-spacing:0.8px;color:#fff;margin:0px;cursor:pointer}.logo:hover .navbar-item.svelte-x6v1sp li:hover h4.svelte-x6v1sp{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}.navigation.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navigation.svelte-x6v1sp h4.svelte-x6v1sp{float:left;font-size:15px;color:white;text-align:center;text-decoration:none}.navigation.svelte-x6v1sp ul.svelte-x6v1sp{text-align:left;display:flex;list-style-type:none;margin:20px 0px;padding:0;max-height:fit-content}.navigation.svelte-x6v1sp li.svelte-x6v1sp{padding:0rem 1rem;display:inline-grid;color:black;text-align:left}.navigation.svelte-x6v1sp li a.svelte-x6v1sp{text-decoration:none}nav.svelte-x6v1sp.svelte-x6v1sp{display:flex;justify-content:space-between;z-index:999}.navigation.svelte-x6v1sp h4.svelte-x6v1sp{text-align:left;font-weight:500}.navigation.svelte-x6v1sp a.svelte-x6v1sp{font-size:16px;color:white;text-align:left;padding:auto;text-decoration:none}.icon-wrapper.svelte-x6v1sp.svelte-x6v1sp{margin-top:-0.5em;margin-right:1em}.menu-icon.svelte-x6v1sp.svelte-x6v1sp{display:flex;flex-direction:row;justify-content:space-between}.menu-icon.svelte-x6v1sp button.svelte-x6v1sp{display:flex;flex-direction:column}hr.svelte-x6v1sp.svelte-x6v1sp{margin:8px 0px}.navbar.svelte-x6v1sp.svelte-x6v1sp{position:relative;top:0;width:100%;color:#fff;z-index:999;display:flex;flex-direction:row;justify-content:center;align-items:center;transition:all 0.2s ease-out}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{position:absolute;top:43px;width:100%;background-color:#000;color:#fff;z-index:999;display:flex;flex-direction:row;justify-content:space-around;align-items:center;transition:all 0.2s ease-out;font-size:34px;padding:auto;top:35px}.navbar-item.svelte-x6v1sp.svelte-x6v1sp{display:flex;color:#fff;font-size:34px;align-items:center;z-index:999}.navbar-item.svelte-x6v1sp.svelte-x6v1sp:hover{transition:all 0.2s ease-out}.navbar-item.svelte-x6v1sp .navigation.svelte-x6v1sp{float:left;overflow:hidden;max-height:fit-content}.subNav.svelte-x6v1sp.svelte-x6v1sp{display:none;padding-top:0px;z-index:999}li.svelte-x6v1sp:hover .subNav.svelte-x6v1sp{display:block}.navbar-item.svelte-x6v1sp .subNav.svelte-x6v1sp{max-width:fit-content;position:absolute;top:40px}.subNavTitle.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navbar-item.svelte-x6v1sp .subNavTitle.svelte-x6v1sp{padding-top:45px}.subNavLinks.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navbar-item.svelte-x6v1sp .subNavLinks.svelte-x6v1sp{column-count:3;column-fill:auto;max-height:110px;max-width:fit-content}.rtl.svelte-x6v1sp.svelte-x6v1sp{direction:rtl;overflow:visible}.rtl.svelte-x6v1sp p.svelte-x6v1sp{text-align:right}.logo:hover:has(li:hover .subNav a) .navbar-item.svelte-x6v1sp .navigation li.svelte-x6v1sp{height:190px}.subNav.svelte-x6v1sp a p.svelte-x6v1sp{padding-bottom:7px}.subNav.svelte-x6v1sp p.svelte-x6v1sp{font-size:13px;color:#000;padding:0px 0px;margin:0}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{display:flex;height:4em;color:#9a9a9a;align-items:center;z-index:999}.navbar-item-clicked.svelte-x6v1sp ul.svelte-x6v1sp{display:flex;flex-direction:column;color:#9a9a9a}.navbar-item-clicked.svelte-x6v1sp ul li p.svelte-x6v1sp{text-align:center}.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp{color:#9a9a9a;font-size:24px;padding:20px 0px}.navbar-item-clicked.svelte-x6v1sp li.svelte-x6v1sp{border-bottom:1px solid #d9d9d9}.navbar-item-clicked.svelte-x6v1sp li.svelte-x6v1sp:last-child{border:none}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp:hover{text-decoration:none}.navbar-item-clicked.svelte-x6v1sp .subNavTitle.svelte-x6v1sp{display:none}.navbar-item-clicked.svelte-x6v1sp .navigation ul li a p.svelte-x6v1sp{padding:0px 0px 20px 0px}.navbar-item-clicked.svelte-x6v1sp .navigation a.svelte-x6v1sp{float:none}.navbar-clicked.svelte-x6v1sp .subNav a.svelte-x6v1sp{padding:0;margin:0}.navbar-clicked.svelte-x6v1sp .subNav a p.svelte-x6v1sp{color:#9a9a9a;padding:0px 0px}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-60px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:31px;height:31px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:50px;height:50px}#one.svelte-x6v1sp.svelte-x6v1sp{width:200px}#two.svelte-x6v1sp.svelte-x6v1sp{width:420px}#twoo.svelte-x6v1sp.svelte-x6v1sp{width:550px}#three.svelte-x6v1sp.svelte-x6v1sp{width:600px}@media(max-width: 1007px){button.svelte-x6v1sp.svelte-x6v1sp:hover{background-color:rgb(255, 255, 255, 0)}button.svelte-x6v1sp.svelte-x6v1sp:focus{background-color:#fff;color:#9a9a9a;transition:all 0.2s ease-out}a.svelte-x6v1sp.svelte-x6v1sp:focus{color:#9a9a9a;background-color:#fff;color:#9a9a9a;transition:all 0.2s ease-out}.menu-icon.svelte-x6v1sp.svelte-x6v1sp{width:100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;padding-top:25px;padding-left:10px;left:10px}.navbar.svelte-x6v1sp.svelte-x6v1sp{width:100vw;color:#fff;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{height:fit-content;width:fit-content;color:#fff;z-index:999;background-color:#f5f5f5;display:flex;flex-direction:column;align-items:center;justify-content:center}.navbar-item.svelte-x6v1sp.svelte-x6v1sp{display:none}.navbar-item.svelte-x6v1sp:hover a.svelte-x6v1sp{color:#9a9a9a}.navbar-item.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{display:flex;height:fit-content;width:50vw;color:#9a9a9a;font-size:1.2em;align-items:center;justify-content:center;margin-bottom:0}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp:hover a.svelte-x6v1sp{color:#9a9a9a}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-52px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:31px;height:31px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:45px;height:45px}}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{width:50vw;top:0}@media(max-width: 640px){.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp{font-size:15px;padding:20px 0px}.navbar-item-clicked.svelte-x6v1sp .navigation ul li a p.svelte-x6v1sp{font-size:10px;padding:0px 0px 20px 0px}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{width:50vw;top:0;left:0}.navbar-clicked.svelte-x6v1sp button.svelte-x6v1sp{width:30px;height:30px;left:-10px}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-30px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:20px;height:20px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:25px;height:25px}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{margin-top:-15px}}@media only screen{}@media only screen and (min-width: 640px){}@media only screen and (min-width: 1007px){.navbar.svelte-x6v1sp button.svelte-x6v1sp{display:none}}');
+const Nn = "4";
+typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(Nn);
+const { window: Bn } = bn;
+function An(s) {
+  Ge(s, "svelte-x6v1sp", '.navigation.svelte-x6v1sp p.svelte-x6v1sp{font-family:"ITC Avant Garde Pro XLt";font-weight:500;letter-spacing:0.8px}h4.svelte-x6v1sp.svelte-x6v1sp{text-align:left;font-family:"ITC Avant Garde Pro XLt";font-size:16px;font-weight:600;letter-spacing:0.8px;color:#fff;margin:0px;cursor:pointer}.logo:hover .navbar-item.svelte-x6v1sp li:hover h4.svelte-x6v1sp{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}.navigation.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navigation.svelte-x6v1sp h4.svelte-x6v1sp{float:left;font-size:15px;color:white;text-align:center;text-decoration:none}.navigation.svelte-x6v1sp ul.svelte-x6v1sp{text-align:left;display:flex;list-style-type:none;margin:20px 0px;padding:0;max-height:fit-content}.navigation.svelte-x6v1sp li.svelte-x6v1sp{padding:0rem 1rem;display:inline-grid;color:black;text-align:left}.navigation.svelte-x6v1sp li a.svelte-x6v1sp{text-decoration:none}nav.svelte-x6v1sp.svelte-x6v1sp{display:flex;justify-content:space-between;z-index:999}.navigation.svelte-x6v1sp h4.svelte-x6v1sp{text-align:left;font-weight:500}.navigation.svelte-x6v1sp a.svelte-x6v1sp{font-size:16px;color:white;text-align:left;padding:auto;text-decoration:none}.icon-wrapper.svelte-x6v1sp.svelte-x6v1sp{margin-top:-0.5em;margin-right:1em}.menu-icon.svelte-x6v1sp.svelte-x6v1sp{display:flex;flex-direction:row;justify-content:space-between}.menu-icon.svelte-x6v1sp button.svelte-x6v1sp{display:flex;flex-direction:column}hr.svelte-x6v1sp.svelte-x6v1sp{margin:8px 0px}.navbar.svelte-x6v1sp.svelte-x6v1sp{position:relative;top:0;width:100%;color:#fff;z-index:999;display:flex;flex-direction:row;justify-content:center;align-items:center;transition:all 0.2s ease-out}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{position:absolute;top:43px;width:100%;background-color:#000;color:#fff;z-index:999;display:flex;flex-direction:row;justify-content:space-around;align-items:center;transition:all 0.2s ease-out;font-size:34px;padding:auto;top:35px}.navbar-item.svelte-x6v1sp.svelte-x6v1sp{display:flex;color:#fff;font-size:34px;align-items:center;z-index:999}.navbar-item.svelte-x6v1sp.svelte-x6v1sp:hover{transition:all 0.2s ease-out}.navbar-item.svelte-x6v1sp .navigation.svelte-x6v1sp{float:left;overflow:hidden;max-height:fit-content}.subNav.svelte-x6v1sp.svelte-x6v1sp{display:none;padding-top:0px;z-index:999}li.svelte-x6v1sp:hover .subNav.svelte-x6v1sp{display:block}.navbar-item.svelte-x6v1sp .subNav.svelte-x6v1sp{max-width:fit-content;position:absolute;top:40px}.subNavTitle.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navbar-item.svelte-x6v1sp .subNavTitle.svelte-x6v1sp{padding-top:45px}.subNavLinks.svelte-x6v1sp.svelte-x6v1sp{z-index:999}.navbar-item.svelte-x6v1sp .subNavLinks.svelte-x6v1sp{column-count:3;column-fill:auto;max-height:110px;max-width:fit-content}.rtl.svelte-x6v1sp.svelte-x6v1sp{direction:rtl;overflow:visible}.rtl.svelte-x6v1sp p.svelte-x6v1sp{text-align:right}.logo:hover:has(li:hover .subNav a) .navbar-item.svelte-x6v1sp .navigation li.svelte-x6v1sp{height:190px}.subNav.svelte-x6v1sp a p.svelte-x6v1sp{padding-bottom:7px}.subNav.svelte-x6v1sp p.svelte-x6v1sp{font-size:13px;color:#000;padding:0px 0px;margin:0}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{display:flex;height:4em;color:#9a9a9a;align-items:center;z-index:999}.navbar-item-clicked.svelte-x6v1sp ul.svelte-x6v1sp{display:flex;flex-direction:column;color:#9a9a9a}.navbar-item-clicked.svelte-x6v1sp ul li p.svelte-x6v1sp{text-align:center}.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp{color:#9a9a9a;font-size:24px;padding:20px 0px}.navbar-item-clicked.svelte-x6v1sp li.svelte-x6v1sp{border-bottom:1px solid #d9d9d9}.navbar-item-clicked.svelte-x6v1sp li.svelte-x6v1sp:last-child{border:none}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp:hover{text-decoration:none}.navbar-item-clicked.svelte-x6v1sp .subNavTitle.svelte-x6v1sp{display:none}.navbar-item-clicked.svelte-x6v1sp .navigation ul li a p.svelte-x6v1sp{padding:0px 0px 20px 0px}.navbar-item-clicked.svelte-x6v1sp .navigation a.svelte-x6v1sp{float:none}.navbar-clicked.svelte-x6v1sp .subNav a.svelte-x6v1sp{padding:0;margin:0}.navbar-clicked.svelte-x6v1sp .subNav a p.svelte-x6v1sp{color:#9a9a9a;padding:0px 0px}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-60px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:31px;height:31px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:50px;height:50px}#one.svelte-x6v1sp.svelte-x6v1sp{width:200px}#two.svelte-x6v1sp.svelte-x6v1sp{width:420px}#twoo.svelte-x6v1sp.svelte-x6v1sp{width:550px}#three.svelte-x6v1sp.svelte-x6v1sp{width:600px}@media(max-width: 1007px){button.svelte-x6v1sp.svelte-x6v1sp:hover{background-color:rgb(255, 255, 255, 0)}button.svelte-x6v1sp.svelte-x6v1sp:focus{background-color:#fff;color:#9a9a9a;transition:all 0.2s ease-out}a.svelte-x6v1sp.svelte-x6v1sp:focus{color:#9a9a9a;background-color:#fff;color:#9a9a9a;transition:all 0.2s ease-out}.menu-icon.svelte-x6v1sp.svelte-x6v1sp{width:100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;padding-top:25px;padding-left:10px;left:10px}.navbar.svelte-x6v1sp.svelte-x6v1sp{width:100vw;color:#fff;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{height:fit-content;width:fit-content;color:#fff;z-index:999;background-color:#f5f5f5;display:flex;flex-direction:column;align-items:center;justify-content:center}.navbar-item.svelte-x6v1sp.svelte-x6v1sp{display:none}.navbar-item.svelte-x6v1sp:hover a.svelte-x6v1sp{color:#9a9a9a}.navbar-item.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{display:flex;height:fit-content;width:50vw;color:#9a9a9a;font-size:1.2em;align-items:center;justify-content:center;margin-bottom:0}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp:hover{color:#9a9a9a;transition:all 0.2s ease-out}.navbar-item-clicked.svelte-x6v1sp:hover a.svelte-x6v1sp{color:#9a9a9a}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-52px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:31px;height:31px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:45px;height:45px}}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{width:50vw;top:0}@media(max-width: 640px){.navbar-item-clicked.svelte-x6v1sp h4.svelte-x6v1sp{font-size:15px;padding:20px 0px}.navbar-item-clicked.svelte-x6v1sp .navigation ul li a p.svelte-x6v1sp{font-size:10px;padding:0px 0px 20px 0px}.navbar-clicked.svelte-x6v1sp.svelte-x6v1sp{width:50vw;top:0;left:0}.navbar-clicked.svelte-x6v1sp button.svelte-x6v1sp{width:30px;height:30px;left:-10px}.navbar.svelte-x6v1sp button.svelte-x6v1sp{position:absolute;top:-30px;left:0px}#x-icon.svelte-x6v1sp.svelte-x6v1sp{width:20px;height:20px}#three-line.svelte-x6v1sp.svelte-x6v1sp{width:25px;height:25px}.navbar-item-clicked.svelte-x6v1sp.svelte-x6v1sp{margin-top:-15px}}@media only screen{}@media only screen and (min-width: 640px){}@media only screen and (min-width: 1007px){.navbar.svelte-x6v1sp button.svelte-x6v1sp{display:none}}');
 }
-function On(s) {
+function In(s) {
   let e, l;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), t(l, "d", "M5 6H12H19M5 12H19M5 18H19"), t(l, "stroke", "#ffffff"), t(l, "stroke-width", "1"), t(l, "stroke-linecap", "round"), t(e, "id", "three-line"), t(e, "viewBox", "0 0 24 24"), t(e, "fill", "none"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "class", "svelte-x6v1sp");
+      e = Q("svg"), l = Q("path"), t(l, "d", "M5 6H12H19M5 12H19M5 18H19"), t(l, "stroke", "#ffffff"), t(l, "stroke-width", "1"), t(l, "stroke-linecap", "round"), t(e, "id", "three-line"), t(e, "viewBox", "0 0 24 24"), t(e, "fill", "none"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "class", "svelte-x6v1sp");
     },
     m(i, a) {
       O(i, e, a), n(e, l);
@@ -547,249 +547,252 @@ function On(s) {
     }
   };
 }
-function Nn(s) {
+function Rn(s) {
   let e, l, i;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), i = Z("path"), t(l, "d", "M3 21.32L21 3.32001"), t(l, "stroke", "#9A9A9A"), t(l, "stroke-width", "1.5"), t(l, "stroke-linecap", "round"), t(l, "stroke-linejoin", "round"), t(i, "d", "M3 3.32001L21 21.32"), t(i, "stroke", "#9A9A9A"), t(i, "stroke-width", "1.5"), t(i, "stroke-linecap", "round"), t(i, "stroke-linejoin", "round"), t(e, "id", "x-icon"), t(e, "viewBox", "-0.5 0 25 25"), t(e, "fill", "none"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "class", "svelte-x6v1sp");
+      e = Q("svg"), l = Q("path"), i = Q("path"), t(l, "d", "M3 21.32L21 3.32001"), t(l, "stroke", "#9A9A9A"), t(l, "stroke-width", "1.5"), t(l, "stroke-linecap", "round"), t(l, "stroke-linejoin", "round"), t(i, "d", "M3 3.32001L21 21.32"), t(i, "stroke", "#9A9A9A"), t(i, "stroke-width", "1.5"), t(i, "stroke-linecap", "round"), t(i, "stroke-linejoin", "round"), t(e, "id", "x-icon"), t(e, "viewBox", "-0.5 0 25 25"), t(e, "fill", "none"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "class", "svelte-x6v1sp");
     },
-    m(a, c) {
-      O(a, e, c), n(e, l), n(e, i);
+    m(a, u) {
+      O(a, e, u), n(e, l), n(e, i);
     },
     d(a) {
       a && S(e);
     }
   };
 }
-function Ml(s) {
-  let e, l, i, a, c, p;
+function Xl(s) {
+  let e, l, i, a, u, v;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("h4"), i.textContent = "BLOGS", c = f(), p = o("div"), p.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', t(i, "class", "svelte-x6v1sp"), t(l, "href", a = /*domain_name*/
-      s[1] + "/blog"), t(l, "class", "svelte-x6v1sp"), t(p, "class", "subNav svelte-x6v1sp"), t(e, "class", "svelte-x6v1sp");
+      e = o("li"), l = o("a"), i = o("h4"), i.textContent = "BLOGS", u = f(), v = o("div"), v.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', t(i, "class", "svelte-x6v1sp"), t(l, "href", a = /*domain_name*/
+      s[1] + "/blog"), t(l, "class", "svelte-x6v1sp"), t(v, "class", "subNav svelte-x6v1sp"), t(e, "class", "svelte-x6v1sp");
     },
-    m(v, r) {
-      O(v, e, r), n(e, l), n(l, i), n(e, c), n(e, p);
+    m(r, c) {
+      O(r, e, c), n(e, l), n(l, i), n(e, u), n(e, v);
     },
-    p(v, r) {
-      r & /*domain_name*/
+    p(r, c) {
+      c & /*domain_name*/
       2 && a !== (a = /*domain_name*/
-      v[1] + "/blog") && t(l, "href", a);
+      r[1] + "/blog") && t(l, "href", a);
     },
-    d(v) {
-      v && S(e);
+    d(r) {
+      r && S(e);
     }
   };
 }
-function An(s) {
-  var Il;
-  let e, l, i, a, c, p, v, r, u, b, m, $, g, h, w, k, z, _, T, d, x, L, N, Ee, P, _e, H, Le, Lt, C, ve, ie, W, Tt, pe, ue, Te, we, D, Se, Ce, Oe, fe, oe, Y, St, ge, he, Ne, ye, U, Ae, Pe, Ie, me, ae, V, Ct, de, xe, j, A, I, $e, Pt, el, je, It, Bt, tl, Ot, sl, Ge, Me, Rt, jt, ll, He, Gt, nl, ke, De, Mt, Ht, il, Ue, Dt, Ut, ol, Fe, Ft, Xt, al, Xe, qe, qt, Wt, rl, We, Yt, cl, J, Ye, Vt, Kt, vl, Ve, Zt, Jt, pl, Ke, Qt, es, ul, Ze, ts, ss, fl, Je, ls, ns, gl, Qe, et, is, os, hl, tt, as, ml, Q, st, rs, cs, dl, lt, vs, ps, xl, nt, us, fs, bl, it, gs, hs, _l, ot, ms, ds, wl, at, rt, xs, bs, yl, ct, _s, $l, G, vt, ws, ys, kl, pt, $s, ks, zl, ut, zs, Es, El, ft, Ls, Ts, Ll, gt, Ss, Cs, Tl, ht, Os, Ns, Sl, mt, As, Ps, Cl, dt, xt, Is, Bs, Ol, Rs, Nl, Ws = (
+function Pn(s) {
+  var Gl;
+  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $, z, m, E, x, _, C, N, Le, R, Z, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G, B, A, ye, It, ll, He, Rt, Pt, nl, Me, jt, Gt, il, Nt, ol, De, Ue, Ht, Mt, al, Xe, Dt, rl, $e, Fe, Ut, Xt, cl, qe, Ft, qt, vl, Ve, Vt, Wt, ul, We, Ye, Yt, Qt, pl, Qe, Zt, fl, J, Ze, Jt, Kt, gl, Je, es, ts, dl, Ke, ss, ls, ml, et, ns, is, hl, tt, os, as, xl, st, lt, rs, cs, _l, nt, vs, bl, K, it, us, ps, kl, ot, fs, gs, wl, at, ds, ms, yl, rt, hs, xs, $l, ct, _s, bs, zl, vt, ut, ks, ws, Ll, pt, ys, El, H, ft, $s, zs, Cl, gt, Ls, Es, Sl, dt, Cs, Ss, Tl, mt, Ts, Os, Ol, ht, Ns, Bs, Nl, xt, As, Is, Bl, _t, Rs, Ps, Al, bt, kt, js, Gs, Il, Hs, Rl, Qs = (
     /*country*/
-    ((Il = s[0]) == null ? void 0 : Il.toString().toLowerCase()) === "us"
-  ), js, Gs, Ys, Al;
-  function Pl(y, E) {
+    ((Gl = s[0]) == null ? void 0 : Gl.toString().toLowerCase()) === "us"
+  ), Ms, Ds, Zs, Pl;
+  function jl(k, L) {
     return (
       /*clicked*/
-      y[2] ? Nn : On
+      k[2] ? Rn : In
     );
   }
-  let Ms = Pl(s), ze = Ms(s), X = Ws && Ml(s);
+  let Us = jl(s), ze = Us(s), q = Qs && Xl(s);
   return {
     c() {
-      e = o("nav"), l = o("div"), i = o("div"), a = o("button"), ze.c(), c = f(), p = o("div"), v = o("div"), r = o("ul"), u = o("li"), b = o("a"), m = o("h4"), m.textContent = "COLLECTIONS", g = f(), h = o("div"), w = o("div"), w.innerHTML = '<p class="svelte-x6v1sp"><strong>COLLECTIONS</strong></p> <hr id="one" class="svelte-x6v1sp"/>', k = f(), z = o("div"), _ = o("a"), T = o("p"), T.textContent = "CUTIE COUTURE", x = f(), L = o("li"), N = o("a"), Ee = o("h4"), Ee.textContent = "GEL POLISH", _e = f(), H = o("div"), Le = o("div"), Le.innerHTML = '<p class="svelte-x6v1sp"><strong>GEL POLISH</strong></p> <hr id="three" class="svelte-x6v1sp"/>', Lt = f(), C = o("div"), ve = o("a"), ie = o("p"), ie.textContent = "GEL COLORS", Tt = f(), pe = o("a"), ue = o("p"), ue.textContent = "RUBBER BASE GEL", we = f(), D = o("a"), Se = o("p"), Se.textContent = "VELVET LUXE", Oe = f(), fe = o("a"), oe = o("p"), oe.textContent = "GEL NAIL ART STRIPER GEL", St = f(), ge = o("a"), he = o("p"), he.textContent = "NU BOND", ye = f(), U = o("a"), Ae = o("p"), Ae.textContent = "SOAK OFF TOP COAT", Ie = f(), me = o("a"), ae = o("p"), ae.textContent = "NO WIPE TOP COAT", Ct = f(), de = o("a"), xe = o("p"), xe.textContent = "SOAK OFF BASE COAT", A = f(), I = o("a"), $e = o("p"), $e.textContent = "ESSENTIALS 3 PACK", el = f(), je = o("a"), It = o("p"), It.textContent = "ENTITY LED LIGHT", tl = f(), Ot = o("a"), Ot.innerHTML = '<p class="svelte-x6v1sp">REGISTER LED LIGHT</p>', sl = f(), Ge = o("li"), Me = o("a"), Rt = o("h4"), Rt.textContent = "LACQUER", ll = f(), He = o("div"), Gt = o("div"), Gt.innerHTML = '<p class="svelte-x6v1sp"><strong>LACQUER</strong></p> <hr id="one" class="svelte-x6v1sp"/>', nl = f(), ke = o("div"), De = o("a"), Mt = o("p"), Mt.textContent = "LACQUER COLORS", il = f(), Ue = o("a"), Dt = o("p"), Dt.textContent = "GEL-LACQUER BASE COAT", ol = f(), Fe = o("a"), Ft = o("p"), Ft.textContent = "GEL-LACQUER TOP COAT", al = f(), Xe = o("li"), qe = o("a"), qt = o("h4"), qt.textContent = "DIP OR BRUSH", rl = f(), We = o("div"), Yt = o("div"), Yt.innerHTML = '<p class="svelte-x6v1sp"><strong>DIP OR BRUSH</strong></p> <hr id="two" class="svelte-x6v1sp"/>', cl = f(), J = o("div"), Ye = o("a"), Vt = o("p"), Vt.textContent = "DIP OR BRUSH COLORS", vl = f(), Ve = o("a"), Zt = o("p"), Zt.textContent = "PERFECT FRENCH COLORS", pl = f(), Ke = o("a"), Qt = o("p"), Qt.textContent = "ESSENTIALS", ul = f(), Ze = o("a"), ts = o("p"), ts.textContent = "PERFECT FRENCH DIP JARS", fl = f(), Je = o("a"), ls = o("p"), ls.textContent = "DIP FRENCH KIT", gl = f(), Qe = o("li"), et = o("a"), is = o("h4"), is.textContent = "ARGAN OIL", hl = f(), tt = o("div"), as = o("div"), as.innerHTML = '<p class="svelte-x6v1sp"><strong>ARGAN OIL</strong></p> <hr id="two" class="svelte-x6v1sp"/>', ml = f(), Q = o("div"), st = o("a"), rs = o("p"), rs.textContent = "REVITALIZING CUTICLE DROPS", dl = f(), lt = o("a"), vs = o("p"), vs.textContent = "LUMINIZING DRY BODY OIL SPRAY", xl = f(), nt = o("a"), us = o("p"), us.textContent = "RESTORATIVE MASSAGE BUTTER", bl = f(), it = o("a"), gs = o("p"), gs.textContent = "DAILY REPLENISHING LOTION", _l = f(), ot = o("a"), ms = o("p"), ms.textContent = "RENEWAL GEL SCRUB", wl = f(), at = o("li"), rt = o("a"), xs = o("h4"), xs.textContent = "PROFESSIONAL", yl = f(), ct = o("div"), _s = o("div"), _s.innerHTML = '<p class="svelte-x6v1sp"><strong>PROFESSIONAL</strong></p> <hr id="twoo" class="svelte-x6v1sp"/>', $l = f(), G = o("div"), vt = o("a"), ws = o("p"), ws.textContent = "STUDIO ONE SOFT GEL", kl = f(), pt = o("a"), $s = o("p"), $s.textContent = "STUDIO ONE CONTOURING GEL", zl = f(), ut = o("a"), zs = o("p"), zs.textContent = "HARD GELS ENTITY ONE GELS", El = f(), ft = o("a"), Ls = o("p"), Ls.textContent = "LIQUID & POWDER ACRYLIC SYSTEM", Ll = f(), gt = o("a"), Ss = o("p"), Ss.textContent = "DIP OR BRUSH ACRYLIC DIP POWDER", Tl = f(), ht = o("a"), Os = o("p"), Os.textContent = "ACCESSORIES", Sl = f(), mt = o("a"), As = o("p"), As.textContent = "MERCHANDISING", Cl = f(), dt = o("li"), xt = o("a"), Is = o("h4"), Is.textContent = "VIDEOS", Ol = f(), Rs = o("div"), Rs.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', Nl = f(), X && X.c(), Vs(a, "background", "none"), Vs(a, "border", "none"), Vs(a, "align-items", "flex-start"), t(a, "class", "svelte-x6v1sp"), t(i, "class", "icon-wrapper svelte-x6v1sp"), t(l, "class", "menu-icon svelte-x6v1sp"), t(m, "class", "svelte-x6v1sp"), t(b, "href", $ = /*domain_name*/
-      s[1] + "/collections.html"), t(b, "class", "svelte-x6v1sp"), t(w, "class", "subNavTitle svelte-x6v1sp"), t(T, "class", "svelte-x6v1sp"), t(_, "href", d = /*domain_name*/
-      s[1] + "/collections/cutie-couture.html"), t(_, "class", "svelte-x6v1sp"), t(z, "class", "subNavLinks svelte-x6v1sp"), t(h, "class", "subNav svelte-x6v1sp"), t(u, "class", "svelte-x6v1sp"), t(Ee, "class", "svelte-x6v1sp"), t(N, "href", P = /*domain_name*/
-      s[1] + "/gel-polish.html"), t(N, "class", "svelte-x6v1sp"), t(Le, "class", "subNavTitle svelte-x6v1sp"), t(ie, "class", "svelte-x6v1sp"), t(ve, "href", W = /*domain_name*/
-      s[1] + "/gel-polish.html"), t(ve, "class", "svelte-x6v1sp"), t(ue, "class", "svelte-x6v1sp"), t(pe, "href", Te = /*domain_name*/
-      s[1] + "/professional/rubber-base-gel.html"), t(pe, "class", "svelte-x6v1sp"), t(Se, "class", "svelte-x6v1sp"), t(D, "href", Ce = /*domain_name*/
-      s[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html"), t(D, "class", "svelte-x6v1sp"), t(oe, "class", "svelte-x6v1sp"), t(fe, "href", Y = /*domain_name*/
-      s[1] + "/professional/entity-gel-nail-art.html"), t(fe, "class", "svelte-x6v1sp"), t(he, "class", "svelte-x6v1sp"), t(ge, "href", Ne = /*domain_name*/
-      s[1] + "/gel-polish/nu-bond-category.html"), t(ge, "class", "svelte-x6v1sp"), t(Ae, "class", "svelte-x6v1sp"), t(U, "href", Pe = /*domain_name*/
-      s[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html"), t(U, "class", "svelte-x6v1sp"), t(ae, "class", "svelte-x6v1sp"), t(me, "href", V = /*domain_name*/
-      s[1] + "/no-wipe-top-coat.html"), t(me, "class", "svelte-x6v1sp"), t(xe, "class", "svelte-x6v1sp"), t(de, "href", j = /*domain_name*/
-      s[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html"), t(de, "class", "svelte-x6v1sp"), t($e, "class", "svelte-x6v1sp"), t(I, "href", Pt = /*domain_name*/
-      s[1] + "/entity-beauty-the-essentials-nubond-top-base.html"), t(I, "class", "svelte-x6v1sp"), t(It, "class", "svelte-x6v1sp"), t(je, "href", Bt = /*domain_name*/
-      s[1] + "/gel-polish/pro-led-light.html"), t(je, "class", "svelte-x6v1sp"), t(Ot, "href", "/"), t(Ot, "class", "svelte-x6v1sp"), t(C, "class", "subNavLinks svelte-x6v1sp"), t(H, "class", "subNav svelte-x6v1sp"), t(L, "class", "svelte-x6v1sp"), t(Rt, "class", "svelte-x6v1sp"), t(Me, "href", jt = /*domain_name*/
-      s[1] + "/lacquer.html"), t(Me, "class", "svelte-x6v1sp"), t(Gt, "class", "subNavTitle svelte-x6v1sp"), t(Mt, "class", "svelte-x6v1sp"), t(De, "href", Ht = /*domain_name*/
-      s[1] + "/lacquer/lacquer-colors.html"), t(De, "class", "svelte-x6v1sp"), t(Dt, "class", "svelte-x6v1sp"), t(Ue, "href", Ut = /*domain_name*/
-      s[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html"), t(Ue, "class", "svelte-x6v1sp"), t(Ft, "class", "svelte-x6v1sp"), t(Fe, "href", Xt = /*domain_name*/
-      s[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html"), t(Fe, "class", "svelte-x6v1sp"), t(ke, "class", "subNavLinks svelte-x6v1sp"), t(He, "class", "subNav svelte-x6v1sp"), t(Ge, "class", "svelte-x6v1sp"), t(qt, "class", "svelte-x6v1sp"), t(qe, "href", Wt = /*domain_name*/
-      s[1] + "/dip-buff.html"), t(qe, "class", "svelte-x6v1sp"), t(Yt, "class", "subNavTitle svelte-x6v1sp"), t(Vt, "class", "svelte-x6v1sp"), t(Ye, "href", Kt = /*domain_name*/
-      s[1] + "/dip-buff/dip-buff.html"), t(Ye, "class", "svelte-x6v1sp"), t(Zt, "class", "svelte-x6v1sp"), t(Ve, "href", Jt = /*domain_name*/
-      s[1] + "/dip-buff/perfect-french-colors.html"), t(Ve, "class", "svelte-x6v1sp"), t(Qt, "class", "svelte-x6v1sp"), t(Ke, "href", es = /*domain_name*/
-      s[1] + "/dip-buff/essentials.html"), t(Ke, "class", "svelte-x6v1sp"), t(ts, "class", "svelte-x6v1sp"), t(Ze, "href", ss = /*domain_name*/
-      s[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html"), t(Ze, "class", "svelte-x6v1sp"), t(ls, "class", "svelte-x6v1sp"), t(Je, "href", ns = /*domain_name*/
-      s[1] + "/dip-french-kit.html"), t(Je, "class", "svelte-x6v1sp"), t(J, "class", "subNavLinks svelte-x6v1sp"), t(We, "class", "subNav svelte-x6v1sp"), t(Xe, "class", "svelte-x6v1sp"), t(is, "class", "svelte-x6v1sp"), t(et, "href", os = /*domain_name*/
-      s[1] + "/argan-oil.html"), t(et, "class", "svelte-x6v1sp"), t(as, "class", "subNavTitle svelte-x6v1sp"), t(rs, "class", "svelte-x6v1sp"), t(st, "href", cs = /*domain_name*/
-      s[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html"), t(st, "class", "svelte-x6v1sp"), t(vs, "class", "svelte-x6v1sp"), t(lt, "href", ps = /*domain_name*/
-      s[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html"), t(lt, "class", "svelte-x6v1sp"), t(us, "class", "svelte-x6v1sp"), t(nt, "href", fs = /*domain_name*/
-      s[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html"), t(nt, "class", "svelte-x6v1sp"), t(gs, "class", "svelte-x6v1sp"), t(it, "href", hs = /*domain_name*/
-      s[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html"), t(it, "class", "svelte-x6v1sp"), t(ms, "class", "svelte-x6v1sp"), t(ot, "href", ds = /*domain_name*/
-      s[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html"), t(ot, "class", "svelte-x6v1sp"), t(Q, "class", "subNavLinks svelte-x6v1sp"), t(tt, "class", "subNav svelte-x6v1sp"), t(Qe, "class", "rtl svelte-x6v1sp"), t(xs, "class", "svelte-x6v1sp"), t(rt, "href", bs = /*domain_name*/
-      s[1] + "/professional.html"), t(rt, "class", "svelte-x6v1sp"), t(_s, "class", "subNavTitle svelte-x6v1sp"), t(ws, "class", "svelte-x6v1sp"), t(vt, "href", ys = /*domain_name*/
-      s[1] + "/professional/entity-studio-one-soft-gel.html"), t(vt, "class", "svelte-x6v1sp"), t($s, "class", "svelte-x6v1sp"), t(pt, "href", ks = /*domain_name*/
-      s[1] + "/professional/studio-one-contouring-gel.html"), t(pt, "class", "svelte-x6v1sp"), t(zs, "class", "svelte-x6v1sp"), t(ut, "href", Es = /*domain_name*/
-      s[1] + "/professional/hard-gels-entity-one-gel.html"), t(ut, "class", "svelte-x6v1sp"), t(Ls, "class", "svelte-x6v1sp"), t(ft, "href", Ts = /*domain_name*/
-      s[1] + "/professional/liquid-powder-acrylic-system.html"), t(ft, "class", "svelte-x6v1sp"), t(Ss, "class", "svelte-x6v1sp"), t(gt, "href", Cs = /*domain_name*/
-      s[1] + "/"), t(gt, "class", "svelte-x6v1sp"), t(Os, "class", "svelte-x6v1sp"), t(ht, "href", Ns = /*domain_name*/
-      s[1] + "/professional/accessories.html"), t(ht, "class", "svelte-x6v1sp"), t(As, "class", "svelte-x6v1sp"), t(mt, "href", Ps = /*domain_name*/
-      s[1] + "/"), t(mt, "class", "svelte-x6v1sp"), t(G, "class", "subNavLinks svelte-x6v1sp"), t(ct, "class", "subNav svelte-x6v1sp"), t(at, "class", "rtl svelte-x6v1sp"), t(Is, "class", "svelte-x6v1sp"), t(xt, "href", Bs = /*domain_name*/
-      s[1] + "/"), t(xt, "class", "svelte-x6v1sp"), t(Rs, "class", "subNav svelte-x6v1sp"), t(dt, "class", "svelte-x6v1sp"), t(r, "class", "svelte-x6v1sp"), t(v, "class", "navigation svelte-x6v1sp"), t(p, "class", js = Ds(
+      e = o("nav"), l = o("div"), i = o("div"), a = o("button"), ze.c(), u = f(), v = o("div"), r = o("div"), c = o("ul"), p = o("li"), b = o("a"), h = o("h4"), h.textContent = "COLLECTIONS", g = f(), d = o("div"), w = o("div"), w.innerHTML = '<p class="svelte-x6v1sp"><strong>COLLECTIONS</strong></p> <hr id="one" class="svelte-x6v1sp"/>', $ = f(), z = o("div"), m = o("a"), E = o("p"), E.textContent = "LOST IN THE VIEW", _ = f(), C = o("a"), N = o("p"), N.textContent = "CUTIE COUTURE", R = f(), Z = o("li"), D = o("a"), Ee = o("h4"), Ee.textContent = "GEL POLISH", Se = f(), ue = o("div"), oe = o("div"), oe.innerHTML = '<p class="svelte-x6v1sp"><strong>GEL POLISH</strong></p> <hr id="three" class="svelte-x6v1sp"/>', te = f(), T = o("div"), pe = o("a"), fe = o("p"), fe.textContent = "GEL COLORS", ke = f(), U = o("a"), Oe = o("p"), Oe.textContent = "RUBBER BASE GEL", Be = f(), ge = o("a"), ae = o("p"), ae.textContent = "VELVET LUXE", Tt = f(), de = o("a"), me = o("p"), me.textContent = "GEL NAIL ART STRIPER GEL", we = f(), X = o("a"), Ie = o("p"), Ie.textContent = "NU BOND", Pe = f(), he = o("a"), re = o("p"), re.textContent = "SOAK OFF TOP COAT", Ot = f(), xe = o("a"), _e = o("p"), _e.textContent = "NO WIPE TOP COAT", B = f(), A = o("a"), ye = o("p"), ye.textContent = "SOAK OFF BASE COAT", ll = f(), He = o("a"), Rt = o("p"), Rt.textContent = "ESSENTIALS 3 PACK", nl = f(), Me = o("a"), jt = o("p"), jt.textContent = "ENTITY LED LIGHT", il = f(), Nt = o("a"), Nt.innerHTML = '<p class="svelte-x6v1sp">REGISTER LED LIGHT</p>', ol = f(), De = o("li"), Ue = o("a"), Ht = o("h4"), Ht.textContent = "LACQUER", al = f(), Xe = o("div"), Dt = o("div"), Dt.innerHTML = '<p class="svelte-x6v1sp"><strong>LACQUER</strong></p> <hr id="one" class="svelte-x6v1sp"/>', rl = f(), $e = o("div"), Fe = o("a"), Ut = o("p"), Ut.textContent = "LACQUER COLORS", cl = f(), qe = o("a"), Ft = o("p"), Ft.textContent = "GEL-LACQUER BASE COAT", vl = f(), Ve = o("a"), Vt = o("p"), Vt.textContent = "GEL-LACQUER TOP COAT", ul = f(), We = o("li"), Ye = o("a"), Yt = o("h4"), Yt.textContent = "DIP OR BRUSH", pl = f(), Qe = o("div"), Zt = o("div"), Zt.innerHTML = '<p class="svelte-x6v1sp"><strong>DIP OR BRUSH</strong></p> <hr id="two" class="svelte-x6v1sp"/>', fl = f(), J = o("div"), Ze = o("a"), Jt = o("p"), Jt.textContent = "DIP OR BRUSH COLORS", gl = f(), Je = o("a"), es = o("p"), es.textContent = "PERFECT FRENCH COLORS", dl = f(), Ke = o("a"), ss = o("p"), ss.textContent = "ESSENTIALS", ml = f(), et = o("a"), ns = o("p"), ns.textContent = "PERFECT FRENCH DIP JARS", hl = f(), tt = o("a"), os = o("p"), os.textContent = "DIP FRENCH KIT", xl = f(), st = o("li"), lt = o("a"), rs = o("h4"), rs.textContent = "ARGAN OIL", _l = f(), nt = o("div"), vs = o("div"), vs.innerHTML = '<p class="svelte-x6v1sp"><strong>ARGAN OIL</strong></p> <hr id="two" class="svelte-x6v1sp"/>', bl = f(), K = o("div"), it = o("a"), us = o("p"), us.textContent = "REVITALIZING CUTICLE DROPS", kl = f(), ot = o("a"), fs = o("p"), fs.textContent = "LUMINIZING DRY BODY OIL SPRAY", wl = f(), at = o("a"), ds = o("p"), ds.textContent = "RESTORATIVE MASSAGE BUTTER", yl = f(), rt = o("a"), hs = o("p"), hs.textContent = "DAILY REPLENISHING LOTION", $l = f(), ct = o("a"), _s = o("p"), _s.textContent = "RENEWAL GEL SCRUB", zl = f(), vt = o("li"), ut = o("a"), ks = o("h4"), ks.textContent = "PROFESSIONAL", Ll = f(), pt = o("div"), ys = o("div"), ys.innerHTML = '<p class="svelte-x6v1sp"><strong>PROFESSIONAL</strong></p> <hr id="twoo" class="svelte-x6v1sp"/>', El = f(), H = o("div"), ft = o("a"), $s = o("p"), $s.textContent = "STUDIO ONE SOFT GEL", Cl = f(), gt = o("a"), Ls = o("p"), Ls.textContent = "STUDIO ONE CONTOURING GEL", Sl = f(), dt = o("a"), Cs = o("p"), Cs.textContent = "HARD GELS ENTITY ONE GELS", Tl = f(), mt = o("a"), Ts = o("p"), Ts.textContent = "LIQUID & POWDER ACRYLIC SYSTEM", Ol = f(), ht = o("a"), Ns = o("p"), Ns.textContent = "DIP OR BRUSH ACRYLIC DIP POWDER", Nl = f(), xt = o("a"), As = o("p"), As.textContent = "ACCESSORIES", Bl = f(), _t = o("a"), Rs = o("p"), Rs.textContent = "MERCHANDISING", Al = f(), bt = o("li"), kt = o("a"), js = o("h4"), js.textContent = "VIDEOS", Il = f(), Hs = o("div"), Hs.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', Rl = f(), q && q.c(), Js(a, "background", "none"), Js(a, "border", "none"), Js(a, "align-items", "flex-start"), t(a, "class", "svelte-x6v1sp"), t(i, "class", "icon-wrapper svelte-x6v1sp"), t(l, "class", "menu-icon svelte-x6v1sp"), t(h, "class", "svelte-x6v1sp"), t(b, "href", y = /*domain_name*/
+      s[1] + "/collections.html"), t(b, "class", "svelte-x6v1sp"), t(w, "class", "subNavTitle svelte-x6v1sp"), t(E, "class", "svelte-x6v1sp"), t(m, "href", x = /*domain_name*/
+      s[1] + "/collections/lost-in-the-view.html"), t(m, "class", "svelte-x6v1sp"), t(N, "class", "svelte-x6v1sp"), t(C, "href", Le = /*domain_name*/
+      s[1] + "/cutie-couture.html"), t(C, "class", "svelte-x6v1sp"), t(z, "class", "subNavLinks svelte-x6v1sp"), t(d, "class", "subNav svelte-x6v1sp"), t(p, "class", "svelte-x6v1sp"), t(Ee, "class", "svelte-x6v1sp"), t(D, "href", Ce = /*domain_name*/
+      s[1] + "/gel-polish.html"), t(D, "class", "svelte-x6v1sp"), t(oe, "class", "subNavTitle svelte-x6v1sp"), t(fe, "class", "svelte-x6v1sp"), t(pe, "href", Te = /*domain_name*/
+      s[1] + "/gel-polish.html"), t(pe, "class", "svelte-x6v1sp"), t(Oe, "class", "svelte-x6v1sp"), t(U, "href", Ne = /*domain_name*/
+      s[1] + "/professional/rubber-base-gel.html"), t(U, "class", "svelte-x6v1sp"), t(ae, "class", "svelte-x6v1sp"), t(ge, "href", V = /*domain_name*/
+      s[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html"), t(ge, "class", "svelte-x6v1sp"), t(me, "class", "svelte-x6v1sp"), t(de, "href", Ae = /*domain_name*/
+      s[1] + "/professional/entity-gel-nail-art.html"), t(de, "class", "svelte-x6v1sp"), t(Ie, "class", "svelte-x6v1sp"), t(X, "href", Re = /*domain_name*/
+      s[1] + "/gel-polish/nu-bond-category.html"), t(X, "class", "svelte-x6v1sp"), t(re, "class", "svelte-x6v1sp"), t(he, "href", W = /*domain_name*/
+      s[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html"), t(he, "class", "svelte-x6v1sp"), t(_e, "class", "svelte-x6v1sp"), t(xe, "href", G = /*domain_name*/
+      s[1] + "/no-wipe-top-coat.html"), t(xe, "class", "svelte-x6v1sp"), t(ye, "class", "svelte-x6v1sp"), t(A, "href", It = /*domain_name*/
+      s[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html"), t(A, "class", "svelte-x6v1sp"), t(Rt, "class", "svelte-x6v1sp"), t(He, "href", Pt = /*domain_name*/
+      s[1] + "/entity-beauty-the-essentials-nubond-top-base.html"), t(He, "class", "svelte-x6v1sp"), t(jt, "class", "svelte-x6v1sp"), t(Me, "href", Gt = /*domain_name*/
+      s[1] + "/gel-polish/pro-led-light.html"), t(Me, "class", "svelte-x6v1sp"), t(Nt, "href", "/"), t(Nt, "class", "svelte-x6v1sp"), t(T, "class", "subNavLinks svelte-x6v1sp"), t(ue, "class", "subNav svelte-x6v1sp"), t(Z, "class", "svelte-x6v1sp"), t(Ht, "class", "svelte-x6v1sp"), t(Ue, "href", Mt = /*domain_name*/
+      s[1] + "/lacquer.html"), t(Ue, "class", "svelte-x6v1sp"), t(Dt, "class", "subNavTitle svelte-x6v1sp"), t(Ut, "class", "svelte-x6v1sp"), t(Fe, "href", Xt = /*domain_name*/
+      s[1] + "/lacquer/lacquer-colors.html"), t(Fe, "class", "svelte-x6v1sp"), t(Ft, "class", "svelte-x6v1sp"), t(qe, "href", qt = /*domain_name*/
+      s[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html"), t(qe, "class", "svelte-x6v1sp"), t(Vt, "class", "svelte-x6v1sp"), t(Ve, "href", Wt = /*domain_name*/
+      s[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html"), t(Ve, "class", "svelte-x6v1sp"), t($e, "class", "subNavLinks svelte-x6v1sp"), t(Xe, "class", "subNav svelte-x6v1sp"), t(De, "class", "svelte-x6v1sp"), t(Yt, "class", "svelte-x6v1sp"), t(Ye, "href", Qt = /*domain_name*/
+      s[1] + "/dip-buff.html"), t(Ye, "class", "svelte-x6v1sp"), t(Zt, "class", "subNavTitle svelte-x6v1sp"), t(Jt, "class", "svelte-x6v1sp"), t(Ze, "href", Kt = /*domain_name*/
+      s[1] + "/dip-buff/dip-buff.html"), t(Ze, "class", "svelte-x6v1sp"), t(es, "class", "svelte-x6v1sp"), t(Je, "href", ts = /*domain_name*/
+      s[1] + "/dip-buff/perfect-french-colors.html"), t(Je, "class", "svelte-x6v1sp"), t(ss, "class", "svelte-x6v1sp"), t(Ke, "href", ls = /*domain_name*/
+      s[1] + "/dip-buff/essentials.html"), t(Ke, "class", "svelte-x6v1sp"), t(ns, "class", "svelte-x6v1sp"), t(et, "href", is = /*domain_name*/
+      s[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html"), t(et, "class", "svelte-x6v1sp"), t(os, "class", "svelte-x6v1sp"), t(tt, "href", as = /*domain_name*/
+      s[1] + "/dip-french-kit.html"), t(tt, "class", "svelte-x6v1sp"), t(J, "class", "subNavLinks svelte-x6v1sp"), t(Qe, "class", "subNav svelte-x6v1sp"), t(We, "class", "svelte-x6v1sp"), t(rs, "class", "svelte-x6v1sp"), t(lt, "href", cs = /*domain_name*/
+      s[1] + "/argan-oil.html"), t(lt, "class", "svelte-x6v1sp"), t(vs, "class", "subNavTitle svelte-x6v1sp"), t(us, "class", "svelte-x6v1sp"), t(it, "href", ps = /*domain_name*/
+      s[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html"), t(it, "class", "svelte-x6v1sp"), t(fs, "class", "svelte-x6v1sp"), t(ot, "href", gs = /*domain_name*/
+      s[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html"), t(ot, "class", "svelte-x6v1sp"), t(ds, "class", "svelte-x6v1sp"), t(at, "href", ms = /*domain_name*/
+      s[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html"), t(at, "class", "svelte-x6v1sp"), t(hs, "class", "svelte-x6v1sp"), t(rt, "href", xs = /*domain_name*/
+      s[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html"), t(rt, "class", "svelte-x6v1sp"), t(_s, "class", "svelte-x6v1sp"), t(ct, "href", bs = /*domain_name*/
+      s[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html"), t(ct, "class", "svelte-x6v1sp"), t(K, "class", "subNavLinks svelte-x6v1sp"), t(nt, "class", "subNav svelte-x6v1sp"), t(st, "class", "rtl svelte-x6v1sp"), t(ks, "class", "svelte-x6v1sp"), t(ut, "href", ws = /*domain_name*/
+      s[1] + "/professional.html"), t(ut, "class", "svelte-x6v1sp"), t(ys, "class", "subNavTitle svelte-x6v1sp"), t($s, "class", "svelte-x6v1sp"), t(ft, "href", zs = /*domain_name*/
+      s[1] + "/professional/entity-studio-one-soft-gel.html"), t(ft, "class", "svelte-x6v1sp"), t(Ls, "class", "svelte-x6v1sp"), t(gt, "href", Es = /*domain_name*/
+      s[1] + "/professional/studio-one-contouring-gel.html"), t(gt, "class", "svelte-x6v1sp"), t(Cs, "class", "svelte-x6v1sp"), t(dt, "href", Ss = /*domain_name*/
+      s[1] + "/professional/hard-gels-entity-one-gel.html"), t(dt, "class", "svelte-x6v1sp"), t(Ts, "class", "svelte-x6v1sp"), t(mt, "href", Os = /*domain_name*/
+      s[1] + "/professional/liquid-powder-acrylic-system.html"), t(mt, "class", "svelte-x6v1sp"), t(Ns, "class", "svelte-x6v1sp"), t(ht, "href", Bs = /*domain_name*/
+      s[1] + "/"), t(ht, "class", "svelte-x6v1sp"), t(As, "class", "svelte-x6v1sp"), t(xt, "href", Is = /*domain_name*/
+      s[1] + "/professional/accessories.html"), t(xt, "class", "svelte-x6v1sp"), t(Rs, "class", "svelte-x6v1sp"), t(_t, "href", Ps = /*domain_name*/
+      s[1] + "/"), t(_t, "class", "svelte-x6v1sp"), t(H, "class", "subNavLinks svelte-x6v1sp"), t(pt, "class", "subNav svelte-x6v1sp"), t(vt, "class", "rtl svelte-x6v1sp"), t(js, "class", "svelte-x6v1sp"), t(kt, "href", Gs = /*domain_name*/
+      s[1] + "/"), t(kt, "class", "svelte-x6v1sp"), t(Hs, "class", "subNav svelte-x6v1sp"), t(bt, "class", "svelte-x6v1sp"), t(c, "class", "svelte-x6v1sp"), t(r, "class", "navigation svelte-x6v1sp"), t(v, "class", Ms = Fs(
         /*clicked*/
         s[2] ? "navbar-item-clicked" : "navbar-item"
-      ) + " svelte-x6v1sp"), t(e, "class", Gs = Ds(
+      ) + " svelte-x6v1sp"), t(e, "class", Ds = Fs(
         /*clicked*/
         s[2] ? "navbar-clicked" : "navbar"
       ) + " svelte-x6v1sp");
     },
-    m(y, E) {
-      O(y, e, E), n(e, l), n(l, i), n(i, a), ze.m(a, null), n(e, c), n(e, p), n(p, v), n(v, r), n(r, u), n(u, b), n(b, m), n(u, g), n(u, h), n(h, w), n(h, k), n(h, z), n(z, _), n(_, T), n(r, x), n(r, L), n(L, N), n(N, Ee), n(L, _e), n(L, H), n(H, Le), n(H, Lt), n(H, C), n(C, ve), n(ve, ie), n(C, Tt), n(C, pe), n(pe, ue), n(C, we), n(C, D), n(D, Se), n(C, Oe), n(C, fe), n(fe, oe), n(C, St), n(C, ge), n(ge, he), n(C, ye), n(C, U), n(U, Ae), n(C, Ie), n(C, me), n(me, ae), n(C, Ct), n(C, de), n(de, xe), n(C, A), n(C, I), n(I, $e), n(C, el), n(C, je), n(je, It), n(C, tl), n(C, Ot), n(r, sl), n(r, Ge), n(Ge, Me), n(Me, Rt), n(Ge, ll), n(Ge, He), n(He, Gt), n(He, nl), n(He, ke), n(ke, De), n(De, Mt), n(ke, il), n(ke, Ue), n(Ue, Dt), n(ke, ol), n(ke, Fe), n(Fe, Ft), n(r, al), n(r, Xe), n(Xe, qe), n(qe, qt), n(Xe, rl), n(Xe, We), n(We, Yt), n(We, cl), n(We, J), n(J, Ye), n(Ye, Vt), n(J, vl), n(J, Ve), n(Ve, Zt), n(J, pl), n(J, Ke), n(Ke, Qt), n(J, ul), n(J, Ze), n(Ze, ts), n(J, fl), n(J, Je), n(Je, ls), n(r, gl), n(r, Qe), n(Qe, et), n(et, is), n(Qe, hl), n(Qe, tt), n(tt, as), n(tt, ml), n(tt, Q), n(Q, st), n(st, rs), n(Q, dl), n(Q, lt), n(lt, vs), n(Q, xl), n(Q, nt), n(nt, us), n(Q, bl), n(Q, it), n(it, gs), n(Q, _l), n(Q, ot), n(ot, ms), n(r, wl), n(r, at), n(at, rt), n(rt, xs), n(at, yl), n(at, ct), n(ct, _s), n(ct, $l), n(ct, G), n(G, vt), n(vt, ws), n(G, kl), n(G, pt), n(pt, $s), n(G, zl), n(G, ut), n(ut, zs), n(G, El), n(G, ft), n(ft, Ls), n(G, Ll), n(G, gt), n(gt, Ss), n(G, Tl), n(G, ht), n(ht, Os), n(G, Sl), n(G, mt), n(mt, As), n(r, Cl), n(r, dt), n(dt, xt), n(xt, Is), n(dt, Ol), n(dt, Rs), n(r, Nl), X && X.m(r, null), Ys || (Al = [
-        Et(
-          Sn,
+    m(k, L) {
+      O(k, e, L), n(e, l), n(l, i), n(i, a), ze.m(a, null), n(e, u), n(e, v), n(v, r), n(r, c), n(c, p), n(p, b), n(b, h), n(p, g), n(p, d), n(d, w), n(d, $), n(d, z), n(z, m), n(m, E), n(z, _), n(z, C), n(C, N), n(c, R), n(c, Z), n(Z, D), n(D, Ee), n(Z, Se), n(Z, ue), n(ue, oe), n(ue, te), n(ue, T), n(T, pe), n(pe, fe), n(T, ke), n(T, U), n(U, Oe), n(T, Be), n(T, ge), n(ge, ae), n(T, Tt), n(T, de), n(de, me), n(T, we), n(T, X), n(X, Ie), n(T, Pe), n(T, he), n(he, re), n(T, Ot), n(T, xe), n(xe, _e), n(T, B), n(T, A), n(A, ye), n(T, ll), n(T, He), n(He, Rt), n(T, nl), n(T, Me), n(Me, jt), n(T, il), n(T, Nt), n(c, ol), n(c, De), n(De, Ue), n(Ue, Ht), n(De, al), n(De, Xe), n(Xe, Dt), n(Xe, rl), n(Xe, $e), n($e, Fe), n(Fe, Ut), n($e, cl), n($e, qe), n(qe, Ft), n($e, vl), n($e, Ve), n(Ve, Vt), n(c, ul), n(c, We), n(We, Ye), n(Ye, Yt), n(We, pl), n(We, Qe), n(Qe, Zt), n(Qe, fl), n(Qe, J), n(J, Ze), n(Ze, Jt), n(J, gl), n(J, Je), n(Je, es), n(J, dl), n(J, Ke), n(Ke, ss), n(J, ml), n(J, et), n(et, ns), n(J, hl), n(J, tt), n(tt, os), n(c, xl), n(c, st), n(st, lt), n(lt, rs), n(st, _l), n(st, nt), n(nt, vs), n(nt, bl), n(nt, K), n(K, it), n(it, us), n(K, kl), n(K, ot), n(ot, fs), n(K, wl), n(K, at), n(at, ds), n(K, yl), n(K, rt), n(rt, hs), n(K, $l), n(K, ct), n(ct, _s), n(c, zl), n(c, vt), n(vt, ut), n(ut, ks), n(vt, Ll), n(vt, pt), n(pt, ys), n(pt, El), n(pt, H), n(H, ft), n(ft, $s), n(H, Cl), n(H, gt), n(gt, Ls), n(H, Sl), n(H, dt), n(dt, Cs), n(H, Tl), n(H, mt), n(mt, Ts), n(H, Ol), n(H, ht), n(ht, Ns), n(H, Nl), n(H, xt), n(xt, As), n(H, Bl), n(H, _t), n(_t, Rs), n(c, Al), n(c, bt), n(bt, kt), n(kt, js), n(bt, Il), n(bt, Hs), n(c, Rl), q && q.m(c, null), Zs || (Pl = [
+        St(
+          Bn,
           "resize",
           /*handleResize*/
           s[3]
         ),
-        Et(
+        St(
           a,
           "click",
           /*handleClick*/
           s[4]
         )
-      ], Ys = !0);
+      ], Zs = !0);
     },
-    p(y, [E]) {
-      var Bl;
-      Ms !== (Ms = Pl(y)) && (ze.d(1), ze = Ms(y), ze && (ze.c(), ze.m(a, null))), E & /*domain_name*/
-      2 && $ !== ($ = /*domain_name*/
-      y[1] + "/collections.html") && t(b, "href", $), E & /*domain_name*/
-      2 && d !== (d = /*domain_name*/
-      y[1] + "/collections/cutie-couture.html") && t(_, "href", d), E & /*domain_name*/
-      2 && P !== (P = /*domain_name*/
-      y[1] + "/gel-polish.html") && t(N, "href", P), E & /*domain_name*/
-      2 && W !== (W = /*domain_name*/
-      y[1] + "/gel-polish.html") && t(ve, "href", W), E & /*domain_name*/
-      2 && Te !== (Te = /*domain_name*/
-      y[1] + "/professional/rubber-base-gel.html") && t(pe, "href", Te), E & /*domain_name*/
+    p(k, [L]) {
+      var Hl;
+      Us !== (Us = jl(k)) && (ze.d(1), ze = Us(k), ze && (ze.c(), ze.m(a, null))), L & /*domain_name*/
+      2 && y !== (y = /*domain_name*/
+      k[1] + "/collections.html") && t(b, "href", y), L & /*domain_name*/
+      2 && x !== (x = /*domain_name*/
+      k[1] + "/collections/lost-in-the-view.html") && t(m, "href", x), L & /*domain_name*/
+      2 && Le !== (Le = /*domain_name*/
+      k[1] + "/cutie-couture.html") && t(C, "href", Le), L & /*domain_name*/
       2 && Ce !== (Ce = /*domain_name*/
-      y[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html") && t(D, "href", Ce), E & /*domain_name*/
-      2 && Y !== (Y = /*domain_name*/
-      y[1] + "/professional/entity-gel-nail-art.html") && t(fe, "href", Y), E & /*domain_name*/
+      k[1] + "/gel-polish.html") && t(D, "href", Ce), L & /*domain_name*/
+      2 && Te !== (Te = /*domain_name*/
+      k[1] + "/gel-polish.html") && t(pe, "href", Te), L & /*domain_name*/
       2 && Ne !== (Ne = /*domain_name*/
-      y[1] + "/gel-polish/nu-bond-category.html") && t(ge, "href", Ne), E & /*domain_name*/
-      2 && Pe !== (Pe = /*domain_name*/
-      y[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html") && t(U, "href", Pe), E & /*domain_name*/
+      k[1] + "/professional/rubber-base-gel.html") && t(U, "href", Ne), L & /*domain_name*/
       2 && V !== (V = /*domain_name*/
-      y[1] + "/no-wipe-top-coat.html") && t(me, "href", V), E & /*domain_name*/
-      2 && j !== (j = /*domain_name*/
-      y[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html") && t(de, "href", j), E & /*domain_name*/
+      k[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html") && t(ge, "href", V), L & /*domain_name*/
+      2 && Ae !== (Ae = /*domain_name*/
+      k[1] + "/professional/entity-gel-nail-art.html") && t(de, "href", Ae), L & /*domain_name*/
+      2 && Re !== (Re = /*domain_name*/
+      k[1] + "/gel-polish/nu-bond-category.html") && t(X, "href", Re), L & /*domain_name*/
+      2 && W !== (W = /*domain_name*/
+      k[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html") && t(he, "href", W), L & /*domain_name*/
+      2 && G !== (G = /*domain_name*/
+      k[1] + "/no-wipe-top-coat.html") && t(xe, "href", G), L & /*domain_name*/
+      2 && It !== (It = /*domain_name*/
+      k[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html") && t(A, "href", It), L & /*domain_name*/
       2 && Pt !== (Pt = /*domain_name*/
-      y[1] + "/entity-beauty-the-essentials-nubond-top-base.html") && t(I, "href", Pt), E & /*domain_name*/
-      2 && Bt !== (Bt = /*domain_name*/
-      y[1] + "/gel-polish/pro-led-light.html") && t(je, "href", Bt), E & /*domain_name*/
-      2 && jt !== (jt = /*domain_name*/
-      y[1] + "/lacquer.html") && t(Me, "href", jt), E & /*domain_name*/
-      2 && Ht !== (Ht = /*domain_name*/
-      y[1] + "/lacquer/lacquer-colors.html") && t(De, "href", Ht), E & /*domain_name*/
-      2 && Ut !== (Ut = /*domain_name*/
-      y[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html") && t(Ue, "href", Ut), E & /*domain_name*/
+      k[1] + "/entity-beauty-the-essentials-nubond-top-base.html") && t(He, "href", Pt), L & /*domain_name*/
+      2 && Gt !== (Gt = /*domain_name*/
+      k[1] + "/gel-polish/pro-led-light.html") && t(Me, "href", Gt), L & /*domain_name*/
+      2 && Mt !== (Mt = /*domain_name*/
+      k[1] + "/lacquer.html") && t(Ue, "href", Mt), L & /*domain_name*/
       2 && Xt !== (Xt = /*domain_name*/
-      y[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html") && t(Fe, "href", Xt), E & /*domain_name*/
+      k[1] + "/lacquer/lacquer-colors.html") && t(Fe, "href", Xt), L & /*domain_name*/
+      2 && qt !== (qt = /*domain_name*/
+      k[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html") && t(qe, "href", qt), L & /*domain_name*/
       2 && Wt !== (Wt = /*domain_name*/
-      y[1] + "/dip-buff.html") && t(qe, "href", Wt), E & /*domain_name*/
+      k[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html") && t(Ve, "href", Wt), L & /*domain_name*/
+      2 && Qt !== (Qt = /*domain_name*/
+      k[1] + "/dip-buff.html") && t(Ye, "href", Qt), L & /*domain_name*/
       2 && Kt !== (Kt = /*domain_name*/
-      y[1] + "/dip-buff/dip-buff.html") && t(Ye, "href", Kt), E & /*domain_name*/
-      2 && Jt !== (Jt = /*domain_name*/
-      y[1] + "/dip-buff/perfect-french-colors.html") && t(Ve, "href", Jt), E & /*domain_name*/
-      2 && es !== (es = /*domain_name*/
-      y[1] + "/dip-buff/essentials.html") && t(Ke, "href", es), E & /*domain_name*/
-      2 && ss !== (ss = /*domain_name*/
-      y[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html") && t(Ze, "href", ss), E & /*domain_name*/
-      2 && ns !== (ns = /*domain_name*/
-      y[1] + "/dip-french-kit.html") && t(Je, "href", ns), E & /*domain_name*/
-      2 && os !== (os = /*domain_name*/
-      y[1] + "/argan-oil.html") && t(et, "href", os), E & /*domain_name*/
+      k[1] + "/dip-buff/dip-buff.html") && t(Ze, "href", Kt), L & /*domain_name*/
+      2 && ts !== (ts = /*domain_name*/
+      k[1] + "/dip-buff/perfect-french-colors.html") && t(Je, "href", ts), L & /*domain_name*/
+      2 && ls !== (ls = /*domain_name*/
+      k[1] + "/dip-buff/essentials.html") && t(Ke, "href", ls), L & /*domain_name*/
+      2 && is !== (is = /*domain_name*/
+      k[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html") && t(et, "href", is), L & /*domain_name*/
+      2 && as !== (as = /*domain_name*/
+      k[1] + "/dip-french-kit.html") && t(tt, "href", as), L & /*domain_name*/
       2 && cs !== (cs = /*domain_name*/
-      y[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html") && t(st, "href", cs), E & /*domain_name*/
+      k[1] + "/argan-oil.html") && t(lt, "href", cs), L & /*domain_name*/
       2 && ps !== (ps = /*domain_name*/
-      y[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html") && t(lt, "href", ps), E & /*domain_name*/
-      2 && fs !== (fs = /*domain_name*/
-      y[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html") && t(nt, "href", fs), E & /*domain_name*/
-      2 && hs !== (hs = /*domain_name*/
-      y[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html") && t(it, "href", hs), E & /*domain_name*/
-      2 && ds !== (ds = /*domain_name*/
-      y[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html") && t(ot, "href", ds), E & /*domain_name*/
+      k[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html") && t(it, "href", ps), L & /*domain_name*/
+      2 && gs !== (gs = /*domain_name*/
+      k[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html") && t(ot, "href", gs), L & /*domain_name*/
+      2 && ms !== (ms = /*domain_name*/
+      k[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html") && t(at, "href", ms), L & /*domain_name*/
+      2 && xs !== (xs = /*domain_name*/
+      k[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html") && t(rt, "href", xs), L & /*domain_name*/
       2 && bs !== (bs = /*domain_name*/
-      y[1] + "/professional.html") && t(rt, "href", bs), E & /*domain_name*/
-      2 && ys !== (ys = /*domain_name*/
-      y[1] + "/professional/entity-studio-one-soft-gel.html") && t(vt, "href", ys), E & /*domain_name*/
-      2 && ks !== (ks = /*domain_name*/
-      y[1] + "/professional/studio-one-contouring-gel.html") && t(pt, "href", ks), E & /*domain_name*/
+      k[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html") && t(ct, "href", bs), L & /*domain_name*/
+      2 && ws !== (ws = /*domain_name*/
+      k[1] + "/professional.html") && t(ut, "href", ws), L & /*domain_name*/
+      2 && zs !== (zs = /*domain_name*/
+      k[1] + "/professional/entity-studio-one-soft-gel.html") && t(ft, "href", zs), L & /*domain_name*/
       2 && Es !== (Es = /*domain_name*/
-      y[1] + "/professional/hard-gels-entity-one-gel.html") && t(ut, "href", Es), E & /*domain_name*/
-      2 && Ts !== (Ts = /*domain_name*/
-      y[1] + "/professional/liquid-powder-acrylic-system.html") && t(ft, "href", Ts), E & /*domain_name*/
-      2 && Cs !== (Cs = /*domain_name*/
-      y[1] + "/") && t(gt, "href", Cs), E & /*domain_name*/
-      2 && Ns !== (Ns = /*domain_name*/
-      y[1] + "/professional/accessories.html") && t(ht, "href", Ns), E & /*domain_name*/
-      2 && Ps !== (Ps = /*domain_name*/
-      y[1] + "/") && t(mt, "href", Ps), E & /*domain_name*/
+      k[1] + "/professional/studio-one-contouring-gel.html") && t(gt, "href", Es), L & /*domain_name*/
+      2 && Ss !== (Ss = /*domain_name*/
+      k[1] + "/professional/hard-gels-entity-one-gel.html") && t(dt, "href", Ss), L & /*domain_name*/
+      2 && Os !== (Os = /*domain_name*/
+      k[1] + "/professional/liquid-powder-acrylic-system.html") && t(mt, "href", Os), L & /*domain_name*/
       2 && Bs !== (Bs = /*domain_name*/
-      y[1] + "/") && t(xt, "href", Bs), E & /*country*/
-      1 && (Ws = /*country*/
-      ((Bl = y[0]) == null ? void 0 : Bl.toString().toLowerCase()) === "us"), Ws ? X ? X.p(y, E) : (X = Ml(y), X.c(), X.m(r, null)) : X && (X.d(1), X = null), E & /*clicked*/
-      4 && js !== (js = Ds(
+      k[1] + "/") && t(ht, "href", Bs), L & /*domain_name*/
+      2 && Is !== (Is = /*domain_name*/
+      k[1] + "/professional/accessories.html") && t(xt, "href", Is), L & /*domain_name*/
+      2 && Ps !== (Ps = /*domain_name*/
+      k[1] + "/") && t(_t, "href", Ps), L & /*domain_name*/
+      2 && Gs !== (Gs = /*domain_name*/
+      k[1] + "/") && t(kt, "href", Gs), L & /*country*/
+      1 && (Qs = /*country*/
+      ((Hl = k[0]) == null ? void 0 : Hl.toString().toLowerCase()) === "us"), Qs ? q ? q.p(k, L) : (q = Xl(k), q.c(), q.m(c, null)) : q && (q.d(1), q = null), L & /*clicked*/
+      4 && Ms !== (Ms = Fs(
         /*clicked*/
-        y[2] ? "navbar-item-clicked" : "navbar-item"
-      ) + " svelte-x6v1sp") && t(p, "class", js), E & /*clicked*/
-      4 && Gs !== (Gs = Ds(
+        k[2] ? "navbar-item-clicked" : "navbar-item"
+      ) + " svelte-x6v1sp") && t(v, "class", Ms), L & /*clicked*/
+      4 && Ds !== (Ds = Fs(
         /*clicked*/
-        y[2] ? "navbar-clicked" : "navbar"
-      ) + " svelte-x6v1sp") && t(e, "class", Gs);
+        k[2] ? "navbar-clicked" : "navbar"
+      ) + " svelte-x6v1sp") && t(e, "class", Ds);
     },
-    i: R,
-    o: R,
-    d(y) {
-      y && S(e), ze.d(), X && X.d(), Ys = !1, Be(Al);
+    i: j,
+    o: j,
+    d(k) {
+      k && S(e), ze.d(), q && q.d(), Zs = !1, je(Pl);
     }
   };
 }
-function Pn(s, e, l) {
-  let i = window.innerWidth, a = !1, { country: c = "" } = e;
-  function p() {
+function jn(s, e, l) {
+  let i = window.innerWidth, a = !1, { country: u = "" } = e;
+  function v() {
     i = window.innerWidth, i >= 1007 && l(2, a = !1);
   }
-  const v = () => l(2, a = !a);
-  let { domain_name: r } = e;
-  return s.$$set = (u) => {
-    "country" in u && l(0, c = u.country), "domain_name" in u && l(1, r = u.domain_name);
-  }, [c, r, a, p, v];
+  const r = () => l(2, a = !a);
+  let { domain_name: c } = e;
+  return s.$$set = (p) => {
+    "country" in p && l(0, u = p.country), "domain_name" in p && l(1, c = p.domain_name);
+  }, [u, c, a, v, r];
 }
-class sn extends ne {
+class an extends ie {
   constructor(e) {
-    super(), se(this, e, Pn, An, te, { country: 0, domain_name: 1 }, Cn);
+    super(), le(this, e, jn, Pn, se, { country: 0, domain_name: 1 }, An);
   }
   get country() {
     return this.$$.ctx[0];
   }
   set country(e) {
-    this.$$set({ country: e }), q();
+    this.$$set({ country: e }), I();
   }
   get domain_name() {
     return this.$$.ctx[1];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(sn, { country: {}, domain_name: {} }, [], [], !0);
-function In(s) {
-  Re(s, "svelte-15se4x9", '.mainbanner.svelte-15se4x9 #main-image.svelte-15se4x9{max-width:100vw;margin:0 auto}.freeshipping.svelte-15se4x9.svelte-15se4x9{background-color:#d9d9d9;max-height:35px;letter-spacing:1px;width:100vw}.freeshipping.svelte-15se4x9 p.svelte-15se4x9{text-align:center;font-size:12px;color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;font-weight:300;background-color:#d9d9d9;padding:10px 0px;margin:0px}.mainbanner.svelte-15se4x9.svelte-15se4x9{position:relative;text-align:center;margin-bottom:-50px}.mainbanner.svelte-15se4x9 img.svelte-15se4x9{max-width:100%;height:auto}.logo.svelte-15se4x9.svelte-15se4x9{background-image:linear-gradient(to top, transparent, white 200%);position:absolute;top:0;width:100%;margin-left:auto;margin-right:auto;padding:20px 0 10px 0;display:block;background:transparent linear-gradient(180deg, #EF80B1 0%, #EF80B17A 49%, #EF80B100 100%) 0% 0% no-repeat padding-box;width:100vw}.logo.svelte-15se4x9 img.svelte-15se4x9{max-width:500px}.logo.svelte-15se4x9.svelte-15se4x9:hover{background-color:#d9d9d9;background-image:none;display:block}.logo.svelte-15se4x9 .logo-black.svelte-15se4x9{display:none}.logo.svelte-15se4x9:hover .logo-white.svelte-15se4x9{display:none}.logo.svelte-15se4x9:hover .logo-black.svelte-15se4x9{display:contents}.collection.svelte-15se4x9.svelte-15se4x9{position:absolute;bottom:13%;left:50%;transform:translate(-50%, -75%)}.collection.svelte-15se4x9 a.svelte-15se4x9{text-decoration:none;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;margin-top:-1vw}.collection.svelte-15se4x9 span.svelte-15se4x9{font-size:16px;line-height:19px;font-weight:500;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;display:block;padding:15px 0px 11px 0px;color:#ffffff;box-shadow:0px 5px 10px #723f34c4;margin-bottom:-15px}.color.svelte-15se4x9.svelte-15se4x9{transform:translate(0%, -50%)}.color.svelte-15se4x9 img.svelte-15se4x9{padding:5px;max-height:150px;max-width:100%}.shop-now-btn.svelte-15se4x9.svelte-15se4x9{background:#ebb459;width:100%;max-width:150px;max-height:56px;border-radius:9px;position:relative;top:-20px}.collection-logo.svelte-15se4x9.svelte-15se4x9{max-width:319px;max-height:201px;width:100%}@media screen and (max-width: 991px){.mainbanner.svelte-15se4x9.svelte-15se4x9{margin-bottom:-45px}.freeshipping.svelte-15se4x9 p.svelte-15se4x9{font-size:1.2vw}.logo.svelte-15se4x9 img.svelte-15se4x9{max-width:25vh}.color.svelte-15se4x9 img.svelte-15se4x9{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-15se4x9.svelte-15se4x9{max-width:25vw}.collection.svelte-15se4x9 span.svelte-15se4x9{font-size:1.5vw}.collection.svelte-15se4x9 a.svelte-15se4x9{margin-top:3vw}}@media screen and (max-width: 769px){.mainbanner.svelte-15se4x9.svelte-15se4x9{margin-bottom:-40px}.logo.svelte-15se4x9 img.svelte-15se4x9{max-width:25vh}.color.svelte-15se4x9 img.svelte-15se4x9{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-15se4x9 span.svelte-15se4x9{max-width:13vw;margin-top:8px;font-size:13px;padding:9px 0px 8px 0px}}@media screen and (max-width: 479px){.mainbanner.svelte-15se4x9.svelte-15se4x9{margin-bottom:-30px}.logo.svelte-15se4x9.svelte-15se4x9{padding:5px 0}.logo.svelte-15se4x9 img.svelte-15se4x9{max-width:15vh}.collection.svelte-15se4x9 span.svelte-15se4x9{max-width:70%;margin-top:8px;font-size:10px;padding:4px 6px 0}.color.svelte-15se4x9 img.svelte-15se4x9{padding:1px;max-height:14vw;max-width:100%}.shop-now-btn.svelte-15se4x9.svelte-15se4x9{border-radius:5px}}');
+ne(an, { country: {}, domain_name: {} }, [], [], !0);
+function Gn(s) {
+  Ge(s, "svelte-6di12x", '.mainbanner.svelte-6di12x #main-image.svelte-6di12x{max-width:100vw;margin:0 auto}.freeshipping.svelte-6di12x.svelte-6di12x{background-color:#d9d9d9;max-height:35px;letter-spacing:1px;width:100vw}.freeshipping.svelte-6di12x p.svelte-6di12x{text-align:center;font-size:12px;color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;font-weight:300;background-color:#d9d9d9;padding:10px 0px;margin:0px}.mainbanner.svelte-6di12x.svelte-6di12x{position:relative;text-align:center;margin-bottom:-50px}.mainbanner.svelte-6di12x img.svelte-6di12x{max-width:100%;height:auto}.logo.svelte-6di12x.svelte-6di12x{background-image:linear-gradient(to top, transparent, white 200%);position:absolute;top:0;width:100%;margin-left:auto;margin-right:auto;padding:20px 0 10px 0;display:block;background:transparent linear-gradient(180deg, #EF80B1 0%, #EF80B17A 49%, #EF80B100 100%) 0% 0% no-repeat padding-box;background:transparent linear-gradient(180deg, #52A6CB 0%,  #EF80B100 100%) 0% 0% no-repeat padding-box;width:100vw}.logo.svelte-6di12x img.svelte-6di12x{max-width:500px}.logo.svelte-6di12x.svelte-6di12x:hover{background-color:#d9d9d9;background-image:none;display:block}.logo.svelte-6di12x .logo-black.svelte-6di12x{display:none}.logo.svelte-6di12x:hover .logo-white.svelte-6di12x{display:none}.logo.svelte-6di12x:hover .logo-black.svelte-6di12x{display:contents}.collection.svelte-6di12x.svelte-6di12x{position:absolute;bottom:30%;left:33.5%;transform:translate(-50%, -75%)}.collection.svelte-6di12x a.svelte-6di12x{text-decoration:none;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;margin-top:-1vw}.collection.svelte-6di12x span.svelte-6di12x{font-size:16px;line-height:19px;font-weight:500;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;display:block;padding:15px 0px 11px 0px;color:#ffffff;box-shadow:0px 5px 10px  #345872;margin-bottom:-15px}.color.svelte-6di12x.svelte-6di12x{transform:translate(0%, -50%)}.color.svelte-6di12x img.svelte-6di12x{padding:5px;max-height:150px;max-width:100%}.shop-now-btn.svelte-6di12x.svelte-6di12x{background:#52A6CB;width:100%;max-width:150px;max-height:56px;border-radius:9px;position:relative}.collection-logo.svelte-6di12x.svelte-6di12x{width:15vw;max-width:257px}@media screen and (max-width: 1024px){.collection.svelte-6di12x.svelte-6di12x{bottom:25%;left:28%}.collection-logo.svelte-6di12x.svelte-6di12x{width:20vw}}@media screen and (max-width: 991px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-45px}.freeshipping.svelte-6di12x p.svelte-6di12x{font-size:1.2vw}.logo.svelte-6di12x img.svelte-6di12x{max-width:25vh}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-6di12x span.svelte-6di12x{font-size:1.5vw}.collection.svelte-6di12x a.svelte-6di12x{margin-top:3vw}.collection.svelte-6di12x.svelte-6di12x{bottom:22%}}@media screen and (max-width: 769px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-40px}.logo.svelte-6di12x img.svelte-6di12x{max-width:25vh}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-6di12x span.svelte-6di12x{max-width:13vw;margin-top:8px;font-size:13px;padding:9px 0px 8px 0px}}@media screen and (max-width: 479px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-30px}.logo.svelte-6di12x.svelte-6di12x{padding:5px 0}.logo.svelte-6di12x img.svelte-6di12x{max-width:15vh}.collection.svelte-6di12x span.svelte-6di12x{max-width:70%;margin-top:0px;font-size:10px;padding:4px 6px 0}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:14vw;max-width:100%}.shop-now-btn.svelte-6di12x.svelte-6di12x{border-radius:5px}.collection-logo.svelte-6di12x.svelte-6di12x{width:24vw}}');
 }
-function Bn(s) {
-  let e, l, i, a, c, p, v, r, u, b, m, $, g, h, w, k, z, _, T, d, x, L, N, Ee, P, _e, H, Le, Lt, C, ve, ie, W, Tt, pe, ue, Te, we, D, Se, Ce, Oe, fe, oe, Y, St, ge, he, Ne, ye, U, Ae, Pe, Ie, me, ae, V, Ct, de, xe, j;
-  return h = new sn({
+function Hn(s) {
+  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $, z, m, E, x, _, C, N, Le, R, Z, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G;
+  return d = new an({
     props: {
       country: (
         /*country*/
@@ -802,515 +805,534 @@ function Bn(s) {
     }
   }), {
     c() {
-      e = o("div"), l = o("div"), l.innerHTML = '<p class="svelte-15se4x9">FREE SHIPPING ON $50</p>', i = f(), a = o("div"), c = o("img"), r = f(), u = o("div"), b = o("div"), b.innerHTML = '<img src="/img/BannerTop/entitylogo.png" srcset="/img/BannerTop/entitylogo@2x.png" alt="entity brand logo" class="svelte-15se4x9"/>', m = f(), $ = o("div"), $.innerHTML = '<img src="/img/BannerTop/entitylogo-black.png" srcset="/img/BannerTop/entitylogo-black@2x.png" alt="black entity brand logo" class="svelte-15se4x9"/>', g = f(), be(h.$$.fragment), w = f(), k = o("div"), z = o("a"), _ = o("img"), x = f(), L = o("span"), L.textContent = "SHOP NOW", Ee = f(), P = o("div"), _e = o("a"), H = o("img"), ve = f(), ie = o("a"), W = o("img"), Te = f(), we = o("a"), D = o("img"), fe = f(), oe = o("a"), Y = o("img"), Ne = f(), ye = o("a"), U = o("img"), me = f(), ae = o("a"), V = o("img"), t(l, "class", "freeshipping svelte-15se4x9"), t(c, "id", "main-image"), B(c.src, p = "/img/BannerTop/18865-ENT-SP24-HandGlam-SoKawaii-Photo-2.jpg") || t(c, "src", p), K(c, v = "/img/BannerTop/18865-ENT-SP24-HandGlam-SoKawaii-Photo-2@2x.jpg") || t(c, "srcset", v), t(c, "alt", "Cutie Couture"), t(c, "class", "svelte-15se4x9"), t(b, "class", "logo-white svelte-15se4x9"), t($, "class", "logo-black svelte-15se4x9"), t(u, "class", "logo svelte-15se4x9"), t(_, "class", "collection-logo svelte-15se4x9"), B(_.src, T = "/img/BannerTop/17757-ENT-SPRING2024--LogoDesign-TypeTreatment-DF-FNL-PINK.png") || t(_, "src", T), K(_, d = "/img/BannerTop/17757-ENT-SPRING2024--LogoDesign-TypeTreatment-DF-FNL-PINK@2x.png") || t(_, "srcset", d), t(_, "alt", "Entity Beauty - Cutie Couture - Spring 2024"), t(L, "class", "shop-now-btn svelte-15se4x9"), t(z, "href", N = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-just-in-time-0-5-fl-oz.html"), t(z, "class", "svelte-15se4x9"), t(k, "class", "collection svelte-15se4x9"), B(H.src, Le = "/img/BannerTop/ENT-SP-24-1-JUSTINTIME.png") || t(H, "src", Le), K(H, Lt = "/img/BannerTop/ENT-SP-24-1-JUSTINTIME@2x.png") || t(H, "srcset", Lt), t(H, "alt", "Swatch - Just In Time "), t(H, "class", "svelte-15se4x9"), t(_e, "href", C = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-just-in-time-0-5-fl-oz.html"), B(W.src, Tt = "/img/BannerTop/ENT-SP-24-2-ZENASCANBE.png") || t(W, "src", Tt), K(W, pe = "/img/BannerTop/ENT-SP-24-2-ZENASCANBE@2x.png") || t(W, "srcset", pe), t(W, "alt", "Swatch - Zen As Can Be"), t(W, "class", "svelte-15se4x9"), t(ie, "href", ue = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-zen-as-can-be-0-5-fl-oz.html"), B(D.src, Se = "/img/BannerTop/ENT-SP-24-3-HOWADORABLEAMI.png") || t(D, "src", Se), K(D, Ce = "/img/BannerTop/ENT-SP-24-3-HOWADORABLEAMI@2x.png") || t(D, "srcset", Ce), t(D, "alt", "Swatch - How Adorable Am I?"), t(D, "class", "svelte-15se4x9"), t(we, "href", Oe = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-how-adorable-am-i-0-5-fl-oz.html"), B(Y.src, St = "/img/BannerTop/ENT-SP-24-4-AMUSEME.png") || t(Y, "src", St), K(Y, ge = "/img/BannerTop/ENT-SP-24-4-AMUSEME@2x.png") || t(Y, "srcset", ge), t(Y, "alt", "Swatch - Amuse Me"), t(Y, "class", "svelte-15se4x9"), t(oe, "href", he = /*domain_name*/
-      s[1] + "entity-color-couture-soak-off-gel-enamel-amuse-me-0-5-fl-oz.html"), B(U.src, Ae = "/img/BannerTop/ENT-SP-24-5-ONIFORYOU.png") || t(U, "src", Ae), K(U, Pe = "/img/BannerTop/ENT-SP-24-5-ONIFORYOU@2x.png") || t(U, "srcset", Pe), t(U, "alt", "Swatch - Onii For You"), t(U, "class", "svelte-15se4x9"), t(ye, "href", Ie = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-oni-for-you-0-5-fl-oz.html"), B(V.src, Ct = "/img/BannerTop/ENT-SP-24-6-SOKAWAII.png") || t(V, "src", Ct), K(V, de = "/img/BannerTop/ENT-SP-24-6-SOKAWAII@2x.png") || t(V, "srcset", de), t(V, "alt", "Swatch - So Kawaii"), t(V, "class", "svelte-15se4x9"), t(ae, "href", xe = /*domain_name*/
-      s[1] + "/entity-color-couture-soak-off-gel-enamel-so-kawaii-0-5-fl-oz.html"), t(P, "class", "color svelte-15se4x9"), t(a, "class", "mainbanner svelte-15se4x9"), t(e, "class", "bannertop");
+      e = o("div"), l = o("div"), l.innerHTML = '<p class="svelte-6di12x">FREE SHIPPING ON $50</p>', i = f(), a = o("div"), u = o("img"), c = f(), p = o("div"), b = o("div"), b.innerHTML = '<img src="/img/BannerTop/entitylogo.png" srcset="/img/BannerTop/entitylogo@2x.png" alt="entity brand logo" class="svelte-6di12x"/>', h = f(), y = o("div"), y.innerHTML = '<img src="/img/BannerTop/entitylogo-black.png" srcset="/img/BannerTop/entitylogo-black@2x.png" alt="black entity brand logo" class="svelte-6di12x"/>', g = f(), be(d.$$.fragment), w = f(), $ = o("div"), z = o("a"), m = o("img"), _ = f(), C = o("span"), C.textContent = "SHOP NOW", Le = f(), R = o("div"), Z = o("a"), D = o("img"), ue = f(), oe = o("a"), te = o("img"), Te = f(), ke = o("a"), U = o("img"), ge = f(), ae = o("a"), V = o("img"), Ae = f(), we = o("a"), X = o("img"), he = f(), re = o("a"), W = o("img"), t(l, "class", "freeshipping svelte-6di12x"), t(u, "id", "main-image"), P(u.src, v = "/img/BannerTop/Summer2024/main-pink.jpg") || t(u, "src", v), Y(u, r = "/img/BannerTop/Summer2024/main-pink@2x.jpg") || t(u, "srcset", r), t(u, "alt", "Lost in the View"), t(u, "class", "svelte-6di12x"), t(b, "class", "logo-white svelte-6di12x"), t(y, "class", "logo-black svelte-6di12x"), t(p, "class", "logo svelte-6di12x"), t(m, "class", "collection-logo svelte-6di12x"), P(m.src, E = "/img/BannerTop/Summer2024/logo.png") || t(m, "src", E), Y(m, x = "/img/BannerTop/Summer2024/logo@2x.png") || t(m, "srcset", x), t(m, "alt", "Entity Beauty - Cutie Couture - Spring 2024"), t(C, "class", "shop-now-btn svelte-6di12x"), t(z, "href", N = /*domain_name*/
+      s[1] + "/collections/lost-in-the-view.html"), t(z, "class", "svelte-6di12x"), t($, "class", "collection svelte-6di12x"), P(D.src, Ee = "/img/BannerTop/Summer2024/color1.png") || t(D, "src", Ee), Y(D, Ce = "/img/BannerTop/Summer2024/color1@2x.png") || t(D, "srcset", Ce), t(D, "alt", "Swatch - Too Haute In Here"), t(D, "class", "svelte-6di12x"), t(Z, "href", Se = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-too-haute-in-here-0-5-fl-oz.html"), P(te.src, T = "/img/BannerTop/Summer2024/color2.png") || t(te, "src", T), Y(te, pe = "/img/BannerTop/Summer2024/color2@2x.png") || t(te, "srcset", pe), t(te, "alt", "Swatch - Meet Me On Sunset"), t(te, "class", "svelte-6di12x"), t(oe, "href", fe = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-meet-me-on-sunset-0-5-fl-oz.html"), P(U.src, Oe = "/img/BannerTop/Summer2024/color3.png") || t(U, "src", Oe), Y(U, Ne = "/img/BannerTop/Summer2024/color3@2x.png") || t(U, "srcset", Ne), t(U, "alt", "Swatch - Soul-y Exclusive"), t(U, "class", "svelte-6di12x"), t(ke, "href", Be = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-soul-y-exclusive-0-5-fl-oz.html"), P(V.src, Tt = "/img/BannerTop/Summer2024/color4.png") || t(V, "src", Tt), Y(V, de = "/img/BannerTop/Summer2024/color4@2x.png") || t(V, "srcset", de), t(V, "alt", "Swatch - Lavished In Lime"), t(V, "class", "svelte-6di12x"), t(ae, "href", me = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-lavished-in-lime-0-5-fl-oz.html"), P(X.src, Ie = "/img/BannerTop/Summer2024/color5.png") || t(X, "src", Ie), Y(X, Re = "/img/BannerTop/Summer2024/color5@2x.png") || t(X, "srcset", Re), t(X, "alt", "Swatch - See And Be Seen"), t(X, "class", "svelte-6di12x"), t(we, "href", Pe = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-see-and-be-seen-0-5-fl-oz.html"), P(W.src, Ot = "/img/BannerTop/Summer2024/color6.png") || t(W, "src", Ot), Y(W, xe = "/img/BannerTop/Summer2024/color6@2x.png") || t(W, "srcset", xe), t(W, "alt", "Swatch - Members Only"), t(W, "class", "svelte-6di12x"), t(re, "href", _e = /*domain_name*/
+      s[1] + "/entity-color-couture-soak-off-gel-members-only-0-5-fl-oz.html"), t(R, "class", "color svelte-6di12x"), t(a, "class", "mainbanner svelte-6di12x"), t(e, "class", "bannertop");
     },
-    m(A, I) {
-      O(A, e, I), n(e, l), n(e, i), n(e, a), n(a, c), n(a, r), n(a, u), n(u, b), n(u, m), n(u, $), n(u, g), re(h, u, null), n(a, w), n(a, k), n(k, z), n(z, _), n(z, x), n(z, L), n(a, Ee), n(a, P), n(P, _e), n(_e, H), n(P, ve), n(P, ie), n(ie, W), n(P, Te), n(P, we), n(we, D), n(P, fe), n(P, oe), n(oe, Y), n(P, Ne), n(P, ye), n(ye, U), n(P, me), n(P, ae), n(ae, V), j = !0;
+    m(B, A) {
+      O(B, e, A), n(e, l), n(e, i), n(e, a), n(a, u), n(a, c), n(a, p), n(p, b), n(p, h), n(p, y), n(p, g), ce(d, p, null), n(a, w), n(a, $), n($, z), n(z, m), n(z, _), n(z, C), n(a, Le), n(a, R), n(R, Z), n(Z, D), n(R, ue), n(R, oe), n(oe, te), n(R, Te), n(R, ke), n(ke, U), n(R, ge), n(R, ae), n(ae, V), n(R, Ae), n(R, we), n(we, X), n(R, he), n(R, re), n(re, W), G = !0;
     },
-    p(A, [I]) {
-      const $e = {};
-      I & /*country*/
-      1 && ($e.country = /*country*/
-      A[0]), I & /*domain_name*/
-      2 && ($e.domain_name = /*domain_name*/
-      A[1]), h.$set($e), (!j || I & /*domain_name*/
+    p(B, [A]) {
+      const ye = {};
+      A & /*country*/
+      1 && (ye.country = /*country*/
+      B[0]), A & /*domain_name*/
+      2 && (ye.domain_name = /*domain_name*/
+      B[1]), d.$set(ye), (!G || A & /*domain_name*/
       2 && N !== (N = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-just-in-time-0-5-fl-oz.html")) && t(z, "href", N), (!j || I & /*domain_name*/
-      2 && C !== (C = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-just-in-time-0-5-fl-oz.html")) && t(_e, "href", C), (!j || I & /*domain_name*/
-      2 && ue !== (ue = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-zen-as-can-be-0-5-fl-oz.html")) && t(ie, "href", ue), (!j || I & /*domain_name*/
-      2 && Oe !== (Oe = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-how-adorable-am-i-0-5-fl-oz.html")) && t(we, "href", Oe), (!j || I & /*domain_name*/
-      2 && he !== (he = /*domain_name*/
-      A[1] + "entity-color-couture-soak-off-gel-enamel-amuse-me-0-5-fl-oz.html")) && t(oe, "href", he), (!j || I & /*domain_name*/
-      2 && Ie !== (Ie = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-oni-for-you-0-5-fl-oz.html")) && t(ye, "href", Ie), (!j || I & /*domain_name*/
-      2 && xe !== (xe = /*domain_name*/
-      A[1] + "/entity-color-couture-soak-off-gel-enamel-so-kawaii-0-5-fl-oz.html")) && t(ae, "href", xe);
+      B[1] + "/collections/lost-in-the-view.html")) && t(z, "href", N), (!G || A & /*domain_name*/
+      2 && Se !== (Se = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-too-haute-in-here-0-5-fl-oz.html")) && t(Z, "href", Se), (!G || A & /*domain_name*/
+      2 && fe !== (fe = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-meet-me-on-sunset-0-5-fl-oz.html")) && t(oe, "href", fe), (!G || A & /*domain_name*/
+      2 && Be !== (Be = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-soul-y-exclusive-0-5-fl-oz.html")) && t(ke, "href", Be), (!G || A & /*domain_name*/
+      2 && me !== (me = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-lavished-in-lime-0-5-fl-oz.html")) && t(ae, "href", me), (!G || A & /*domain_name*/
+      2 && Pe !== (Pe = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-see-and-be-seen-0-5-fl-oz.html")) && t(we, "href", Pe), (!G || A & /*domain_name*/
+      2 && _e !== (_e = /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-members-only-0-5-fl-oz.html")) && t(re, "href", _e);
     },
-    i(A) {
-      j || (M(h.$$.fragment, A), j = !0);
+    i(B) {
+      G || (M(d.$$.fragment, B), G = !0);
     },
-    o(A) {
-      F(h.$$.fragment, A), j = !1;
+    o(B) {
+      F(d.$$.fragment, B), G = !1;
     },
-    d(A) {
-      A && S(e), ce(h);
+    d(B) {
+      B && S(e), ve(d);
     }
   };
 }
-function Rn(s, e, l) {
+function Mn(s, e, l) {
   let { country: i = "" } = e, { domain_name: a = "" } = e;
-  return s.$$set = (c) => {
-    "country" in c && l(0, i = c.country), "domain_name" in c && l(1, a = c.domain_name);
+  return s.$$set = (u) => {
+    "country" in u && l(0, i = u.country), "domain_name" in u && l(1, a = u.domain_name);
   }, [i, a];
 }
-class ln extends ne {
+class rn extends ie {
   constructor(e) {
-    super(), se(this, e, Rn, Bn, te, { country: 0, domain_name: 1 }, In);
+    super(), le(this, e, Mn, Hn, se, { country: 0, domain_name: 1 }, Gn);
   }
   get country() {
     return this.$$.ctx[0];
   }
   set country(e) {
-    this.$$set({ country: e }), q();
+    this.$$set({ country: e }), I();
   }
   get domain_name() {
     return this.$$.ctx[1];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(ln, { country: {}, domain_name: {} }, [], [], !0);
-function jn(s) {
-  Re(s, "svelte-t7s73g", '.svelte-t7s73g.svelte-t7s73g::-webkit-scrollbar{display:none}.carousel.svelte-t7s73g.svelte-t7s73g{position:relative;max-height:max-content;text-align:center;display:flex;flex-direction:row;margin:0 auto;max-width:1240px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{padding:0;display:flex;overflow-x:auto;gap:18px}.carousel.svelte-t7s73g button.svelte-t7s73g{position:absolute;top:50%;transform:translateY(-50%);color:white;background-color:transparent;border:none;scroll-snap-type:x mandatory;scroll-behavior:smooth;transition:10000}.carousel-post.svelte-t7s73g li.svelte-t7s73g{list-style-type:none}.post.svelte-t7s73g a.svelte-t7s73g{text-decoration:none}.post.svelte-t7s73g img.svelte-t7s73g{max-height:400px;float:left;margin-bottom:10px}.post.svelte-t7s73g p.svelte-t7s73g{color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;margin:1rem 0rem 0rem 0rem;font-size:18px}#left.svelte-t7s73g.svelte-t7s73g{left:10px;z-index:1}#right.svelte-t7s73g.svelte-t7s73g{right:10px;z-index:1}#right.svelte-t7s73g svg.svelte-t7s73g,#left.svelte-t7s73g svg.svelte-t7s73g{width:45px;height:100px}.svelte-t7s73g.svelte-t7s73g:-webkit-scrollbar{display:none;width:5px;background-color:#fff}.svelte-t7s73g.svelte-t7s73g::-webkit-scrollbar-thumb{background-color:#d5d5d5;border-radius:20px}@media screen and (max-width: 991px){.post.svelte-t7s73g img.svelte-t7s73g{height:350px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:14px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:15px}}@media screen and (max-width: 769px){.post.svelte-t7s73g img.svelte-t7s73g{height:300px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:13px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:15px}}@media screen and (max-width: 479px){.post.svelte-t7s73g img.svelte-t7s73g{height:250px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:10px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:10px;margin-bottom:0}}');
+ne(rn, { country: {}, domain_name: {} }, [], [], !0);
+function Dn(s) {
+  Ge(s, "svelte-t7s73g", '.svelte-t7s73g.svelte-t7s73g::-webkit-scrollbar{display:none}.carousel.svelte-t7s73g.svelte-t7s73g{position:relative;max-height:max-content;text-align:center;display:flex;flex-direction:row;margin:0 auto;max-width:1240px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{padding:0;display:flex;overflow-x:auto;gap:18px}.carousel.svelte-t7s73g button.svelte-t7s73g{position:absolute;top:50%;transform:translateY(-50%);color:white;background-color:transparent;border:none;scroll-snap-type:x mandatory;scroll-behavior:smooth;transition:10000}.carousel-post.svelte-t7s73g li.svelte-t7s73g{list-style-type:none}.post.svelte-t7s73g a.svelte-t7s73g{text-decoration:none}.post.svelte-t7s73g img.svelte-t7s73g{max-height:400px;float:left;margin-bottom:10px}.post.svelte-t7s73g p.svelte-t7s73g{color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;margin:1rem 0rem 0rem 0rem;font-size:18px}#left.svelte-t7s73g.svelte-t7s73g{left:10px;z-index:1}#right.svelte-t7s73g.svelte-t7s73g{right:10px;z-index:1}#right.svelte-t7s73g svg.svelte-t7s73g,#left.svelte-t7s73g svg.svelte-t7s73g{width:45px;height:100px}.svelte-t7s73g.svelte-t7s73g:-webkit-scrollbar{display:none;width:5px;background-color:#fff}.svelte-t7s73g.svelte-t7s73g::-webkit-scrollbar-thumb{background-color:#d5d5d5;border-radius:20px}@media screen and (max-width: 991px){.post.svelte-t7s73g img.svelte-t7s73g{height:350px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:14px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:15px}}@media screen and (max-width: 769px){.post.svelte-t7s73g img.svelte-t7s73g{height:300px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:13px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:15px}}@media screen and (max-width: 479px){.post.svelte-t7s73g img.svelte-t7s73g{height:250px}.post.svelte-t7s73g p.svelte-t7s73g{font-size:10px}.carousel.svelte-t7s73g .carousel-post.svelte-t7s73g{gap:10px;margin-bottom:0}}');
 }
-function Hl(s, e, l) {
+function Fl(s, e, l) {
   const i = s.slice();
   return i[18] = e[l].src, i[19] = e[l].srcset, i[20] = e[l].link, i[21] = e[l].id, i;
 }
-const Gn = (s) => ({}), Dl = (s) => ({}), Mn = (s) => ({}), Ul = (s) => ({});
-function Hn(s) {
+const Un = (s) => ({}), ql = (s) => ({}), Xn = (s) => ({}), Vl = (s) => ({});
+function Fn(s) {
   let e, l;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), t(l, "d", "M400-116 36-480l364-364 30 30L95-480l335 334-30 30Z"), t(l, "class", "svelte-t7s73g"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#ffffff"), t(e, "class", "svelte-t7s73g");
+      e = Q("svg"), l = Q("path"), t(l, "d", "M400-116 36-480l364-364 30 30L95-480l335 334-30 30Z"), t(l, "class", "svelte-t7s73g"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#ffffff"), t(e, "class", "svelte-t7s73g");
     },
     m(i, a) {
       O(i, e, a), n(e, l);
     },
-    p: R,
+    p: j,
     d(i) {
       i && S(e);
     }
   };
 }
-function Dn(s) {
+function qn(s) {
   let e, l;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), t(l, "d", "m315-117-30-29 335-335-335-334 30-30 364 364-364 364Z"), t(l, "class", "svelte-t7s73g"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#ffffff"), t(e, "class", "svelte-t7s73g");
+      e = Q("svg"), l = Q("path"), t(l, "d", "m315-117-30-29 335-335-335-334 30-30 364 364-364 364Z"), t(l, "class", "svelte-t7s73g"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#ffffff"), t(e, "class", "svelte-t7s73g");
     },
     m(i, a) {
       O(i, e, a), n(e, l);
     },
-    p: R,
+    p: j,
     d(i) {
       i && S(e);
     }
   };
 }
-function Fl(s) {
-  let e, l, i, a, c, p, v, r, u = (
+function Wl(s) {
+  let e, l, i, a, u, v, r, c, p = (
     /*id*/
     s[21] + ""
-  ), b, m, $;
+  ), b, h, y;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("img"), v = f(), r = o("p"), b = Qs(u), $ = f(), B(i.src, a = /*src*/
-      s[18]) || t(i, "src", a), K(i, c = /*srcset*/
-      s[19]) || t(i, "srcset", c), t(i, "alt", p = /*id*/
-      s[21]), t(i, "class", "svelte-t7s73g"), t(r, "class", "svelte-t7s73g"), t(l, "href", m = "" + /*domain_name*/
+      e = o("li"), l = o("a"), i = o("img"), r = f(), c = o("p"), b = sl(p), y = f(), P(i.src, a = /*src*/
+      s[18]) || t(i, "src", a), Y(i, u = /*srcset*/
+      s[19]) || t(i, "srcset", u), t(i, "alt", v = /*id*/
+      s[21]), t(i, "class", "svelte-t7s73g"), t(c, "class", "svelte-t7s73g"), t(l, "href", h = "" + /*domain_name*/
       (s[1] + /*link*/
       s[20])), t(l, "class", "svelte-t7s73g"), t(e, "class", "post svelte-t7s73g");
     },
-    m(g, h) {
-      O(g, e, h), n(e, l), n(l, i), n(l, v), n(l, r), n(r, b), n(e, $);
+    m(g, d) {
+      O(g, e, d), n(e, l), n(l, i), n(l, r), n(l, c), n(c, b), n(e, y);
     },
-    p(g, h) {
-      h & /*images*/
-      1 && !B(i.src, a = /*src*/
-      g[18]) && t(i, "src", a), h & /*images*/
-      1 && c !== (c = /*srcset*/
-      g[19]) && t(i, "srcset", c), h & /*images*/
+    p(g, d) {
+      d & /*images*/
+      1 && !P(i.src, a = /*src*/
+      g[18]) && t(i, "src", a), d & /*images*/
+      1 && u !== (u = /*srcset*/
+      g[19]) && t(i, "srcset", u), d & /*images*/
+      1 && v !== (v = /*id*/
+      g[21]) && t(i, "alt", v), d & /*images*/
       1 && p !== (p = /*id*/
-      g[21]) && t(i, "alt", p), h & /*images*/
-      1 && u !== (u = /*id*/
-      g[21] + "") && Ql(b, u), h & /*domain_name, images*/
-      3 && m !== (m = "" + /*domain_name*/
+      g[21] + "") && ln(b, p), d & /*domain_name, images*/
+      3 && h !== (h = "" + /*domain_name*/
       (g[1] + /*link*/
-      g[20])) && t(l, "href", m);
+      g[20])) && t(l, "href", h);
     },
     d(g) {
       g && S(e);
     }
   };
 }
-function Un(s) {
-  let e, l, i, a, c, p, v, r, u;
+function Vn(s) {
+  let e, l, i, a, u, v, r, c, p;
   const b = (
     /*#slots*/
     s[6]["left-control"]
-  ), m = yt(
+  ), h = zt(
     b,
     s,
     /*$$scope*/
     s[5],
-    Ul
-  ), $ = m || Hn(), g = (
+    Vl
+  ), y = h || Fn(), g = (
     /*#slots*/
     s[6]["right-control"]
-  ), h = yt(
+  ), d = zt(
     g,
     s,
     /*$$scope*/
     s[5],
-    Dl
-  ), w = h || Dn();
-  let k = qs(
+    ql
+  ), w = d || qn();
+  let $ = Ys(
     /*images*/
     s[0]
   ), z = [];
-  for (let _ = 0; _ < k.length; _ += 1)
-    z[_] = Fl(Hl(s, k, _));
+  for (let m = 0; m < $.length; m += 1)
+    z[m] = Wl(Fl(s, $, m));
   return {
     c() {
-      e = o("div"), l = o("button"), $ && $.c(), i = f(), a = o("button"), w && w.c(), c = f(), p = o("ul");
-      for (let _ = 0; _ < z.length; _ += 1)
-        z[_].c();
-      t(l, "id", "left"), t(l, "class", "svelte-t7s73g"), t(a, "id", "right"), t(a, "class", "svelte-t7s73g"), t(p, "class", "carousel-post svelte-t7s73g"), t(e, "class", "carousel svelte-t7s73g");
+      e = o("div"), l = o("button"), y && y.c(), i = f(), a = o("button"), w && w.c(), u = f(), v = o("ul");
+      for (let m = 0; m < z.length; m += 1)
+        z[m].c();
+      t(l, "id", "left"), t(l, "class", "svelte-t7s73g"), t(a, "id", "right"), t(a, "class", "svelte-t7s73g"), t(v, "class", "carousel-post svelte-t7s73g"), t(e, "class", "carousel svelte-t7s73g");
     },
-    m(_, T) {
-      O(_, e, T), n(e, l), $ && $.m(l, null), n(e, i), n(e, a), w && w.m(a, null), n(e, c), n(e, p);
-      for (let d = 0; d < z.length; d += 1)
-        z[d] && z[d].m(p, null);
-      s[7](p), v = !0, r || (u = [
-        Et(
+    m(m, E) {
+      O(m, e, E), n(e, l), y && y.m(l, null), n(e, i), n(e, a), w && w.m(a, null), n(e, u), n(e, v);
+      for (let x = 0; x < z.length; x += 1)
+        z[x] && z[x].m(v, null);
+      s[7](v), r = !0, c || (p = [
+        St(
           l,
           "click",
           /*rotateLeft*/
           s[3]
         ),
-        Et(
+        St(
           a,
           "click",
           /*rotateRight*/
           s[4]
         )
-      ], r = !0);
+      ], c = !0);
     },
-    p(_, [T]) {
-      if (m && m.p && (!v || T & /*$$scope*/
-      32) && kt(
-        m,
+    p(m, [E]) {
+      if (h && h.p && (!r || E & /*$$scope*/
+      32) && Et(
+        h,
         b,
-        _,
+        m,
         /*$$scope*/
-        _[5],
-        v ? $t(
+        m[5],
+        r ? Lt(
           b,
           /*$$scope*/
-          _[5],
-          T,
-          Mn
-        ) : zt(
+          m[5],
+          E,
+          Xn
+        ) : Ct(
           /*$$scope*/
-          _[5]
+          m[5]
         ),
-        Ul
-      ), h && h.p && (!v || T & /*$$scope*/
-      32) && kt(
-        h,
+        Vl
+      ), d && d.p && (!r || E & /*$$scope*/
+      32) && Et(
+        d,
         g,
-        _,
+        m,
         /*$$scope*/
-        _[5],
-        v ? $t(
+        m[5],
+        r ? Lt(
           g,
           /*$$scope*/
-          _[5],
-          T,
-          Gn
-        ) : zt(
+          m[5],
+          E,
+          Un
+        ) : Ct(
           /*$$scope*/
-          _[5]
+          m[5]
         ),
-        Dl
-      ), T & /*domain_name, images*/
+        ql
+      ), E & /*domain_name, images*/
       3) {
-        k = qs(
+        $ = Ys(
           /*images*/
-          _[0]
+          m[0]
         );
-        let d;
-        for (d = 0; d < k.length; d += 1) {
-          const x = Hl(_, k, d);
-          z[d] ? z[d].p(x, T) : (z[d] = Fl(x), z[d].c(), z[d].m(p, null));
+        let x;
+        for (x = 0; x < $.length; x += 1) {
+          const _ = Fl(m, $, x);
+          z[x] ? z[x].p(_, E) : (z[x] = Wl(_), z[x].c(), z[x].m(v, null));
         }
-        for (; d < z.length; d += 1)
-          z[d].d(1);
-        z.length = k.length;
+        for (; x < z.length; x += 1)
+          z[x].d(1);
+        z.length = $.length;
       }
     },
-    i(_) {
-      v || (M($, _), M(w, _), v = !0);
+    i(m) {
+      r || (M(y, m), M(w, m), r = !0);
     },
-    o(_) {
-      F($, _), F(w, _), v = !1;
+    o(m) {
+      F(y, m), F(w, m), r = !1;
     },
-    d(_) {
-      _ && S(e), $ && $.d(_), w && w.d(_), Jl(z, _), s[7](null), r = !1, Be(u);
+    d(m) {
+      m && S(e), y && y.d(m), w && w.d(m), sn(z, m), s[7](null), c = !1, je(p);
     }
   };
 }
-function Fn(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e, { images: c } = e;
-  const p = (x) => {
-    l(0, c = [c[c.length - 1], ...c.slice(0, c.length - 1)]);
-  }, v = (x) => {
-    l(0, c = [...c.slice(1, c.length), c[0]]);
+function Wn(s, e, l) {
+  let { $$slots: i = {}, $$scope: a } = e, { images: u } = e;
+  const v = (_) => {
+    l(0, u = [u[u.length - 1], ...u.slice(0, u.length - 1)]);
+  }, r = (_) => {
+    l(0, u = [...u.slice(1, u.length), u[0]]);
   };
-  let r, u = !1, b, m;
-  en(() => {
-    r.addEventListener("mousedown", $), r.addEventListener("mouseleave", g), r.addEventListener("mouseup", h), r.addEventListener("mousemove", w), r.addEventListener("touchstart", k), r.addEventListener("touchend", z), r.addEventListener("touchmove", _);
+  let c, p = !1, b, h;
+  nn(() => {
+    c.addEventListener("mousedown", y), c.addEventListener("mouseleave", g), c.addEventListener("mouseup", d), c.addEventListener("mousemove", w), c.addEventListener("touchstart", $), c.addEventListener("touchend", z), c.addEventListener("touchmove", m);
   });
-  function $(x) {
-    u = !0, b = x.pageX - r.offsetLeft, m = r.scrollLeft;
+  function y(_) {
+    p = !0, b = _.pageX - c.offsetLeft, h = c.scrollLeft;
   }
   function g() {
-    u = !1;
+    p = !1;
   }
-  function h() {
-    u = !1;
+  function d() {
+    p = !1;
   }
-  function w(x) {
-    if (!u)
+  function w(_) {
+    if (!p)
       return;
-    x.preventDefault();
-    const N = (x.pageX - r.offsetLeft - b) * 2;
-    l(2, r.scrollLeft = m - N, r);
+    _.preventDefault();
+    const N = (_.pageX - c.offsetLeft - b) * 2;
+    l(2, c.scrollLeft = h - N, c);
   }
-  function k(x) {
-    u = !0, b = x.touches[0].clientX - r.offsetLeft, m = r.scrollLeft;
+  function $(_) {
+    p = !0, b = _.touches[0].clientX - c.offsetLeft, h = c.scrollLeft;
   }
   function z() {
-    u = !1;
+    p = !1;
   }
-  function _(x) {
-    if (!u)
+  function m(_) {
+    if (!p)
       return;
-    x.preventDefault();
-    const N = (x.touches[0].clientX - r.offsetLeft - b) * 2;
-    l(2, r.scrollLeft = m - N, r);
+    _.preventDefault();
+    const N = (_.touches[0].clientX - c.offsetLeft - b) * 2;
+    l(2, c.scrollLeft = h - N, c);
   }
-  let { domain_name: T = "" } = e;
-  function d(x) {
-    Xs[x ? "unshift" : "push"](() => {
-      r = x, l(2, r);
+  let { domain_name: E = "" } = e;
+  function x(_) {
+    Ws[_ ? "unshift" : "push"](() => {
+      c = _, l(2, c);
     });
   }
-  return s.$$set = (x) => {
-    "images" in x && l(0, c = x.images), "domain_name" in x && l(1, T = x.domain_name), "$$scope" in x && l(5, a = x.$$scope);
+  return s.$$set = (_) => {
+    "images" in _ && l(0, u = _.images), "domain_name" in _ && l(1, E = _.domain_name), "$$scope" in _ && l(5, a = _.$$scope);
   }, [
+    u,
+    E,
     c,
-    T,
-    r,
-    p,
     v,
+    r,
     a,
     i,
-    d
+    x
   ];
 }
-class nn extends ne {
+class cn extends ie {
   constructor(e) {
-    super(), se(this, e, Fn, Un, te, { images: 0, domain_name: 1 }, jn);
+    super(), le(this, e, Wn, Vn, se, { images: 0, domain_name: 1 }, Dn);
   }
   get images() {
     return this.$$.ctx[0];
   }
   set images(e) {
-    this.$$set({ images: e }), q();
+    this.$$set({ images: e }), I();
   }
   get domain_name() {
     return this.$$.ctx[1];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(nn, { images: {}, domain_name: {} }, ["left-control", "right-control"], [], !0);
-function Xn(s) {
+ne(cn, { images: {}, domain_name: {} }, ["left-control", "right-control"], [], !0);
+function Yn(s) {
   let e, l, i, a;
-  l = new nn({ props: { images: Wn, domain_name: qn } });
-  const c = (
+  l = new cn({
+    props: {
+      images: (
+        /*images*/
+        s[1]
+      ),
+      domain_name: (
+        /*domain_name*/
+        s[0]
+      )
+    }
+  });
+  const u = (
     /*#slots*/
-    s[1].default
-  ), p = yt(
-    c,
+    s[3].default
+  ), v = zt(
+    u,
     s,
     /*$$scope*/
-    s[0],
+    s[2],
     null
   );
   return {
     c() {
-      e = o("section"), be(l.$$.fragment), i = f(), p && p.c();
+      e = o("section"), be(l.$$.fragment), i = f(), v && v.c();
     },
-    m(v, r) {
-      O(v, e, r), re(l, e, null), n(e, i), p && p.m(e, null), a = !0;
+    m(r, c) {
+      O(r, e, c), ce(l, e, null), n(e, i), v && v.m(e, null), a = !0;
     },
-    p(v, [r]) {
-      p && p.p && (!a || r & /*$$scope*/
-      1) && kt(
-        p,
-        c,
+    p(r, [c]) {
+      const p = {};
+      c & /*domain_name*/
+      1 && (p.domain_name = /*domain_name*/
+      r[0]), l.$set(p), v && v.p && (!a || c & /*$$scope*/
+      4) && Et(
         v,
+        u,
+        r,
         /*$$scope*/
-        v[0],
-        a ? $t(
+        r[2],
+        a ? Lt(
+          u,
+          /*$$scope*/
+          r[2],
           c,
-          /*$$scope*/
-          v[0],
-          r,
           null
-        ) : zt(
+        ) : Ct(
           /*$$scope*/
-          v[0]
+          r[2]
         ),
         null
       );
     },
-    i(v) {
-      a || (M(l.$$.fragment, v), M(p, v), a = !0);
+    i(r) {
+      a || (M(l.$$.fragment, r), M(v, r), a = !0);
     },
-    o(v) {
-      F(l.$$.fragment, v), F(p, v), a = !1;
+    o(r) {
+      F(l.$$.fragment, r), F(v, r), a = !1;
     },
-    d(v) {
-      v && S(e), ce(l), p && p.d(v);
+    d(r) {
+      r && S(e), ve(l), v && v.d(r);
     }
   };
 }
-let qn = "https://entitybeauty.com", Wn = [
-  // {src:'/img/Posts2/DipOrBrush.jpg',  link: 'https://entityclean.at/NBb', id:'DIP OR BRUSH'},
-  //   {src:'/img/Posts2/RubberBase.jpg',  link: 'https://entityclean.at/RXY', id:'RUBBER BASE'},
-  //   {src:'/img/Posts2/StudioOneSoftGel.jpg', link: 'https://entityclean.at/L7U', id:'STUDIO ONE SOFT GEL'},
-  //   {src:'/img/Posts2/ArganOil.jpg',  link: 'https://entityclean.at/tvl', id:'ARGAN OIL'},
-  //   {src:'/img/Posts2/SoakOffStriperGel.jpg',  link: 'https://entityclean.at/Hma', id:'SOAK OFF STRIPER GEL'},
-  //   {src:'/img/Posts2/LedDipOmbreGel.jpg',  link: 'https://entityclean.at/4or', id:'LED DIP OMBRE GEL'},
-  //   {src:'/img/Posts2/VelvetGel.jpg',  link: 'https://entityclean.at/038', id:'VELVET GEL'},
-  //   {src:'/img/Posts2/StudioOneContouringGel.jpg',  link: 'https://entityclean.at/vZc', id:'STUDIO ONE CONTOURING GEL'},
-  {
-    src: "/img/Posts2/DipOrBrush.jpg",
-    srcset: "/img/Posts2/DipOrBrush@2x.jpg 2x",
-    link: "/dip-buff/dip-buff-colors.html",
-    id: "DIP OR BRUSH"
-  },
-  {
-    src: "/img/Posts2/RubberBase.jpg",
-    srcset: "/img/Posts2/RubberBase@2x.jpg 2x",
-    link: "/professional/rubber-base-gel.html",
-    id: "RUBBER BASE"
-  },
-  {
-    src: "/img/Posts2/StudioOneSoftGel.jpg",
-    srcset: "/img/Posts2/StudioOneSoftGel@2x.jpg 2x",
-    link: "/professional/entity-studio-one-soft-gel.html",
-    id: "STUDIO ONE SOFT GEL"
-  },
-  {
-    src: "/img/Posts2/ArganOil.jpg",
-    srcset: "/img/Posts2/ArganOil@2x.jpg 2x",
-    link: "/argan-oil.html",
-    id: "ARGAN OIL"
-  },
-  {
-    src: "/img/Posts2/SoakOffStriperGel.jpg",
-    srcset: "/img/Posts2/SoakOffStriperGel@2x.jpg 2x",
-    link: "/professional/entity-gel-nail-art.html",
-    id: "SOAK OFF STRIPER GEL"
-  },
-  {
-    src: "/img/Posts2/LedDipOmbreGel.jpg",
-    srcset: "/img/Posts2/LedDipOmbreGel@2x.jpg 2x",
-    link: "/entity-ombr-egrave-gel.html",
-    id: "LED DIP OMBRE GEL"
-  },
-  {
-    src: "/img/Posts2/VelvetGel.jpg",
-    srcset: "/img/Posts2/VelvetGel@2x.jpg 2x",
-    link: "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html",
-    id: "VELVET GEL"
-  },
-  {
-    src: "/img/Posts2/StudioOneContouringGel.jpg",
-    srcset: "/img/Posts2/StudioOneContouringGel@2x.jpg 2x",
-    link: "/professional/studio-one-contouring-gel.html",
-    id: "STUDIO ONE CONTOURING GEL"
-  }
-];
-function Yn(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e;
-  return s.$$set = (c) => {
-    "$$scope" in c && l(0, a = c.$$scope);
-  }, [a, i];
-}
-class on extends ne {
-  constructor(e) {
-    super(), se(this, e, Yn, Xn, te, {});
-  }
-}
-le(on, {}, ["default"], [], !0);
-function Vn(s) {
-  Re(s, "svelte-11ucx08", ".collections.svelte-11ucx08.svelte-11ucx08{margin:20px auto;max-width:1240px;text-align:center}.collections_city-limits.svelte-11ucx08.svelte-11ucx08{position:relative;text-align:center}.collections_vintage-gossip.svelte-11ucx08.svelte-11ucx08{position:relative;text-align:center}.buybutton.svelte-11ucx08.svelte-11ucx08{position:absolute;bottom:25px;right:20px}.buybutton.svelte-11ucx08.svelte-11ucx08{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-11ucx08 h2.svelte-11ucx08{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}.collections.svelte-11ucx08 a.svelte-11ucx08{gap:10px;text-decoration:none}.collections.svelte-11ucx08 a img.svelte-11ucx08{width:49%}.collections.svelte-11ucx08 .collections_city-limits.svelte-11ucx08{margin-right:15px}@media screen and (max-width: 991px){.collections_city-limits.svelte-11ucx08.svelte-11ucx08{display:none}.collections.svelte-11ucx08 a img.svelte-11ucx08{width:100%;max-height:100%}.buybutton.svelte-11ucx08 h2.svelte-11ucx08{font-size:22px;padding:10px 10px 5px}}@media screen and (max-width: 769px){.collections_city-limits.svelte-11ucx08.svelte-11ucx08{display:none}.buybutton.svelte-11ucx08 h2.svelte-11ucx08{font-size:22px;padding:10px 10px 5px}}@media screen and (max-width: 479px){.buybutton.svelte-11ucx08 h2.svelte-11ucx08{font-size:13px;padding:7.9px 7.5px 5px 7.5px}.collections_city-limits.svelte-11ucx08.svelte-11ucx08{display:none}}thisisaplaceholder");
-}
-function Kn(s) {
-  let e, l, i, a, c, p, v, r, u, b, m, $, g, h, w, k;
-  return {
-    c() {
-      e = o("div"), l = o("a"), i = o("img"), p = f(), v = o("div"), v.innerHTML = '<h2 class="svelte-11ucx08">SHOP NOW</h2>', u = f(), b = o("a"), m = o("img"), h = f(), w = o("div"), w.innerHTML = '<h2 class="svelte-11ucx08">SHOP NOW</h2>', B(i.src, a = "/img/Collections/vintage-gossip.jpg") || t(i, "src", a), K(i, c = "/img/Collections/vintage-gossip@2x.jpg") || t(i, "srcset", c), t(i, "alt", "Entity Beauty - Winter 2023 - Vintage Gossip"), t(i, "class", "svelte-11ucx08"), t(v, "class", "buybutton svelte-11ucx08"), t(l, "class", "collections_vintage-gossip svelte-11ucx08"), t(l, "href", r = /*domain_name*/
-      s[0] + "/collections/vintage-gossip.html"), B(m.src, $ = "/img/Collections/city-limits.jpg") || t(m, "src", $), K(m, g = "/img/Collections/city-limits@2x.jpg") || t(m, "srcset", g), t(m, "alt", "entity fall 2023 collection city limits"), t(m, "class", "svelte-11ucx08"), t(w, "class", "buybutton svelte-11ucx08"), t(b, "class", "collections_city-limits svelte-11ucx08"), t(b, "href", k = /*domain_name*/
-      s[0] + "/collections/city-limits.html"), t(e, "class", "collections svelte-11ucx08");
+function Qn(s, e, l) {
+  let { $$slots: i = {}, $$scope: a } = e, { domain_name: u = "" } = e, v = [
+    // {src:'/img/Posts2/DipOrBrush.jpg',  link: 'https://entityclean.at/NBb', id:'DIP OR BRUSH'},
+    //   {src:'/img/Posts2/RubberBase.jpg',  link: 'https://entityclean.at/RXY', id:'RUBBER BASE'},
+    //   {src:'/img/Posts2/StudioOneSoftGel.jpg', link: 'https://entityclean.at/L7U', id:'STUDIO ONE SOFT GEL'},
+    //   {src:'/img/Posts2/ArganOil.jpg',  link: 'https://entityclean.at/tvl', id:'ARGAN OIL'},
+    //   {src:'/img/Posts2/SoakOffStriperGel.jpg',  link: 'https://entityclean.at/Hma', id:'SOAK OFF STRIPER GEL'},
+    //   {src:'/img/Posts2/LedDipOmbreGel.jpg',  link: 'https://entityclean.at/4or', id:'LED DIP OMBRE GEL'},
+    //   {src:'/img/Posts2/VelvetGel.jpg',  link: 'https://entityclean.at/038', id:'VELVET GEL'},
+    //   {src:'/img/Posts2/StudioOneContouringGel.jpg',  link: 'https://entityclean.at/vZc', id:'STUDIO ONE CONTOURING GEL'},
+    {
+      src: "/img/Posts2/DipOrBrush.jpg",
+      srcset: "/img/Posts2/DipOrBrush@2x.jpg 2x",
+      link: "/dip-buff/dip-buff-colors.html",
+      id: "DIP OR BRUSH"
     },
-    m(z, _) {
-      O(z, e, _), n(e, l), n(l, i), n(l, p), n(l, v), n(e, u), n(e, b), n(b, m), n(b, h), n(b, w);
+    {
+      src: "/img/Posts2/RubberBase.jpg",
+      srcset: "/img/Posts2/RubberBase@2x.jpg 2x",
+      link: "/professional/rubber-base-gel.html",
+      id: "RUBBER BASE"
     },
-    p(z, [_]) {
-      _ & /*domain_name*/
-      1 && r !== (r = /*domain_name*/
-      z[0] + "/collections/vintage-gossip.html") && t(l, "href", r), _ & /*domain_name*/
-      1 && k !== (k = /*domain_name*/
-      z[0] + "/collections/city-limits.html") && t(b, "href", k);
+    {
+      src: "/img/Posts2/StudioOneSoftGel.jpg",
+      srcset: "/img/Posts2/StudioOneSoftGel@2x.jpg 2x",
+      link: "/professional/entity-studio-one-soft-gel.html",
+      id: "STUDIO ONE SOFT GEL"
     },
-    i: R,
-    o: R,
-    d(z) {
-      z && S(e);
+    {
+      src: "/img/Posts2/ArganOil.jpg",
+      srcset: "/img/Posts2/ArganOil@2x.jpg 2x",
+      link: "/argan-oil.html",
+      id: "ARGAN OIL"
+    },
+    {
+      src: "/img/Posts2/SoakOffStriperGel.jpg",
+      srcset: "/img/Posts2/SoakOffStriperGel@2x.jpg 2x",
+      link: "/professional/entity-gel-nail-art.html",
+      id: "SOAK OFF STRIPER GEL"
+    },
+    {
+      src: "/img/Posts2/LedDipOmbreGel.jpg",
+      srcset: "/img/Posts2/LedDipOmbreGel@2x.jpg 2x",
+      link: "/entity-ombr-egrave-gel.html",
+      id: "LED DIP OMBRE GEL"
+    },
+    {
+      src: "/img/Posts2/VelvetGel.jpg",
+      srcset: "/img/Posts2/VelvetGel@2x.jpg 2x",
+      link: "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html",
+      id: "VELVET GEL"
+    },
+    {
+      src: "/img/Posts2/StudioOneContouringGel.jpg",
+      srcset: "/img/Posts2/StudioOneContouringGel@2x.jpg 2x",
+      link: "/professional/studio-one-contouring-gel.html",
+      id: "STUDIO ONE CONTOURING GEL"
     }
-  };
+  ];
+  return s.$$set = (r) => {
+    "domain_name" in r && l(0, u = r.domain_name), "$$scope" in r && l(2, a = r.$$scope);
+  }, [u, v, a, i];
 }
-function Zn(s, e, l) {
-  let { domain_name: i } = e;
-  return s.$$set = (a) => {
-    "domain_name" in a && l(0, i = a.domain_name);
-  }, [i];
-}
-class an extends ne {
+class vn extends ie {
   constructor(e) {
-    super(), se(this, e, Zn, Kn, te, { domain_name: 0 }, Vn);
+    super(), le(this, e, Qn, Yn, se, { domain_name: 0 });
   }
   get domain_name() {
     return this.$$.ctx[0];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(an, { domain_name: {} }, [], [], !0);
-function Jn(s) {
-  Re(s, "svelte-13dtkc6", ".core_color_banner.svelte-13dtkc6.svelte-13dtkc6{text-align:center}.core_color_banner.svelte-13dtkc6 img.svelte-13dtkc6{max-width:100%;padding:30px 0}");
+ne(vn, { domain_name: {} }, ["default"], [], !0);
+function Zn(s) {
+  Ge(s, "svelte-c5ukak", ".collections.svelte-c5ukak.svelte-c5ukak{margin:20px auto;max-width:1240px;text-align:center}.collections_city-limits.svelte-c5ukak.svelte-c5ukak{position:relative;text-align:center}.collections_cutie-couture.svelte-c5ukak.svelte-c5ukak{position:relative;text-align:center}.buybutton.svelte-c5ukak.svelte-c5ukak{position:absolute;bottom:25px;right:20px}.buybutton.svelte-c5ukak.svelte-c5ukak{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-c5ukak h2.svelte-c5ukak{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}.collections.svelte-c5ukak a.svelte-c5ukak{gap:10px;text-decoration:none}.collections.svelte-c5ukak a img.svelte-c5ukak{width:49%}.collections.svelte-c5ukak .collections_city-limits.svelte-c5ukak{margin-right:15px}@media screen and (max-width: 991px){.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}.collections.svelte-c5ukak a img.svelte-c5ukak{width:100%;max-height:100%}.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:22px;padding:10px 10px 5px}}@media screen and (max-width: 769px){.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:15px;padding:10px 10px 5px}}@media screen and (max-width: 479px){.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:10px}.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}}");
 }
-function Qn(s) {
+function Jn(s) {
+  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $;
+  return {
+    c() {
+      e = o("div"), l = o("a"), i = o("img"), v = f(), r = o("div"), r.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', p = f(), b = o("a"), h = o("img"), d = f(), w = o("div"), w.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', P(i.src, a = "/img/Collections/CutieCouture.jpg") || t(i, "src", a), Y(i, u = "/img/Collections/CutieCouture@2x.jpg") || t(i, "srcset", u), t(i, "alt", "Entity Beauty - Spring 2024 - CutieCouture"), t(i, "class", "svelte-c5ukak"), t(r, "class", "buybutton svelte-c5ukak"), t(l, "class", "collections_cutie-couture svelte-c5ukak"), t(l, "href", c = /*domain_name*/
+      s[0] + "/collections/cutie-couture.html"), P(h.src, y = "/img/Collections/city-limits.jpg") || t(h, "src", y), Y(h, g = "/img/Collections/city-limits@2x.jpg") || t(h, "srcset", g), t(h, "alt", "entity fall 2023 collection city limits"), t(h, "class", "svelte-c5ukak"), t(w, "class", "buybutton svelte-c5ukak"), t(b, "class", "collections_city-limits svelte-c5ukak"), t(b, "href", $ = /*domain_name*/
+      s[0] + "/collections/city-limits.html"), t(e, "class", "collections svelte-c5ukak");
+    },
+    m(z, m) {
+      O(z, e, m), n(e, l), n(l, i), n(l, v), n(l, r), n(e, p), n(e, b), n(b, h), n(b, d), n(b, w);
+    },
+    p(z, [m]) {
+      m & /*domain_name*/
+      1 && c !== (c = /*domain_name*/
+      z[0] + "/collections/cutie-couture.html") && t(l, "href", c), m & /*domain_name*/
+      1 && $ !== ($ = /*domain_name*/
+      z[0] + "/collections/city-limits.html") && t(b, "href", $);
+    },
+    i: j,
+    o: j,
+    d(z) {
+      z && S(e);
+    }
+  };
+}
+function Kn(s, e, l) {
+  let { domain_name: i } = e;
+  return s.$$set = (a) => {
+    "domain_name" in a && l(0, i = a.domain_name);
+  }, [i];
+}
+class un extends ie {
+  constructor(e) {
+    super(), le(this, e, Kn, Jn, se, { domain_name: 0 }, Zn);
+  }
+  get domain_name() {
+    return this.$$.ctx[0];
+  }
+  set domain_name(e) {
+    this.$$set({ domain_name: e }), I();
+  }
+}
+ne(un, { domain_name: {} }, [], [], !0);
+function ei(s) {
+  Ge(s, "svelte-13dtkc6", ".core_color_banner.svelte-13dtkc6.svelte-13dtkc6{text-align:center}.core_color_banner.svelte-13dtkc6 img.svelte-13dtkc6{max-width:100%;padding:30px 0}");
+}
+function ti(s) {
   let e;
   return {
     c() {
@@ -1319,114 +1341,114 @@ function Qn(s) {
     m(l, i) {
       O(l, e, i);
     },
-    p: R,
-    i: R,
-    o: R,
+    p: j,
+    i: j,
+    o: j,
     d(l) {
       l && S(e);
     }
   };
 }
-class ei extends ne {
+class si extends ie {
   constructor(e) {
-    super(), se(this, e, null, Qn, te, {}, Jn);
+    super(), le(this, e, null, ti, se, {}, ei);
   }
 }
-le(ei, {}, [], [], !0);
-function ti(s) {
-  Re(s, "svelte-1p6gc7a", ".bannerbottom.svelte-1p6gc7a.svelte-1p6gc7a{position:relative;text-align:left;color:#000;line-height:0;max-width:1240px;margin:0 auto}.bannerbottom.svelte-1p6gc7a img.svelte-1p6gc7a{max-width:100%;margin-top:30px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:140px;right:70px;max-width:34vw}.bottom-right.svelte-1p6gc7a a.svelte-1p6gc7a{text-decoration:none}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:20px;margin-bottom:10px;line-height:20px}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:30px;margin-top:0px;margin-bottom:10px;line-height:35px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{line-height:normal}.buybutton.svelte-1p6gc7a.svelte-1p6gc7a{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}@media screen and (max-width: 1024px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 991px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:10vw;right:2vw}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:1.7vw}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:2.8vw}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:1.5vw;padding:7.9px 7.5px 5px 7.5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:100px;right:30px;max-width:34vw}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 769px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{line-height:30px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:15px;padding:10px 10px 5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:85px;right:10px;max-width:39vw}}@media screen and (max-width: 479px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:12px;line-height:14px}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:10px;letter-spacing:normal}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:10px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{padding-right:5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:25px;right:5px;max-width:34vw}}");
+ne(si, {}, [], [], !0);
+function li(s) {
+  Ge(s, "svelte-1p6gc7a", ".bannerbottom.svelte-1p6gc7a.svelte-1p6gc7a{position:relative;text-align:left;color:#000;line-height:0;max-width:1240px;margin:0 auto}.bannerbottom.svelte-1p6gc7a img.svelte-1p6gc7a{max-width:100%;margin-top:30px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:140px;right:70px;max-width:34vw}.bottom-right.svelte-1p6gc7a a.svelte-1p6gc7a{text-decoration:none}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:20px;margin-bottom:10px;line-height:20px}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:30px;margin-top:0px;margin-bottom:10px;line-height:35px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{line-height:normal}.buybutton.svelte-1p6gc7a.svelte-1p6gc7a{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}@media screen and (max-width: 1024px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 991px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:10vw;right:2vw}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:1.7vw}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:2.8vw}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:1.5vw;padding:7.9px 7.5px 5px 7.5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:100px;right:30px;max-width:34vw}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 769px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{line-height:30px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:15px;padding:10px 10px 5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:85px;right:10px;max-width:39vw}}@media screen and (max-width: 479px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:12px;line-height:14px}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:10px;letter-spacing:normal}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:10px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{padding-right:5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:25px;right:5px;max-width:34vw}}");
 }
-function si(s) {
-  let e, l, i, a, c, p, v, r, u, b, m, $, g;
+function ni(s) {
+  let e, l, i, a, u, v, r, c, p, b, h, y, g;
   return {
     c() {
-      e = o("div"), l = o("img"), c = f(), p = o("div"), v = o("a"), r = o("p"), r.textContent = "Entity One Colour Couture", u = f(), b = o("h1"), b.innerHTML = "Everything You Love<br/> About Colour. Only Better.", m = f(), $ = o("div"), $.innerHTML = '<h2 class="svelte-1p6gc7a">SHOP NOW</h2>', B(l.src, i = "/img/BannerBottom/banner.jpg") || t(l, "src", i), K(l, a = "/img/BannerBottom/banner@2x.jpg 2x") || t(l, "srcset", a), t(l, "alt", "banner for entity one color conture"), t(l, "class", "svelte-1p6gc7a"), t(r, "class", "svelte-1p6gc7a"), t(b, "class", "svelte-1p6gc7a"), t($, "class", "buybutton svelte-1p6gc7a"), t(v, "href", g = /*domain_name*/
-      s[0] + "/professional/studio-one-contouring-gel/colors.html"), t(v, "class", "svelte-1p6gc7a"), t(p, "class", "bottom-right svelte-1p6gc7a"), t(e, "class", "bannerbottom svelte-1p6gc7a");
+      e = o("div"), l = o("img"), u = f(), v = o("div"), r = o("a"), c = o("p"), c.textContent = "Entity One Colour Couture", p = f(), b = o("h1"), b.innerHTML = "Everything You Love<br/> About Colour. Only Better.", h = f(), y = o("div"), y.innerHTML = '<h2 class="svelte-1p6gc7a">SHOP NOW</h2>', P(l.src, i = "/img/BannerBottom/banner.jpg") || t(l, "src", i), Y(l, a = "/img/BannerBottom/banner@2x.jpg 2x") || t(l, "srcset", a), t(l, "alt", "banner for entity one color conture"), t(l, "class", "svelte-1p6gc7a"), t(c, "class", "svelte-1p6gc7a"), t(b, "class", "svelte-1p6gc7a"), t(y, "class", "buybutton svelte-1p6gc7a"), t(r, "href", g = /*domain_name*/
+      s[0] + "/professional/studio-one-contouring-gel/colors.html"), t(r, "class", "svelte-1p6gc7a"), t(v, "class", "bottom-right svelte-1p6gc7a"), t(e, "class", "bannerbottom svelte-1p6gc7a");
     },
-    m(h, w) {
-      O(h, e, w), n(e, l), n(e, c), n(e, p), n(p, v), n(v, r), n(v, u), n(v, b), n(v, m), n(v, $);
+    m(d, w) {
+      O(d, e, w), n(e, l), n(e, u), n(e, v), n(v, r), n(r, c), n(r, p), n(r, b), n(r, h), n(r, y);
     },
-    p(h, [w]) {
+    p(d, [w]) {
       w & /*domain_name*/
       1 && g !== (g = /*domain_name*/
-      h[0] + "/professional/studio-one-contouring-gel/colors.html") && t(v, "href", g);
+      d[0] + "/professional/studio-one-contouring-gel/colors.html") && t(r, "href", g);
     },
-    i: R,
-    o: R,
-    d(h) {
-      h && S(e);
+    i: j,
+    o: j,
+    d(d) {
+      d && S(e);
     }
   };
 }
-function li(s, e, l) {
+function ii(s, e, l) {
   let { domain_name: i } = e;
   return s.$$set = (a) => {
     "domain_name" in a && l(0, i = a.domain_name);
   }, [i];
 }
-class rn extends ne {
+class pn extends ie {
   constructor(e) {
-    super(), se(this, e, li, si, te, { domain_name: 0 }, ti);
+    super(), le(this, e, ii, ni, se, { domain_name: 0 }, li);
   }
   get domain_name() {
     return this.$$.ctx[0];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(rn, { domain_name: {} }, [], [], !0);
-function ni(s) {
-  Re(s, "svelte-1urkugz", '.svelte-1urkugz.svelte-1urkugz::-webkit-scrollbar{display:none}h1.svelte-1urkugz.svelte-1urkugz{font-size:50px;text-align:center;color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;width:100%;padding:40px 0 0}.carousel.svelte-1urkugz.svelte-1urkugz{position:relative;max-height:max-content;justify-content:center;text-align:center;display:flex;flex-direction:row;max-width:90%;margin:0 auto;margin:0 auto;max-width:1240px}.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{padding:0;display:flex;overflow-x:auto;justify-content:flex-start}.carousel.svelte-1urkugz button.svelte-1urkugz{position:relative;top:50%;color:white;background-color:transparent;border:none;scroll-snap-type:x mandatory;scroll-behavior:smooth;transition:10000}.buybutton.svelte-1urkugz.svelte-1urkugz{background-color:#a7a9ac;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-1urkugz h2.svelte-1urkugz{color:white;font-size:16px;font-weight:300;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}.carousel-post.svelte-1urkugz li.svelte-1urkugz{list-style-type:none}.post.svelte-1urkugz a.svelte-1urkugz{text-decoration:none}.post.svelte-1urkugz.svelte-1urkugz{flex-shrink:0;width:33.33%}.post.svelte-1urkugz img.svelte-1urkugz{height:276px}.post.svelte-1urkugz p.svelte-1urkugz{color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;margin:1rem 0rem;font-size:18px}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:460x;height:100px}.svelte-1urkugz.svelte-1urkugz:-webkit-scrollbar{display:none;width:5px;background-color:#fff}.svelte-1urkugz.svelte-1urkugz::-webkit-scrollbar-thumb{background-color:#d5d5d5;border-radius:20px}@media screen and (max-width: 991px){.post.svelte-1urkugz img.svelte-1urkugz{height:30vw}.post.svelte-1urkugz p.svelte-1urkugz{font-size:1.5vw}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:1.5vw;padding:7.9px 7.5px 5px 7.5px}h1.svelte-1urkugz.svelte-1urkugz{padding:20px 0px 15px}}@media screen and (max-width: 769px){.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{margin-bottom:0}h1.svelte-1urkugz.svelte-1urkugz{font-size:30px;padding:10px 0;margin-bottom:0}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:55px}.carousel.svelte-1urkugz.svelte-1urkugz{max-width:90%}.post.svelte-1urkugz p.svelte-1urkugz{font-size:16px;margin:10px 0}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:15px;padding:10px 10px 5px}}@media screen and (max-width: 479px){.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{margin-bottom:0}h1.svelte-1urkugz.svelte-1urkugz{font-size:25px;padding:0;margin-bottom:0}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:35px}.carousel.svelte-1urkugz.svelte-1urkugz{max-width:100%}.post.svelte-1urkugz p.svelte-1urkugz{font-size:9px;margin:5px 0}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:10px}}');
+ne(pn, { domain_name: {} }, [], [], !0);
+function oi(s) {
+  Ge(s, "svelte-1urkugz", '.svelte-1urkugz.svelte-1urkugz::-webkit-scrollbar{display:none}h1.svelte-1urkugz.svelte-1urkugz{font-size:50px;text-align:center;color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;width:100%;padding:40px 0 0}.carousel.svelte-1urkugz.svelte-1urkugz{position:relative;max-height:max-content;justify-content:center;text-align:center;display:flex;flex-direction:row;max-width:90%;margin:0 auto;margin:0 auto;max-width:1240px}.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{padding:0;display:flex;overflow-x:auto;justify-content:flex-start}.carousel.svelte-1urkugz button.svelte-1urkugz{position:relative;top:50%;color:white;background-color:transparent;border:none;scroll-snap-type:x mandatory;scroll-behavior:smooth;transition:10000}.buybutton.svelte-1urkugz.svelte-1urkugz{background-color:#a7a9ac;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-1urkugz h2.svelte-1urkugz{color:white;font-size:16px;font-weight:300;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}.carousel-post.svelte-1urkugz li.svelte-1urkugz{list-style-type:none}.post.svelte-1urkugz a.svelte-1urkugz{text-decoration:none}.post.svelte-1urkugz.svelte-1urkugz{flex-shrink:0;width:33.33%}.post.svelte-1urkugz img.svelte-1urkugz{height:276px}.post.svelte-1urkugz p.svelte-1urkugz{color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;margin:1rem 0rem;font-size:18px}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:460x;height:100px}.svelte-1urkugz.svelte-1urkugz:-webkit-scrollbar{display:none;width:5px;background-color:#fff}.svelte-1urkugz.svelte-1urkugz::-webkit-scrollbar-thumb{background-color:#d5d5d5;border-radius:20px}@media screen and (max-width: 991px){.post.svelte-1urkugz img.svelte-1urkugz{height:30vw}.post.svelte-1urkugz p.svelte-1urkugz{font-size:1.5vw}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:1.5vw;padding:7.9px 7.5px 5px 7.5px}h1.svelte-1urkugz.svelte-1urkugz{padding:20px 0px 15px}}@media screen and (max-width: 769px){.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{margin-bottom:0}h1.svelte-1urkugz.svelte-1urkugz{font-size:30px;padding:10px 0;margin-bottom:0}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:55px}.carousel.svelte-1urkugz.svelte-1urkugz{max-width:90%}.post.svelte-1urkugz p.svelte-1urkugz{font-size:16px;margin:10px 0}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:15px;padding:10px 10px 5px}}@media screen and (max-width: 479px){.carousel.svelte-1urkugz .carousel-post.svelte-1urkugz{margin-bottom:0}h1.svelte-1urkugz.svelte-1urkugz{font-size:25px;padding:0;margin-bottom:0}#right.svelte-1urkugz svg.svelte-1urkugz,#left.svelte-1urkugz svg.svelte-1urkugz{width:35px}.carousel.svelte-1urkugz.svelte-1urkugz{max-width:100%}.post.svelte-1urkugz p.svelte-1urkugz{font-size:9px;margin:5px 0}.buybutton.svelte-1urkugz h2.svelte-1urkugz{font-size:10px}}');
 }
-const ii = (s) => ({}), Xl = (s) => ({});
-function ql(s, e, l) {
+const ai = (s) => ({}), Yl = (s) => ({});
+function Ql(s, e, l) {
   const i = s.slice();
   return i[18] = e[l].src, i[19] = e[l].srcset, i[20] = e[l].link, i[21] = e[l].id, i;
 }
-const oi = (s) => ({}), Wl = (s) => ({});
-function ai(s) {
+const ri = (s) => ({}), Zl = (s) => ({});
+function ci(s) {
   let e, l;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), t(l, "d", "M400-116 36-480l364-364 30 30L95-480l335 334-30 30Z"), t(l, "class", "svelte-1urkugz"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#D3D3D3"), t(e, "class", "svelte-1urkugz");
+      e = Q("svg"), l = Q("path"), t(l, "d", "M400-116 36-480l364-364 30 30L95-480l335 334-30 30Z"), t(l, "class", "svelte-1urkugz"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#D3D3D3"), t(e, "class", "svelte-1urkugz");
     },
     m(i, a) {
       O(i, e, a), n(e, l);
     },
-    p: R,
+    p: j,
     d(i) {
       i && S(e);
     }
   };
 }
-function Yl(s) {
-  let e, l, i, a, c, p, v, r, u = (
+function Jl(s) {
+  let e, l, i, a, u, v, r, c, p = (
     /*id*/
     s[21] + ""
-  ), b, m, $, g, h;
+  ), b, h, y, g, d;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("img"), v = f(), r = o("p"), b = Qs(u), m = f(), $ = o("div"), $.innerHTML = '<h2 class="svelte-1urkugz">SHOP NOW</h2>', h = f(), B(i.src, a = /*src*/
-      s[18]) || t(i, "src", a), K(i, c = /*srcset*/
-      s[19]) || t(i, "srcset", c), t(i, "alt", p = /*id*/
-      s[21]), t(i, "class", "svelte-1urkugz"), t(r, "class", "svelte-1urkugz"), t($, "class", "buybutton svelte-1urkugz"), t(l, "href", g = "" + /*domain_name*/
+      e = o("li"), l = o("a"), i = o("img"), r = f(), c = o("p"), b = sl(p), h = f(), y = o("div"), y.innerHTML = '<h2 class="svelte-1urkugz">SHOP NOW</h2>', d = f(), P(i.src, a = /*src*/
+      s[18]) || t(i, "src", a), Y(i, u = /*srcset*/
+      s[19]) || t(i, "srcset", u), t(i, "alt", v = /*id*/
+      s[21]), t(i, "class", "svelte-1urkugz"), t(c, "class", "svelte-1urkugz"), t(y, "class", "buybutton svelte-1urkugz"), t(l, "href", g = "" + /*domain_name*/
       (s[1] + /*link*/
       s[20])), t(l, "class", "svelte-1urkugz"), t(e, "class", "post svelte-1urkugz");
     },
-    m(w, k) {
-      O(w, e, k), n(e, l), n(l, i), n(l, v), n(l, r), n(r, b), n(l, m), n(l, $), n(e, h);
+    m(w, $) {
+      O(w, e, $), n(e, l), n(l, i), n(l, r), n(l, c), n(c, b), n(l, h), n(l, y), n(e, d);
     },
-    p(w, k) {
-      k & /*images*/
-      1 && !B(i.src, a = /*src*/
-      w[18]) && t(i, "src", a), k & /*images*/
-      1 && c !== (c = /*srcset*/
-      w[19]) && t(i, "srcset", c), k & /*images*/
+    p(w, $) {
+      $ & /*images*/
+      1 && !P(i.src, a = /*src*/
+      w[18]) && t(i, "src", a), $ & /*images*/
+      1 && u !== (u = /*srcset*/
+      w[19]) && t(i, "srcset", u), $ & /*images*/
+      1 && v !== (v = /*id*/
+      w[21]) && t(i, "alt", v), $ & /*images*/
       1 && p !== (p = /*id*/
-      w[21]) && t(i, "alt", p), k & /*images*/
-      1 && u !== (u = /*id*/
-      w[21] + "") && Ql(b, u), k & /*domain_name, images*/
+      w[21] + "") && ln(b, p), $ & /*domain_name, images*/
       3 && g !== (g = "" + /*domain_name*/
       (w[1] + /*link*/
       w[20])) && t(l, "href", g);
@@ -1436,316 +1458,319 @@ function Yl(s) {
     }
   };
 }
-function ri(s) {
+function vi(s) {
   let e, l;
   return {
     c() {
-      e = Z("svg"), l = Z("path"), t(l, "d", "m315-117-30-29 335-335-335-334 30-30 364 364-364 364Z"), t(l, "class", "svelte-1urkugz"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#D3D3D3"), t(e, "class", "svelte-1urkugz");
+      e = Q("svg"), l = Q("path"), t(l, "d", "m315-117-30-29 335-335-335-334 30-30 364 364-364 364Z"), t(l, "class", "svelte-1urkugz"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "height", "48"), t(e, "viewBox", "0 -960 960 960"), t(e, "width", "48"), t(e, "fill", "#D3D3D3"), t(e, "class", "svelte-1urkugz");
     },
     m(i, a) {
       O(i, e, a), n(e, l);
     },
-    p: R,
+    p: j,
     d(i) {
       i && S(e);
     }
   };
 }
-function ci(s) {
-  let e, l, i, a, c, p, v, r, u, b, m;
-  const $ = (
+function ui(s) {
+  let e, l, i, a, u, v, r, c, p, b, h;
+  const y = (
     /*#slots*/
     s[6]["left-control"]
-  ), g = yt(
-    $,
+  ), g = zt(
+    y,
     s,
     /*$$scope*/
     s[5],
-    Wl
-  ), h = g || ai();
-  let w = qs(
+    Zl
+  ), d = g || ci();
+  let w = Ys(
     /*images*/
     s[0]
-  ), k = [];
-  for (let d = 0; d < w.length; d += 1)
-    k[d] = Yl(ql(s, w, d));
+  ), $ = [];
+  for (let x = 0; x < w.length; x += 1)
+    $[x] = Jl(Ql(s, w, x));
   const z = (
     /*#slots*/
     s[6]["right-control"]
-  ), _ = yt(
+  ), m = zt(
     z,
     s,
     /*$$scope*/
     s[5],
-    Xl
-  ), T = _ || ri();
+    Yl
+  ), E = m || vi();
   return {
     c() {
-      e = o("h1"), e.textContent = "BEST SELLERS", l = f(), i = o("div"), a = o("button"), h && h.c(), c = f(), p = o("ul");
-      for (let d = 0; d < k.length; d += 1)
-        k[d].c();
-      v = f(), r = o("button"), T && T.c(), t(e, "class", "svelte-1urkugz"), t(a, "id", "left"), t(a, "class", "svelte-1urkugz"), t(p, "class", "carousel-post svelte-1urkugz"), t(r, "id", "right"), t(r, "class", "svelte-1urkugz"), t(i, "class", "carousel svelte-1urkugz");
+      e = o("h1"), e.textContent = "BEST SELLERS", l = f(), i = o("div"), a = o("button"), d && d.c(), u = f(), v = o("ul");
+      for (let x = 0; x < $.length; x += 1)
+        $[x].c();
+      r = f(), c = o("button"), E && E.c(), t(e, "class", "svelte-1urkugz"), t(a, "id", "left"), t(a, "class", "svelte-1urkugz"), t(v, "class", "carousel-post svelte-1urkugz"), t(c, "id", "right"), t(c, "class", "svelte-1urkugz"), t(i, "class", "carousel svelte-1urkugz");
     },
-    m(d, x) {
-      O(d, e, x), O(d, l, x), O(d, i, x), n(i, a), h && h.m(a, null), n(i, c), n(i, p);
-      for (let L = 0; L < k.length; L += 1)
-        k[L] && k[L].m(p, null);
-      s[7](p), n(i, v), n(i, r), T && T.m(r, null), u = !0, b || (m = [
-        Et(
+    m(x, _) {
+      O(x, e, _), O(x, l, _), O(x, i, _), n(i, a), d && d.m(a, null), n(i, u), n(i, v);
+      for (let C = 0; C < $.length; C += 1)
+        $[C] && $[C].m(v, null);
+      s[7](v), n(i, r), n(i, c), E && E.m(c, null), p = !0, b || (h = [
+        St(
           a,
           "click",
           /*rotateLeft*/
           s[3]
         ),
-        Et(
-          r,
+        St(
+          c,
           "click",
           /*rotateRight*/
           s[4]
         )
       ], b = !0);
     },
-    p(d, [x]) {
-      if (g && g.p && (!u || x & /*$$scope*/
-      32) && kt(
+    p(x, [_]) {
+      if (g && g.p && (!p || _ & /*$$scope*/
+      32) && Et(
         g,
-        $,
-        d,
+        y,
+        x,
         /*$$scope*/
-        d[5],
-        u ? $t(
-          $,
+        x[5],
+        p ? Lt(
+          y,
           /*$$scope*/
-          d[5],
-          x,
-          oi
-        ) : zt(
+          x[5],
+          _,
+          ri
+        ) : Ct(
           /*$$scope*/
-          d[5]
+          x[5]
         ),
-        Wl
-      ), x & /*domain_name, images*/
+        Zl
+      ), _ & /*domain_name, images*/
       3) {
-        w = qs(
+        w = Ys(
           /*images*/
-          d[0]
+          x[0]
         );
-        let L;
-        for (L = 0; L < w.length; L += 1) {
-          const N = ql(d, w, L);
-          k[L] ? k[L].p(N, x) : (k[L] = Yl(N), k[L].c(), k[L].m(p, null));
+        let C;
+        for (C = 0; C < w.length; C += 1) {
+          const N = Ql(x, w, C);
+          $[C] ? $[C].p(N, _) : ($[C] = Jl(N), $[C].c(), $[C].m(v, null));
         }
-        for (; L < k.length; L += 1)
-          k[L].d(1);
-        k.length = w.length;
+        for (; C < $.length; C += 1)
+          $[C].d(1);
+        $.length = w.length;
       }
-      _ && _.p && (!u || x & /*$$scope*/
-      32) && kt(
-        _,
+      m && m.p && (!p || _ & /*$$scope*/
+      32) && Et(
+        m,
         z,
-        d,
+        x,
         /*$$scope*/
-        d[5],
-        u ? $t(
+        x[5],
+        p ? Lt(
           z,
           /*$$scope*/
-          d[5],
-          x,
-          ii
-        ) : zt(
+          x[5],
+          _,
+          ai
+        ) : Ct(
           /*$$scope*/
-          d[5]
+          x[5]
         ),
-        Xl
+        Yl
       );
     },
-    i(d) {
-      u || (M(h, d), M(T, d), u = !0);
+    i(x) {
+      p || (M(d, x), M(E, x), p = !0);
     },
-    o(d) {
-      F(h, d), F(T, d), u = !1;
+    o(x) {
+      F(d, x), F(E, x), p = !1;
     },
-    d(d) {
-      d && (S(e), S(l), S(i)), h && h.d(d), Jl(k, d), s[7](null), T && T.d(d), b = !1, Be(m);
+    d(x) {
+      x && (S(e), S(l), S(i)), d && d.d(x), sn($, x), s[7](null), E && E.d(x), b = !1, je(h);
     }
   };
 }
-function vi(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e, { images: c } = e;
-  const p = (x) => {
-    l(0, c = [c[c.length - 1], ...c.slice(0, c.length - 1)]);
-  }, v = (x) => {
-    l(0, c = [...c.slice(1, c.length), c[0]]);
+function pi(s, e, l) {
+  let { $$slots: i = {}, $$scope: a } = e, { images: u } = e;
+  const v = (_) => {
+    l(0, u = [u[u.length - 1], ...u.slice(0, u.length - 1)]);
+  }, r = (_) => {
+    l(0, u = [...u.slice(1, u.length), u[0]]);
   };
-  let r, u = !1, b, m;
-  en(() => {
-    r.addEventListener("mousedown", $), r.addEventListener("mouseleave", g), r.addEventListener("mouseup", h), r.addEventListener("mousemove", w), r.addEventListener("touchstart", k), r.addEventListener("touchend", z), r.addEventListener("touchmove", _);
+  let c, p = !1, b, h;
+  nn(() => {
+    c.addEventListener("mousedown", y), c.addEventListener("mouseleave", g), c.addEventListener("mouseup", d), c.addEventListener("mousemove", w), c.addEventListener("touchstart", $), c.addEventListener("touchend", z), c.addEventListener("touchmove", m);
   });
-  function $(x) {
-    u = !0, b = x.pageX - r.offsetLeft, m = r.scrollLeft;
+  function y(_) {
+    p = !0, b = _.pageX - c.offsetLeft, h = c.scrollLeft;
   }
   function g() {
-    u = !1;
+    p = !1;
   }
-  function h() {
-    u = !1;
+  function d() {
+    p = !1;
   }
-  function w(x) {
-    if (!u)
+  function w(_) {
+    if (!p)
       return;
-    x.preventDefault();
-    const N = (x.pageX - r.offsetLeft - b) * 2;
-    l(2, r.scrollLeft = m - N, r);
+    _.preventDefault();
+    const N = (_.pageX - c.offsetLeft - b) * 2;
+    l(2, c.scrollLeft = h - N, c);
   }
-  function k(x) {
-    u = !0, b = x.touches[0].clientX - r.offsetLeft, m = r.scrollLeft;
+  function $(_) {
+    p = !0, b = _.touches[0].clientX - c.offsetLeft, h = c.scrollLeft;
   }
   function z() {
-    u = !1;
+    p = !1;
   }
-  function _(x) {
-    if (!u)
+  function m(_) {
+    if (!p)
       return;
-    x.preventDefault();
-    const N = (x.touches[0].clientX - r.offsetLeft - b) * 2;
-    l(2, r.scrollLeft = m - N, r);
+    _.preventDefault();
+    const N = (_.touches[0].clientX - c.offsetLeft - b) * 2;
+    l(2, c.scrollLeft = h - N, c);
   }
-  let { domain_name: T = "" } = e;
-  function d(x) {
-    Xs[x ? "unshift" : "push"](() => {
-      r = x, l(2, r);
+  let { domain_name: E = "" } = e;
+  function x(_) {
+    Ws[_ ? "unshift" : "push"](() => {
+      c = _, l(2, c);
     });
   }
-  return s.$$set = (x) => {
-    "images" in x && l(0, c = x.images), "domain_name" in x && l(1, T = x.domain_name), "$$scope" in x && l(5, a = x.$$scope);
+  return s.$$set = (_) => {
+    "images" in _ && l(0, u = _.images), "domain_name" in _ && l(1, E = _.domain_name), "$$scope" in _ && l(5, a = _.$$scope);
   }, [
+    u,
+    E,
     c,
-    T,
-    r,
-    p,
     v,
+    r,
     a,
     i,
-    d
+    x
   ];
 }
-class cn extends ne {
+class fn extends ie {
   constructor(e) {
-    super(), se(this, e, vi, ci, te, { images: 0, domain_name: 1 }, ni);
+    super(), le(this, e, pi, ui, se, { images: 0, domain_name: 1 }, oi);
   }
   get images() {
     return this.$$.ctx[0];
   }
   set images(e) {
-    this.$$set({ images: e }), q();
+    this.$$set({ images: e }), I();
   }
   get domain_name() {
     return this.$$.ctx[1];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
   }
 }
-le(cn, { images: {}, domain_name: {} }, ["left-control", "right-control"], [], !0);
-function pi(s) {
+ne(fn, { images: {}, domain_name: {} }, ["left-control", "right-control"], [], !0);
+function fi(s) {
   let e, l, i, a;
-  l = new cn({ props: { images: fi, domain_name: ui } });
-  const c = (
+  l = new fn({
+    props: {
+      images: (
+        /*images*/
+        s[1]
+      ),
+      domain_name: (
+        /*domain_name*/
+        s[0]
+      )
+    }
+  });
+  const u = (
     /*#slots*/
-    s[1].default
-  ), p = yt(
-    c,
+    s[5].default
+  ), v = zt(
+    u,
     s,
     /*$$scope*/
-    s[0],
+    s[4],
     null
   );
   return {
     c() {
-      e = o("section"), be(l.$$.fragment), i = f(), p && p.c();
+      e = o("section"), be(l.$$.fragment), i = f(), v && v.c();
     },
-    m(v, r) {
-      O(v, e, r), re(l, e, null), n(e, i), p && p.m(e, null), a = !0;
+    m(r, c) {
+      O(r, e, c), ce(l, e, null), n(e, i), v && v.m(e, null), a = !0;
     },
-    p(v, [r]) {
-      p && p.p && (!a || r & /*$$scope*/
-      1) && kt(
-        p,
-        c,
+    p(r, [c]) {
+      const p = {};
+      c & /*domain_name*/
+      1 && (p.domain_name = /*domain_name*/
+      r[0]), l.$set(p), v && v.p && (!a || c & /*$$scope*/
+      16) && Et(
         v,
+        u,
+        r,
         /*$$scope*/
-        v[0],
-        a ? $t(
+        r[4],
+        a ? Lt(
+          u,
+          /*$$scope*/
+          r[4],
           c,
-          /*$$scope*/
-          v[0],
-          r,
           null
-        ) : zt(
+        ) : Ct(
           /*$$scope*/
-          v[0]
+          r[4]
         ),
         null
       );
     },
-    i(v) {
-      a || (M(l.$$.fragment, v), M(p, v), a = !0);
+    i(r) {
+      a || (M(l.$$.fragment, r), M(v, r), a = !0);
     },
-    o(v) {
-      F(l.$$.fragment, v), F(p, v), a = !1;
+    o(r) {
+      F(l.$$.fragment, r), F(v, r), a = !1;
     },
-    d(v) {
-      v && S(e), ce(l), p && p.d(v);
+    d(r) {
+      r && S(e), ve(l), v && v.d(r);
     }
   };
 }
-let ui = "https://entitybeauty.com", fi = [
-  {
-    src: "img/BestSellers/1prep.jpg",
-    srcset: "img/BestSellers/1prep@2x.jpg 2x",
-    link: "/entity-beauty-entity-dip-buff-1-prep-0-5-fl-oz-5301000.html",
-    id: "PREP"
-  },
-  {
-    src: "/img/BestSellers/2base.jpg",
-    srcset: "/img/BestSellers/2base@2x.jpg 2x",
-    link: "/entity-beauty-entity-dip-buff-2-base-coat-0-5-fl-oz-5301001.html",
-    id: "BASE COAT"
-  },
-  {
-    src: "/img/BestSellers/3activator.jpg",
-    srcset: "/img/BestSellers/3activator@2x.jpg 2x",
-    link: "/entity-beauty-entity-dip-buff-3-activator-0-5-fl-oz-5301002.html",
-    id: "ACTIVATOR"
-  },
-  {
-    src: "/img/BestSellers/4top.jpg",
-    srcset: "/img/BestSellers/4top@2x.jpg 2x",
-    link: "/entity-beauty-entity-dip-buff-4-top-coat-0-5-fl-oz-5301003.html",
-    id: "TOP"
-  },
-  {
-    src: "/img/BestSellers/5brushrestorer.jpg",
-    srcset: "/img/BestSellers/5brushrestorer@2x.jpg 2x",
-    link: "/entity-beauty-entity-dip-buff-brush-restorer-0-5-fl-oz-5301004.html",
-    id: "BRUSH RESTORER"
-  }
-];
 function gi(s, e, l) {
   let { $$slots: i = {}, $$scope: a } = e;
-  return s.$$set = (c) => {
-    "$$scope" in c && l(0, a = c.$$scope);
-  }, [a, i];
+  const u = !0;
+  let { domain_name: v = "" } = e, { best_seller: r } = e, c = JSON.parse(r);
+  return s.$$set = (p) => {
+    "domain_name" in p && l(0, v = p.domain_name), "best_seller" in p && l(3, r = p.best_seller), "$$scope" in p && l(4, a = p.$$scope);
+  }, [v, c, u, r, a, i];
 }
-class vn extends ne {
+class gn extends ie {
   constructor(e) {
-    super(), se(this, e, gi, pi, te, {});
+    super(), le(this, e, gi, fi, se, {
+      prerender: 2,
+      domain_name: 0,
+      best_seller: 3
+    });
+  }
+  get prerender() {
+    return this.$$.ctx[2];
+  }
+  get domain_name() {
+    return this.$$.ctx[0];
+  }
+  set domain_name(e) {
+    this.$$set({ domain_name: e }), I();
+  }
+  get best_seller() {
+    return this.$$.ctx[3];
+  }
+  set best_seller(e) {
+    this.$$set({ best_seller: e }), I();
   }
 }
-le(vn, {}, ["default"], [], !0);
-function hi(s) {
-  let e, l, i, a, c, p, v, r, u, b, m, $;
-  return i = new ln({
+ne(gn, { domain_name: {}, best_seller: {} }, ["default"], ["prerender"], !0);
+function di(s) {
+  let e, l, i, a, u, v, r, c, p, b, h, y;
+  return i = new rn({
     props: {
       domain_name: (
         /*domain_name*/
@@ -1756,103 +1781,183 @@ function hi(s) {
         s[0]
       )
     }
-  }), c = new on({}), v = new an({
+  }), u = new vn({
     props: { domain_name: (
       /*domain_name*/
       s[1]
     ) }
-  }), u = new vn({}), m = new rn({
+  }), r = new un({
+    props: { domain_name: (
+      /*domain_name*/
+      s[1]
+    ) }
+  }), p = new gn({
+    props: {
+      domain_name: (
+        /*domain_name*/
+        s[1]
+      ),
+      best_seller: (
+        /*best_seller*/
+        s[2]
+      )
+    }
+  }), h = new pn({
     props: { domain_name: (
       /*domain_name*/
       s[1]
     ) }
   }), {
     c() {
-      e = o("link"), l = f(), be(i.$$.fragment), a = f(), be(c.$$.fragment), p = f(), be(v.$$.fragment), r = f(), be(u.$$.fragment), b = f(), be(m.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
+      e = o("link"), l = f(), be(i.$$.fragment), a = f(), be(u.$$.fragment), v = f(), be(r.$$.fragment), c = f(), be(p.$$.fragment), b = f(), be(h.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
     },
-    m(g, h) {
-      n(document.head, e), O(g, l, h), re(i, g, h), O(g, a, h), re(c, g, h), O(g, p, h), re(v, g, h), O(g, r, h), re(u, g, h), O(g, b, h), re(m, g, h), $ = !0;
+    m(g, d) {
+      n(document.head, e), O(g, l, d), ce(i, g, d), O(g, a, d), ce(u, g, d), O(g, v, d), ce(r, g, d), O(g, c, d), ce(p, g, d), O(g, b, d), ce(h, g, d), y = !0;
     },
-    p(g, [h]) {
+    p(g, [d]) {
       const w = {};
-      h & /*domain_name*/
+      d & /*domain_name*/
       2 && (w.domain_name = /*domain_name*/
-      g[1]), h & /*country*/
+      g[1]), d & /*country*/
       1 && (w.country = /*country*/
       g[0]), i.$set(w);
-      const k = {};
-      h & /*domain_name*/
-      2 && (k.domain_name = /*domain_name*/
-      g[1]), v.$set(k);
+      const $ = {};
+      d & /*domain_name*/
+      2 && ($.domain_name = /*domain_name*/
+      g[1]), u.$set($);
       const z = {};
-      h & /*domain_name*/
+      d & /*domain_name*/
       2 && (z.domain_name = /*domain_name*/
-      g[1]), m.$set(z);
+      g[1]), r.$set(z);
+      const m = {};
+      d & /*domain_name*/
+      2 && (m.domain_name = /*domain_name*/
+      g[1]), d & /*best_seller*/
+      4 && (m.best_seller = /*best_seller*/
+      g[2]), p.$set(m);
+      const E = {};
+      d & /*domain_name*/
+      2 && (E.domain_name = /*domain_name*/
+      g[1]), h.$set(E);
     },
     i(g) {
-      $ || (M(i.$$.fragment, g), M(c.$$.fragment, g), M(v.$$.fragment, g), M(u.$$.fragment, g), M(m.$$.fragment, g), $ = !0);
+      y || (M(i.$$.fragment, g), M(u.$$.fragment, g), M(r.$$.fragment, g), M(p.$$.fragment, g), M(h.$$.fragment, g), y = !0);
     },
     o(g) {
-      F(i.$$.fragment, g), F(c.$$.fragment, g), F(v.$$.fragment, g), F(u.$$.fragment, g), F(m.$$.fragment, g), $ = !1;
+      F(i.$$.fragment, g), F(u.$$.fragment, g), F(r.$$.fragment, g), F(p.$$.fragment, g), F(h.$$.fragment, g), y = !1;
     },
     d(g) {
-      g && (S(l), S(a), S(p), S(r), S(b)), S(e), ce(i, g), ce(c, g), ce(v, g), ce(u, g), ce(m, g);
+      g && (S(l), S(a), S(v), S(c), S(b)), S(e), ve(i, g), ve(u, g), ve(r, g), ve(p, g), ve(h, g);
     }
   };
 }
 function mi(s, e, l) {
-  let { country: i = "" } = e, { domain_name: a = "" } = e;
-  return s.$$set = (c) => {
-    "country" in c && l(0, i = c.country), "domain_name" in c && l(1, a = c.domain_name);
-  }, [i, a];
+  let { country: i = "" } = e, { domain_name: a = "" } = e, { best_seller: u } = e;
+  return s.$$set = (v) => {
+    "country" in v && l(0, i = v.country), "domain_name" in v && l(1, a = v.domain_name), "best_seller" in v && l(2, u = v.best_seller);
+  }, [i, a, u];
 }
-class pn extends ne {
+class dn extends ie {
   constructor(e) {
-    super(), se(this, e, mi, hi, te, { country: 0, domain_name: 1 });
+    super(), le(this, e, mi, di, se, {
+      country: 0,
+      domain_name: 1,
+      best_seller: 2
+    });
   }
   get country() {
     return this.$$.ctx[0];
   }
   set country(e) {
-    this.$$set({ country: e }), q();
+    this.$$set({ country: e }), I();
   }
   get domain_name() {
     return this.$$.ctx[1];
   }
   set domain_name(e) {
-    this.$$set({ domain_name: e }), q();
+    this.$$set({ domain_name: e }), I();
+  }
+  get best_seller() {
+    return this.$$.ctx[2];
+  }
+  set best_seller(e) {
+    this.$$set({ best_seller: e }), I();
   }
 }
-customElements.define("entitybeauty-homepage", le(pn, { country: {}, domain_name: {} }, [], [], !0));
-function di(s) {
+customElements.define("entitybeauty-homepage", ne(dn, { country: {}, domain_name: {}, best_seller: {} }, [], [], !0));
+function hi(s) {
   let e, l, i, a;
-  return i = new pn({
+  return i = new dn({
     props: {
       domain_name: "https://entitybeauty.com",
-      country: "us"
+      country: "us",
+      best_seller: JSON.stringify(
+        /*images*/
+        s[0]
+      )
     }
   }), {
     c() {
       e = o("link"), l = f(), be(i.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
     },
-    m(c, p) {
-      n(document.head, e), O(c, l, p), re(i, c, p), a = !0;
+    m(u, v) {
+      n(document.head, e), O(u, l, v), ce(i, u, v), a = !0;
     },
-    p: R,
-    i(c) {
-      a || (M(i.$$.fragment, c), a = !0);
+    p: j,
+    i(u) {
+      a || (M(i.$$.fragment, u), a = !0);
     },
-    o(c) {
-      F(i.$$.fragment, c), a = !1;
+    o(u) {
+      F(i.$$.fragment, u), a = !1;
     },
-    d(c) {
-      c && S(l), S(e), ce(i, c);
+    d(u) {
+      u && S(l), S(e), ve(i, u);
     }
   };
 }
-class xi extends ne {
+function xi(s) {
+  return [[
+    {
+      src: "/img/BestSellers/rubber-base.jpg",
+      srcset: "/img/BestSellers/rubber-base.jpg",
+      link: "/professional/rubber-base-gel.html",
+      id: "RUBBER BASE"
+    },
+    {
+      src: "/img/BestSellers/soft-gel-tip.jpg",
+      srcset: "/img/BestSellers/soft-gel-tip.jpg",
+      link: "/professional.html",
+      id: "SOFT GEL"
+    },
+    {
+      src: "/img/BestSellers/powder.jpg",
+      srcset: "/img/BestSellers/powder.jpg",
+      link: "/professional/liquid-powder-acrylic-system.html?product_list_limit=36",
+      id: "LIQUID & POWDERS"
+    },
+    {
+      src: "img/BestSellers/1prep.jpg",
+      srcset: "img/BestSellers/1prep@2x.jpg 2x",
+      link: "/entity-beauty-entity-dip-buff-1-prep-0-5-fl-oz-5301000.html",
+      id: "PREP"
+    },
+    {
+      src: "/img/BestSellers/2base.jpg",
+      srcset: "/img/BestSellers/2base@2x.jpg 2x",
+      link: "/entity-beauty-entity-dip-buff-2-base-coat-0-5-fl-oz-5301001.html",
+      id: "BASE COAT"
+    },
+    {
+      src: "/img/BestSellers/3activator.jpg",
+      srcset: "/img/BestSellers/3activator@2x.jpg 2x",
+      link: "/entity-beauty-entity-dip-buff-3-activator-0-5-fl-oz-5301002.html",
+      id: "ACTIVATOR"
+    }
+  ]];
+}
+class _i extends ie {
   constructor(e) {
-    super(), se(this, e, null, di, te, {});
+    super(), le(this, e, xi, hi, se, {});
   }
 }
-le(xi, {}, [], [], !0);
+ne(_i, {}, [], [], !0);

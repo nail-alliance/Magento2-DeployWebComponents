@@ -36,12 +36,12 @@ function Dl(s) {
 function Y(s, e) {
   const l = Dl(s.srcset), i = Dl(e || "");
   return i.length === l.length && i.every(
-    ([a, u], v) => u === l[v][1] && // We need to test both ways because Vite will create an a full URL with
+    ([a, v], c) => v === l[c][1] && // We need to test both ways because Vite will create an a full URL with
     // `new URL(asset, import.meta.url).href` for the client when `base: './'`, and the
     // relative URLs inside srcset are not automatically resolved to absolute URLs by
     // browsers (in contrast to img.src). This means both SSR and DOM code could
     // contain relative or absolute URLs.
-    (P(l[v][0], a) || P(a, l[v][0]))
+    (P(l[c][0], a) || P(a, l[c][0]))
   );
 }
 function _n(s) {
@@ -62,19 +62,19 @@ function Lt(s, e, l, i) {
     if (e.dirty === void 0)
       return a;
     if (typeof a == "object") {
-      const u = [], v = Math.max(e.dirty.length, a.length);
-      for (let r = 0; r < v; r += 1)
-        u[r] = e.dirty[r] | a[r];
-      return u;
+      const v = [], c = Math.max(e.dirty.length, a.length);
+      for (let r = 0; r < c; r += 1)
+        v[r] = e.dirty[r] | a[r];
+      return v;
     }
     return e.dirty | a;
   }
   return e.dirty;
 }
-function Et(s, e, l, i, a, u) {
+function Et(s, e, l, i, a, v) {
   if (a) {
-    const v = tn(e, l, i, u);
-    s.p(v, a);
+    const c = tn(e, l, i, v);
+    s.p(c, a);
   }
 }
 function Ct(s) {
@@ -155,7 +155,7 @@ function ln(s, e) {
   e = "" + e, s.data !== e && (s.data = /** @type {string} */
   e);
 }
-function Js(s, e, l, i) {
+function Zs(s, e, l, i) {
   l == null ? s.style.removeProperty(e) : s.style.setProperty(e, l, i ? "important" : "");
 }
 function $n(s) {
@@ -251,8 +251,8 @@ function be(s) {
 function ce(s, e, l) {
   const { fragment: i, after_update: a } = s.$$;
   i && i.m(e, l), tl(() => {
-    const u = s.$$.on_mount.map(Kl).filter(en);
-    s.$$.on_destroy ? s.$$.on_destroy.push(...u) : je(u), s.$$.on_mount = [];
+    const v = s.$$.on_mount.map(Kl).filter(en);
+    s.$$.on_destroy ? s.$$.on_destroy.push(...v) : je(v), s.$$.on_mount = [];
   }), a.forEach(tl);
 }
 function ve(s, e) {
@@ -262,14 +262,14 @@ function ve(s, e) {
 function On(s, e) {
   s.$$.dirty[0] === -1 && (yt.push(s), En(), s.$$.dirty.fill(0)), s.$$.dirty[e / 31 | 0] |= 1 << e % 31;
 }
-function le(s, e, l, i, a, u, v = null, r = [-1]) {
-  const c = At;
+function le(s, e, l, i, a, v, c = null, r = [-1]) {
+  const p = At;
   Bt(s);
-  const p = s.$$ = {
+  const u = s.$$ = {
     fragment: null,
     ctx: [],
     // state
-    props: u,
+    props: v,
     update: j,
     not_equal: a,
     bound: Ml(),
@@ -279,27 +279,27 @@ function le(s, e, l, i, a, u, v = null, r = [-1]) {
     on_disconnect: [],
     before_update: [],
     after_update: [],
-    context: new Map(e.context || (c ? c.$$.context : [])),
+    context: new Map(e.context || (p ? p.$$.context : [])),
     // everything else
     callbacks: Ml(),
     dirty: r,
     skip_bound: !1,
-    root: e.target || c.$$.root
+    root: e.target || p.$$.root
   };
-  v && v(p.root);
-  let b = !1;
-  if (p.ctx = l ? l(s, e.props || {}, (h, y, ...g) => {
-    const d = g.length ? g[0] : y;
-    return p.ctx && a(p.ctx[h], p.ctx[h] = d) && (!p.skip_bound && p.bound[h] && p.bound[h](d), b && On(s, h)), y;
-  }) : [], p.update(), b = !0, je(p.before_update), p.fragment = i ? i(p.ctx) : !1, e.target) {
+  c && c(u.root);
+  let h = !1;
+  if (u.ctx = l ? l(s, e.props || {}, (x, k, ...g) => {
+    const d = g.length ? g[0] : k;
+    return u.ctx && a(u.ctx[x], u.ctx[x] = d) && (!u.skip_bound && u.bound[x] && u.bound[x](d), h && On(s, x)), k;
+  }) : [], u.update(), h = !0, je(u.before_update), u.fragment = i ? i(u.ctx) : !1, e.target) {
     if (e.hydrate) {
-      const h = yn(e.target);
-      p.fragment && p.fragment.l(h), h.forEach(S);
+      const x = yn(e.target);
+      u.fragment && u.fragment.l(x), x.forEach(S);
     } else
-      p.fragment && p.fragment.c();
+      u.fragment && u.fragment.c();
     e.intro && M(s.$$.fragment), ce(s, e.target, e.anchor), I();
   }
-  Bt(c);
+  Bt(p);
 }
 let on;
 typeof HTMLElement == "function" && (on = class extends HTMLElement {
@@ -340,22 +340,22 @@ typeof HTMLElement == "function" && (on = class extends HTMLElement {
   }
   async connectedCallback() {
     if (this.$$cn = !0, !this.$$c) {
-      let l = function(v) {
+      let l = function(c) {
         return () => {
           let r;
           return {
             c: function() {
-              r = o("slot"), v !== "default" && t(r, "name", v);
+              r = o("slot"), c !== "default" && t(r, "name", c);
             },
             /**
              * @param {HTMLElement} target
              * @param {HTMLElement} [anchor]
              */
-            m: function(b, h) {
-              O(b, r, h);
+            m: function(h, x) {
+              O(h, r, x);
             },
-            d: function(b) {
-              b && S(r);
+            d: function(h) {
+              h && S(r);
             }
           };
         };
@@ -364,11 +364,11 @@ typeof HTMLElement == "function" && (on = class extends HTMLElement {
       if (await Promise.resolve(), !this.$$cn)
         return;
       const i = {}, a = $n(this);
-      for (const v of this.$$s)
-        v in a && (i[v] = [l(v)]);
-      for (const v of this.attributes) {
-        const r = this.$$g_p(v.name);
-        r in this.$$d || (this.$$d[r] = Vs(r, v.value, this.$$p_d, "toProp"));
+      for (const c of this.$$s)
+        c in a && (i[c] = [l(c)]);
+      for (const c of this.attributes) {
+        const r = this.$$g_p(c.name);
+        r in this.$$d || (this.$$d[r] = Vs(r, c.value, this.$$p_d, "toProp"));
       }
       this.$$c = new this.$$ctor({
         target: this.shadowRoot || this,
@@ -380,25 +380,25 @@ typeof HTMLElement == "function" && (on = class extends HTMLElement {
           }
         }
       });
-      const u = () => {
+      const v = () => {
         this.$$r = !0;
-        for (const v in this.$$p_d)
-          if (this.$$d[v] = this.$$c.$$.ctx[this.$$c.$$.props[v]], this.$$p_d[v].reflect) {
+        for (const c in this.$$p_d)
+          if (this.$$d[c] = this.$$c.$$.ctx[this.$$c.$$.props[c]], this.$$p_d[c].reflect) {
             const r = Vs(
-              v,
-              this.$$d[v],
+              c,
+              this.$$d[c],
               this.$$p_d,
               "toAttribute"
             );
-            r == null ? this.removeAttribute(this.$$p_d[v].attribute || v) : this.setAttribute(this.$$p_d[v].attribute || v, r);
+            r == null ? this.removeAttribute(this.$$p_d[c].attribute || c) : this.setAttribute(this.$$p_d[c].attribute || c, r);
           }
         this.$$r = !1;
       };
-      this.$$c.$$.after_update.push(u), u();
-      for (const v in this.$$l)
-        for (const r of this.$$l[v]) {
-          const c = this.$$c.$on(v, r);
-          this.$$l_u.set(r, c);
+      this.$$c.$$.after_update.push(v), v();
+      for (const c in this.$$l)
+        for (const r of this.$$l[c]) {
+          const p = this.$$c.$on(c, r);
+          this.$$l_u.set(r, p);
         }
       this.$$l = {};
     }
@@ -421,8 +421,8 @@ typeof HTMLElement == "function" && (on = class extends HTMLElement {
   }
 });
 function Vs(s, e, l, i) {
-  var u;
-  const a = (u = l[s]) == null ? void 0 : u.type;
+  var v;
+  const a = (v = l[s]) == null ? void 0 : v.type;
   if (e = a === "Boolean" && typeof e != "boolean" ? e != null : e, !i || !l[s])
     return e;
   if (i === "toAttribute")
@@ -450,8 +450,8 @@ function Vs(s, e, l, i) {
         return e;
     }
 }
-function ne(s, e, l, i, a, u) {
-  let v = class extends on {
+function ne(s, e, l, i, a, v) {
+  let c = class extends on {
     constructor() {
       super(s, l, a), this.$$p_d = e;
     }
@@ -462,24 +462,24 @@ function ne(s, e, l, i, a, u) {
     }
   };
   return Object.keys(e).forEach((r) => {
-    Object.defineProperty(v.prototype, r, {
+    Object.defineProperty(c.prototype, r, {
       get() {
         return this.$$c && r in this.$$c ? this.$$c[r] : this.$$d[r];
       },
-      set(c) {
-        var p;
-        c = Vs(r, c, e), this.$$d[r] = c, (p = this.$$c) == null || p.$set({ [r]: c });
+      set(p) {
+        var u;
+        p = Vs(r, p, e), this.$$d[r] = p, (u = this.$$c) == null || u.$set({ [r]: p });
       }
     });
   }), i.forEach((r) => {
-    Object.defineProperty(v.prototype, r, {
+    Object.defineProperty(c.prototype, r, {
       get() {
-        var c;
-        return (c = this.$$c) == null ? void 0 : c[r];
+        var p;
+        return (p = this.$$c) == null ? void 0 : p[r];
       }
     });
-  }), u && (v = u(v)), s.element = /** @type {any} */
-  v, v;
+  }), v && (c = v(c)), s.element = /** @type {any} */
+  c, c;
 }
 class ie {
   constructor() {
@@ -553,8 +553,8 @@ function Rn(s) {
     c() {
       e = Q("svg"), l = Q("path"), i = Q("path"), t(l, "d", "M3 21.32L21 3.32001"), t(l, "stroke", "#9A9A9A"), t(l, "stroke-width", "1.5"), t(l, "stroke-linecap", "round"), t(l, "stroke-linejoin", "round"), t(i, "d", "M3 3.32001L21 21.32"), t(i, "stroke", "#9A9A9A"), t(i, "stroke-width", "1.5"), t(i, "stroke-linecap", "round"), t(i, "stroke-linejoin", "round"), t(e, "id", "x-icon"), t(e, "viewBox", "-0.5 0 25 25"), t(e, "fill", "none"), t(e, "xmlns", "http://www.w3.org/2000/svg"), t(e, "class", "svelte-x6v1sp");
     },
-    m(a, u) {
-      O(a, e, u), n(e, l), n(e, i);
+    m(a, v) {
+      O(a, e, v), n(e, l), n(e, i);
     },
     d(a) {
       a && S(e);
@@ -562,17 +562,17 @@ function Rn(s) {
   };
 }
 function Xl(s) {
-  let e, l, i, a, u, v;
+  let e, l, i, a, v, c;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("h4"), i.textContent = "BLOGS", u = f(), v = o("div"), v.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', t(i, "class", "svelte-x6v1sp"), t(l, "href", a = /*domain_name*/
-      s[1] + "/blog"), t(l, "class", "svelte-x6v1sp"), t(v, "class", "subNav svelte-x6v1sp"), t(e, "class", "svelte-x6v1sp");
+      e = o("li"), l = o("a"), i = o("h4"), i.textContent = "BLOGS", v = f(), c = o("div"), c.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', t(i, "class", "svelte-x6v1sp"), t(l, "href", a = /*domain_name*/
+      s[1] + "/blog"), t(l, "class", "svelte-x6v1sp"), t(c, "class", "subNav svelte-x6v1sp"), t(e, "class", "svelte-x6v1sp");
     },
-    m(r, c) {
-      O(r, e, c), n(e, l), n(l, i), n(e, u), n(e, v);
+    m(r, p) {
+      O(r, e, p), n(e, l), n(l, i), n(e, v), n(e, c);
     },
-    p(r, c) {
-      c & /*domain_name*/
+    p(r, p) {
+      p & /*domain_name*/
       2 && a !== (a = /*domain_name*/
       r[1] + "/blog") && t(l, "href", a);
     },
@@ -583,23 +583,23 @@ function Xl(s) {
 }
 function Pn(s) {
   var Gl;
-  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $, z, m, E, x, _, C, N, Le, R, Z, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G, B, A, ye, It, ll, He, Rt, Pt, nl, Me, jt, Gt, il, Nt, ol, De, Ue, Ht, Mt, al, Xe, Dt, rl, $e, Fe, Ut, Xt, cl, qe, Ft, qt, vl, Ve, Vt, Wt, ul, We, Ye, Yt, Qt, pl, Qe, Zt, fl, J, Ze, Jt, Kt, gl, Je, es, ts, dl, Ke, ss, ls, ml, et, ns, is, hl, tt, os, as, xl, st, lt, rs, cs, _l, nt, vs, bl, K, it, us, ps, kl, ot, fs, gs, wl, at, ds, ms, yl, rt, hs, xs, $l, ct, _s, bs, zl, vt, ut, ks, ws, Ll, pt, ys, El, H, ft, $s, zs, Cl, gt, Ls, Es, Sl, dt, Cs, Ss, Tl, mt, Ts, Os, Ol, ht, Ns, Bs, Nl, xt, As, Is, Bl, _t, Rs, Ps, Al, bt, kt, js, Gs, Il, Hs, Rl, Qs = (
+  let e, l, i, a, v, c, r, p, u, h, x, k, g, d, y, $, z, m, E, _, b, C, N, Le, R, J, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G, B, A, ye, It, ll, He, Rt, Pt, nl, Me, jt, Gt, il, Nt, ol, De, Ue, Ht, Mt, al, Xe, Dt, rl, $e, Fe, Ut, Xt, cl, qe, Ft, qt, vl, Ve, Vt, Wt, ul, We, Ye, Yt, Qt, pl, Qe, Jt, fl, Z, Je, Zt, Kt, gl, Ze, es, ts, dl, Ke, ss, ls, ml, et, ns, is, hl, tt, os, as, xl, st, lt, rs, cs, _l, nt, vs, bl, K, it, us, ps, kl, ot, fs, gs, wl, at, ds, ms, yl, rt, hs, xs, $l, ct, _s, bs, zl, vt, ut, ks, ws, Ll, pt, ys, El, H, ft, $s, zs, Cl, gt, Ls, Es, Sl, dt, Cs, Ss, Tl, mt, Ts, Os, Ol, ht, Ns, Bs, Nl, xt, As, Is, Bl, _t, Rs, Ps, Al, bt, kt, js, Gs, Il, Hs, Rl, Qs = (
     /*country*/
     ((Gl = s[0]) == null ? void 0 : Gl.toString().toLowerCase()) === "us"
-  ), Ms, Ds, Zs, Pl;
-  function jl(k, L) {
+  ), Ms, Ds, Js, Pl;
+  function jl(w, L) {
     return (
       /*clicked*/
-      k[2] ? Rn : In
+      w[2] ? Rn : In
     );
   }
   let Us = jl(s), ze = Us(s), q = Qs && Xl(s);
   return {
     c() {
-      e = o("nav"), l = o("div"), i = o("div"), a = o("button"), ze.c(), u = f(), v = o("div"), r = o("div"), c = o("ul"), p = o("li"), b = o("a"), h = o("h4"), h.textContent = "COLLECTIONS", g = f(), d = o("div"), w = o("div"), w.innerHTML = '<p class="svelte-x6v1sp"><strong>COLLECTIONS</strong></p> <hr id="one" class="svelte-x6v1sp"/>', $ = f(), z = o("div"), m = o("a"), E = o("p"), E.textContent = "LOST IN THE VIEW", _ = f(), C = o("a"), N = o("p"), N.textContent = "CUTIE COUTURE", R = f(), Z = o("li"), D = o("a"), Ee = o("h4"), Ee.textContent = "GEL POLISH", Se = f(), ue = o("div"), oe = o("div"), oe.innerHTML = '<p class="svelte-x6v1sp"><strong>GEL POLISH</strong></p> <hr id="three" class="svelte-x6v1sp"/>', te = f(), T = o("div"), pe = o("a"), fe = o("p"), fe.textContent = "GEL COLORS", ke = f(), U = o("a"), Oe = o("p"), Oe.textContent = "RUBBER BASE GEL", Be = f(), ge = o("a"), ae = o("p"), ae.textContent = "VELVET LUXE", Tt = f(), de = o("a"), me = o("p"), me.textContent = "GEL NAIL ART STRIPER GEL", we = f(), X = o("a"), Ie = o("p"), Ie.textContent = "NU BOND", Pe = f(), he = o("a"), re = o("p"), re.textContent = "SOAK OFF TOP COAT", Ot = f(), xe = o("a"), _e = o("p"), _e.textContent = "NO WIPE TOP COAT", B = f(), A = o("a"), ye = o("p"), ye.textContent = "SOAK OFF BASE COAT", ll = f(), He = o("a"), Rt = o("p"), Rt.textContent = "ESSENTIALS 3 PACK", nl = f(), Me = o("a"), jt = o("p"), jt.textContent = "ENTITY LED LIGHT", il = f(), Nt = o("a"), Nt.innerHTML = '<p class="svelte-x6v1sp">REGISTER LED LIGHT</p>', ol = f(), De = o("li"), Ue = o("a"), Ht = o("h4"), Ht.textContent = "LACQUER", al = f(), Xe = o("div"), Dt = o("div"), Dt.innerHTML = '<p class="svelte-x6v1sp"><strong>LACQUER</strong></p> <hr id="one" class="svelte-x6v1sp"/>', rl = f(), $e = o("div"), Fe = o("a"), Ut = o("p"), Ut.textContent = "LACQUER COLORS", cl = f(), qe = o("a"), Ft = o("p"), Ft.textContent = "GEL-LACQUER BASE COAT", vl = f(), Ve = o("a"), Vt = o("p"), Vt.textContent = "GEL-LACQUER TOP COAT", ul = f(), We = o("li"), Ye = o("a"), Yt = o("h4"), Yt.textContent = "DIP OR BRUSH", pl = f(), Qe = o("div"), Zt = o("div"), Zt.innerHTML = '<p class="svelte-x6v1sp"><strong>DIP OR BRUSH</strong></p> <hr id="two" class="svelte-x6v1sp"/>', fl = f(), J = o("div"), Ze = o("a"), Jt = o("p"), Jt.textContent = "DIP OR BRUSH COLORS", gl = f(), Je = o("a"), es = o("p"), es.textContent = "PERFECT FRENCH COLORS", dl = f(), Ke = o("a"), ss = o("p"), ss.textContent = "ESSENTIALS", ml = f(), et = o("a"), ns = o("p"), ns.textContent = "PERFECT FRENCH DIP JARS", hl = f(), tt = o("a"), os = o("p"), os.textContent = "DIP FRENCH KIT", xl = f(), st = o("li"), lt = o("a"), rs = o("h4"), rs.textContent = "ARGAN OIL", _l = f(), nt = o("div"), vs = o("div"), vs.innerHTML = '<p class="svelte-x6v1sp"><strong>ARGAN OIL</strong></p> <hr id="two" class="svelte-x6v1sp"/>', bl = f(), K = o("div"), it = o("a"), us = o("p"), us.textContent = "REVITALIZING CUTICLE DROPS", kl = f(), ot = o("a"), fs = o("p"), fs.textContent = "LUMINIZING DRY BODY OIL SPRAY", wl = f(), at = o("a"), ds = o("p"), ds.textContent = "RESTORATIVE MASSAGE BUTTER", yl = f(), rt = o("a"), hs = o("p"), hs.textContent = "DAILY REPLENISHING LOTION", $l = f(), ct = o("a"), _s = o("p"), _s.textContent = "RENEWAL GEL SCRUB", zl = f(), vt = o("li"), ut = o("a"), ks = o("h4"), ks.textContent = "PROFESSIONAL", Ll = f(), pt = o("div"), ys = o("div"), ys.innerHTML = '<p class="svelte-x6v1sp"><strong>PROFESSIONAL</strong></p> <hr id="twoo" class="svelte-x6v1sp"/>', El = f(), H = o("div"), ft = o("a"), $s = o("p"), $s.textContent = "STUDIO ONE SOFT GEL", Cl = f(), gt = o("a"), Ls = o("p"), Ls.textContent = "STUDIO ONE CONTOURING GEL", Sl = f(), dt = o("a"), Cs = o("p"), Cs.textContent = "HARD GELS ENTITY ONE GELS", Tl = f(), mt = o("a"), Ts = o("p"), Ts.textContent = "LIQUID & POWDER ACRYLIC SYSTEM", Ol = f(), ht = o("a"), Ns = o("p"), Ns.textContent = "DIP OR BRUSH ACRYLIC DIP POWDER", Nl = f(), xt = o("a"), As = o("p"), As.textContent = "ACCESSORIES", Bl = f(), _t = o("a"), Rs = o("p"), Rs.textContent = "MERCHANDISING", Al = f(), bt = o("li"), kt = o("a"), js = o("h4"), js.textContent = "VIDEOS", Il = f(), Hs = o("div"), Hs.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', Rl = f(), q && q.c(), Js(a, "background", "none"), Js(a, "border", "none"), Js(a, "align-items", "flex-start"), t(a, "class", "svelte-x6v1sp"), t(i, "class", "icon-wrapper svelte-x6v1sp"), t(l, "class", "menu-icon svelte-x6v1sp"), t(h, "class", "svelte-x6v1sp"), t(b, "href", y = /*domain_name*/
-      s[1] + "/collections.html"), t(b, "class", "svelte-x6v1sp"), t(w, "class", "subNavTitle svelte-x6v1sp"), t(E, "class", "svelte-x6v1sp"), t(m, "href", x = /*domain_name*/
+      e = o("nav"), l = o("div"), i = o("div"), a = o("button"), ze.c(), v = f(), c = o("div"), r = o("div"), p = o("ul"), u = o("li"), h = o("a"), x = o("h4"), x.textContent = "COLLECTIONS", g = f(), d = o("div"), y = o("div"), y.innerHTML = '<p class="svelte-x6v1sp"><strong>COLLECTIONS</strong></p> <hr id="one" class="svelte-x6v1sp"/>', $ = f(), z = o("div"), m = o("a"), E = o("p"), E.textContent = "LOST IN THE VIEW", b = f(), C = o("a"), N = o("p"), N.textContent = "CUTIE COUTURE", R = f(), J = o("li"), D = o("a"), Ee = o("h4"), Ee.textContent = "GEL POLISH", Se = f(), ue = o("div"), oe = o("div"), oe.innerHTML = '<p class="svelte-x6v1sp"><strong>GEL POLISH</strong></p> <hr id="three" class="svelte-x6v1sp"/>', te = f(), T = o("div"), pe = o("a"), fe = o("p"), fe.textContent = "GEL COLORS", ke = f(), U = o("a"), Oe = o("p"), Oe.textContent = "RUBBER BASE GEL", Be = f(), ge = o("a"), ae = o("p"), ae.textContent = "VELVET LUXE", Tt = f(), de = o("a"), me = o("p"), me.textContent = "GEL NAIL ART STRIPER GEL", we = f(), X = o("a"), Ie = o("p"), Ie.textContent = "NU BOND", Pe = f(), he = o("a"), re = o("p"), re.textContent = "SOAK OFF TOP COAT", Ot = f(), xe = o("a"), _e = o("p"), _e.textContent = "NO WIPE TOP COAT", B = f(), A = o("a"), ye = o("p"), ye.textContent = "SOAK OFF BASE COAT", ll = f(), He = o("a"), Rt = o("p"), Rt.textContent = "ESSENTIALS 3 PACK", nl = f(), Me = o("a"), jt = o("p"), jt.textContent = "ENTITY LED LIGHT", il = f(), Nt = o("a"), Nt.innerHTML = '<p class="svelte-x6v1sp">REGISTER LED LIGHT</p>', ol = f(), De = o("li"), Ue = o("a"), Ht = o("h4"), Ht.textContent = "LACQUER", al = f(), Xe = o("div"), Dt = o("div"), Dt.innerHTML = '<p class="svelte-x6v1sp"><strong>LACQUER</strong></p> <hr id="one" class="svelte-x6v1sp"/>', rl = f(), $e = o("div"), Fe = o("a"), Ut = o("p"), Ut.textContent = "LACQUER COLORS", cl = f(), qe = o("a"), Ft = o("p"), Ft.textContent = "GEL-LACQUER BASE COAT", vl = f(), Ve = o("a"), Vt = o("p"), Vt.textContent = "GEL-LACQUER TOP COAT", ul = f(), We = o("li"), Ye = o("a"), Yt = o("h4"), Yt.textContent = "DIP OR BRUSH", pl = f(), Qe = o("div"), Jt = o("div"), Jt.innerHTML = '<p class="svelte-x6v1sp"><strong>DIP OR BRUSH</strong></p> <hr id="two" class="svelte-x6v1sp"/>', fl = f(), Z = o("div"), Je = o("a"), Zt = o("p"), Zt.textContent = "DIP OR BRUSH COLORS", gl = f(), Ze = o("a"), es = o("p"), es.textContent = "PERFECT FRENCH COLORS", dl = f(), Ke = o("a"), ss = o("p"), ss.textContent = "ESSENTIALS", ml = f(), et = o("a"), ns = o("p"), ns.textContent = "PERFECT FRENCH DIP JARS", hl = f(), tt = o("a"), os = o("p"), os.textContent = "DIP FRENCH KIT", xl = f(), st = o("li"), lt = o("a"), rs = o("h4"), rs.textContent = "ARGAN OIL", _l = f(), nt = o("div"), vs = o("div"), vs.innerHTML = '<p class="svelte-x6v1sp"><strong>ARGAN OIL</strong></p> <hr id="two" class="svelte-x6v1sp"/>', bl = f(), K = o("div"), it = o("a"), us = o("p"), us.textContent = "REVITALIZING CUTICLE DROPS", kl = f(), ot = o("a"), fs = o("p"), fs.textContent = "LUMINIZING DRY BODY OIL SPRAY", wl = f(), at = o("a"), ds = o("p"), ds.textContent = "RESTORATIVE MASSAGE BUTTER", yl = f(), rt = o("a"), hs = o("p"), hs.textContent = "DAILY REPLENISHING LOTION", $l = f(), ct = o("a"), _s = o("p"), _s.textContent = "RENEWAL GEL SCRUB", zl = f(), vt = o("li"), ut = o("a"), ks = o("h4"), ks.textContent = "PROFESSIONAL", Ll = f(), pt = o("div"), ys = o("div"), ys.innerHTML = '<p class="svelte-x6v1sp"><strong>PROFESSIONAL</strong></p> <hr id="twoo" class="svelte-x6v1sp"/>', El = f(), H = o("div"), ft = o("a"), $s = o("p"), $s.textContent = "STUDIO ONE SOFT GEL", Cl = f(), gt = o("a"), Ls = o("p"), Ls.textContent = "STUDIO ONE CONTOURING GEL", Sl = f(), dt = o("a"), Cs = o("p"), Cs.textContent = "HARD GELS ENTITY ONE GELS", Tl = f(), mt = o("a"), Ts = o("p"), Ts.textContent = "LIQUID & POWDER ACRYLIC SYSTEM", Ol = f(), ht = o("a"), Ns = o("p"), Ns.textContent = "DIP OR BRUSH ACRYLIC DIP POWDER", Nl = f(), xt = o("a"), As = o("p"), As.textContent = "ACCESSORIES", Bl = f(), _t = o("a"), Rs = o("p"), Rs.textContent = "MERCHANDISING", Al = f(), bt = o("li"), kt = o("a"), js = o("h4"), js.textContent = "VIDEOS", Il = f(), Hs = o("div"), Hs.innerHTML = '<div class="subNavTitle svelte-x6v1sp"></div> <div class="subNavLinks svelte-x6v1sp"></div>', Rl = f(), q && q.c(), Zs(a, "background", "none"), Zs(a, "border", "none"), Zs(a, "align-items", "flex-start"), t(a, "class", "svelte-x6v1sp"), t(i, "class", "icon-wrapper svelte-x6v1sp"), t(l, "class", "menu-icon svelte-x6v1sp"), t(x, "class", "svelte-x6v1sp"), t(h, "href", k = /*domain_name*/
+      s[1] + "/collections.html"), t(h, "class", "svelte-x6v1sp"), t(y, "class", "subNavTitle svelte-x6v1sp"), t(E, "class", "svelte-x6v1sp"), t(m, "href", _ = /*domain_name*/
       s[1] + "/collections/lost-in-the-view.html"), t(m, "class", "svelte-x6v1sp"), t(N, "class", "svelte-x6v1sp"), t(C, "href", Le = /*domain_name*/
-      s[1] + "/cutie-couture.html"), t(C, "class", "svelte-x6v1sp"), t(z, "class", "subNavLinks svelte-x6v1sp"), t(d, "class", "subNav svelte-x6v1sp"), t(p, "class", "svelte-x6v1sp"), t(Ee, "class", "svelte-x6v1sp"), t(D, "href", Ce = /*domain_name*/
+      s[1] + "/cutie-couture.html"), t(C, "class", "svelte-x6v1sp"), t(z, "class", "subNavLinks svelte-x6v1sp"), t(d, "class", "subNav svelte-x6v1sp"), t(u, "class", "svelte-x6v1sp"), t(Ee, "class", "svelte-x6v1sp"), t(D, "href", Ce = /*domain_name*/
       s[1] + "/gel-polish.html"), t(D, "class", "svelte-x6v1sp"), t(oe, "class", "subNavTitle svelte-x6v1sp"), t(fe, "class", "svelte-x6v1sp"), t(pe, "href", Te = /*domain_name*/
       s[1] + "/gel-polish.html"), t(pe, "class", "svelte-x6v1sp"), t(Oe, "class", "svelte-x6v1sp"), t(U, "href", Ne = /*domain_name*/
       s[1] + "/professional/rubber-base-gel.html"), t(U, "class", "svelte-x6v1sp"), t(ae, "class", "svelte-x6v1sp"), t(ge, "href", V = /*domain_name*/
@@ -610,17 +610,17 @@ function Pn(s) {
       s[1] + "/no-wipe-top-coat.html"), t(xe, "class", "svelte-x6v1sp"), t(ye, "class", "svelte-x6v1sp"), t(A, "href", It = /*domain_name*/
       s[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html"), t(A, "class", "svelte-x6v1sp"), t(Rt, "class", "svelte-x6v1sp"), t(He, "href", Pt = /*domain_name*/
       s[1] + "/entity-beauty-the-essentials-nubond-top-base.html"), t(He, "class", "svelte-x6v1sp"), t(jt, "class", "svelte-x6v1sp"), t(Me, "href", Gt = /*domain_name*/
-      s[1] + "/gel-polish/pro-led-light.html"), t(Me, "class", "svelte-x6v1sp"), t(Nt, "href", "/"), t(Nt, "class", "svelte-x6v1sp"), t(T, "class", "subNavLinks svelte-x6v1sp"), t(ue, "class", "subNav svelte-x6v1sp"), t(Z, "class", "svelte-x6v1sp"), t(Ht, "class", "svelte-x6v1sp"), t(Ue, "href", Mt = /*domain_name*/
+      s[1] + "/gel-polish/pro-led-light.html"), t(Me, "class", "svelte-x6v1sp"), t(Nt, "href", "/"), t(Nt, "class", "svelte-x6v1sp"), t(T, "class", "subNavLinks svelte-x6v1sp"), t(ue, "class", "subNav svelte-x6v1sp"), t(J, "class", "svelte-x6v1sp"), t(Ht, "class", "svelte-x6v1sp"), t(Ue, "href", Mt = /*domain_name*/
       s[1] + "/lacquer.html"), t(Ue, "class", "svelte-x6v1sp"), t(Dt, "class", "subNavTitle svelte-x6v1sp"), t(Ut, "class", "svelte-x6v1sp"), t(Fe, "href", Xt = /*domain_name*/
       s[1] + "/lacquer/lacquer-colors.html"), t(Fe, "class", "svelte-x6v1sp"), t(Ft, "class", "svelte-x6v1sp"), t(qe, "href", qt = /*domain_name*/
       s[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html"), t(qe, "class", "svelte-x6v1sp"), t(Vt, "class", "svelte-x6v1sp"), t(Ve, "href", Wt = /*domain_name*/
       s[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html"), t(Ve, "class", "svelte-x6v1sp"), t($e, "class", "subNavLinks svelte-x6v1sp"), t(Xe, "class", "subNav svelte-x6v1sp"), t(De, "class", "svelte-x6v1sp"), t(Yt, "class", "svelte-x6v1sp"), t(Ye, "href", Qt = /*domain_name*/
-      s[1] + "/dip-buff.html"), t(Ye, "class", "svelte-x6v1sp"), t(Zt, "class", "subNavTitle svelte-x6v1sp"), t(Jt, "class", "svelte-x6v1sp"), t(Ze, "href", Kt = /*domain_name*/
-      s[1] + "/dip-buff/dip-buff.html"), t(Ze, "class", "svelte-x6v1sp"), t(es, "class", "svelte-x6v1sp"), t(Je, "href", ts = /*domain_name*/
-      s[1] + "/dip-buff/perfect-french-colors.html"), t(Je, "class", "svelte-x6v1sp"), t(ss, "class", "svelte-x6v1sp"), t(Ke, "href", ls = /*domain_name*/
+      s[1] + "/dip-buff.html"), t(Ye, "class", "svelte-x6v1sp"), t(Jt, "class", "subNavTitle svelte-x6v1sp"), t(Zt, "class", "svelte-x6v1sp"), t(Je, "href", Kt = /*domain_name*/
+      s[1] + "/dip-buff/dip-buff.html"), t(Je, "class", "svelte-x6v1sp"), t(es, "class", "svelte-x6v1sp"), t(Ze, "href", ts = /*domain_name*/
+      s[1] + "/dip-buff/perfect-french-colors.html"), t(Ze, "class", "svelte-x6v1sp"), t(ss, "class", "svelte-x6v1sp"), t(Ke, "href", ls = /*domain_name*/
       s[1] + "/dip-buff/essentials.html"), t(Ke, "class", "svelte-x6v1sp"), t(ns, "class", "svelte-x6v1sp"), t(et, "href", is = /*domain_name*/
       s[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html"), t(et, "class", "svelte-x6v1sp"), t(os, "class", "svelte-x6v1sp"), t(tt, "href", as = /*domain_name*/
-      s[1] + "/dip-french-kit.html"), t(tt, "class", "svelte-x6v1sp"), t(J, "class", "subNavLinks svelte-x6v1sp"), t(Qe, "class", "subNav svelte-x6v1sp"), t(We, "class", "svelte-x6v1sp"), t(rs, "class", "svelte-x6v1sp"), t(lt, "href", cs = /*domain_name*/
+      s[1] + "/dip-french-kit.html"), t(tt, "class", "svelte-x6v1sp"), t(Z, "class", "subNavLinks svelte-x6v1sp"), t(Qe, "class", "subNav svelte-x6v1sp"), t(We, "class", "svelte-x6v1sp"), t(rs, "class", "svelte-x6v1sp"), t(lt, "href", cs = /*domain_name*/
       s[1] + "/argan-oil.html"), t(lt, "class", "svelte-x6v1sp"), t(vs, "class", "subNavTitle svelte-x6v1sp"), t(us, "class", "svelte-x6v1sp"), t(it, "href", ps = /*domain_name*/
       s[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html"), t(it, "class", "svelte-x6v1sp"), t(fs, "class", "svelte-x6v1sp"), t(ot, "href", gs = /*domain_name*/
       s[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html"), t(ot, "class", "svelte-x6v1sp"), t(ds, "class", "svelte-x6v1sp"), t(at, "href", ms = /*domain_name*/
@@ -635,7 +635,7 @@ function Pn(s) {
       s[1] + "/"), t(ht, "class", "svelte-x6v1sp"), t(As, "class", "svelte-x6v1sp"), t(xt, "href", Is = /*domain_name*/
       s[1] + "/professional/accessories.html"), t(xt, "class", "svelte-x6v1sp"), t(Rs, "class", "svelte-x6v1sp"), t(_t, "href", Ps = /*domain_name*/
       s[1] + "/"), t(_t, "class", "svelte-x6v1sp"), t(H, "class", "subNavLinks svelte-x6v1sp"), t(pt, "class", "subNav svelte-x6v1sp"), t(vt, "class", "rtl svelte-x6v1sp"), t(js, "class", "svelte-x6v1sp"), t(kt, "href", Gs = /*domain_name*/
-      s[1] + "/"), t(kt, "class", "svelte-x6v1sp"), t(Hs, "class", "subNav svelte-x6v1sp"), t(bt, "class", "svelte-x6v1sp"), t(c, "class", "svelte-x6v1sp"), t(r, "class", "navigation svelte-x6v1sp"), t(v, "class", Ms = Fs(
+      s[1] + "/"), t(kt, "class", "svelte-x6v1sp"), t(Hs, "class", "subNav svelte-x6v1sp"), t(bt, "class", "svelte-x6v1sp"), t(p, "class", "svelte-x6v1sp"), t(r, "class", "navigation svelte-x6v1sp"), t(c, "class", Ms = Fs(
         /*clicked*/
         s[2] ? "navbar-item-clicked" : "navbar-item"
       ) + " svelte-x6v1sp"), t(e, "class", Ds = Fs(
@@ -643,8 +643,8 @@ function Pn(s) {
         s[2] ? "navbar-clicked" : "navbar"
       ) + " svelte-x6v1sp");
     },
-    m(k, L) {
-      O(k, e, L), n(e, l), n(l, i), n(i, a), ze.m(a, null), n(e, u), n(e, v), n(v, r), n(r, c), n(c, p), n(p, b), n(b, h), n(p, g), n(p, d), n(d, w), n(d, $), n(d, z), n(z, m), n(m, E), n(z, _), n(z, C), n(C, N), n(c, R), n(c, Z), n(Z, D), n(D, Ee), n(Z, Se), n(Z, ue), n(ue, oe), n(ue, te), n(ue, T), n(T, pe), n(pe, fe), n(T, ke), n(T, U), n(U, Oe), n(T, Be), n(T, ge), n(ge, ae), n(T, Tt), n(T, de), n(de, me), n(T, we), n(T, X), n(X, Ie), n(T, Pe), n(T, he), n(he, re), n(T, Ot), n(T, xe), n(xe, _e), n(T, B), n(T, A), n(A, ye), n(T, ll), n(T, He), n(He, Rt), n(T, nl), n(T, Me), n(Me, jt), n(T, il), n(T, Nt), n(c, ol), n(c, De), n(De, Ue), n(Ue, Ht), n(De, al), n(De, Xe), n(Xe, Dt), n(Xe, rl), n(Xe, $e), n($e, Fe), n(Fe, Ut), n($e, cl), n($e, qe), n(qe, Ft), n($e, vl), n($e, Ve), n(Ve, Vt), n(c, ul), n(c, We), n(We, Ye), n(Ye, Yt), n(We, pl), n(We, Qe), n(Qe, Zt), n(Qe, fl), n(Qe, J), n(J, Ze), n(Ze, Jt), n(J, gl), n(J, Je), n(Je, es), n(J, dl), n(J, Ke), n(Ke, ss), n(J, ml), n(J, et), n(et, ns), n(J, hl), n(J, tt), n(tt, os), n(c, xl), n(c, st), n(st, lt), n(lt, rs), n(st, _l), n(st, nt), n(nt, vs), n(nt, bl), n(nt, K), n(K, it), n(it, us), n(K, kl), n(K, ot), n(ot, fs), n(K, wl), n(K, at), n(at, ds), n(K, yl), n(K, rt), n(rt, hs), n(K, $l), n(K, ct), n(ct, _s), n(c, zl), n(c, vt), n(vt, ut), n(ut, ks), n(vt, Ll), n(vt, pt), n(pt, ys), n(pt, El), n(pt, H), n(H, ft), n(ft, $s), n(H, Cl), n(H, gt), n(gt, Ls), n(H, Sl), n(H, dt), n(dt, Cs), n(H, Tl), n(H, mt), n(mt, Ts), n(H, Ol), n(H, ht), n(ht, Ns), n(H, Nl), n(H, xt), n(xt, As), n(H, Bl), n(H, _t), n(_t, Rs), n(c, Al), n(c, bt), n(bt, kt), n(kt, js), n(bt, Il), n(bt, Hs), n(c, Rl), q && q.m(c, null), Zs || (Pl = [
+    m(w, L) {
+      O(w, e, L), n(e, l), n(l, i), n(i, a), ze.m(a, null), n(e, v), n(e, c), n(c, r), n(r, p), n(p, u), n(u, h), n(h, x), n(u, g), n(u, d), n(d, y), n(d, $), n(d, z), n(z, m), n(m, E), n(z, b), n(z, C), n(C, N), n(p, R), n(p, J), n(J, D), n(D, Ee), n(J, Se), n(J, ue), n(ue, oe), n(ue, te), n(ue, T), n(T, pe), n(pe, fe), n(T, ke), n(T, U), n(U, Oe), n(T, Be), n(T, ge), n(ge, ae), n(T, Tt), n(T, de), n(de, me), n(T, we), n(T, X), n(X, Ie), n(T, Pe), n(T, he), n(he, re), n(T, Ot), n(T, xe), n(xe, _e), n(T, B), n(T, A), n(A, ye), n(T, ll), n(T, He), n(He, Rt), n(T, nl), n(T, Me), n(Me, jt), n(T, il), n(T, Nt), n(p, ol), n(p, De), n(De, Ue), n(Ue, Ht), n(De, al), n(De, Xe), n(Xe, Dt), n(Xe, rl), n(Xe, $e), n($e, Fe), n(Fe, Ut), n($e, cl), n($e, qe), n(qe, Ft), n($e, vl), n($e, Ve), n(Ve, Vt), n(p, ul), n(p, We), n(We, Ye), n(Ye, Yt), n(We, pl), n(We, Qe), n(Qe, Jt), n(Qe, fl), n(Qe, Z), n(Z, Je), n(Je, Zt), n(Z, gl), n(Z, Ze), n(Ze, es), n(Z, dl), n(Z, Ke), n(Ke, ss), n(Z, ml), n(Z, et), n(et, ns), n(Z, hl), n(Z, tt), n(tt, os), n(p, xl), n(p, st), n(st, lt), n(lt, rs), n(st, _l), n(st, nt), n(nt, vs), n(nt, bl), n(nt, K), n(K, it), n(it, us), n(K, kl), n(K, ot), n(ot, fs), n(K, wl), n(K, at), n(at, ds), n(K, yl), n(K, rt), n(rt, hs), n(K, $l), n(K, ct), n(ct, _s), n(p, zl), n(p, vt), n(vt, ut), n(ut, ks), n(vt, Ll), n(vt, pt), n(pt, ys), n(pt, El), n(pt, H), n(H, ft), n(ft, $s), n(H, Cl), n(H, gt), n(gt, Ls), n(H, Sl), n(H, dt), n(dt, Cs), n(H, Tl), n(H, mt), n(mt, Ts), n(H, Ol), n(H, ht), n(ht, Ns), n(H, Nl), n(H, xt), n(xt, As), n(H, Bl), n(H, _t), n(_t, Rs), n(p, Al), n(p, bt), n(bt, kt), n(kt, js), n(bt, Il), n(bt, Hs), n(p, Rl), q && q.m(p, null), Js || (Pl = [
         St(
           Bn,
           "resize",
@@ -657,117 +657,117 @@ function Pn(s) {
           /*handleClick*/
           s[4]
         )
-      ], Zs = !0);
+      ], Js = !0);
     },
-    p(k, [L]) {
+    p(w, [L]) {
       var Hl;
-      Us !== (Us = jl(k)) && (ze.d(1), ze = Us(k), ze && (ze.c(), ze.m(a, null))), L & /*domain_name*/
-      2 && y !== (y = /*domain_name*/
-      k[1] + "/collections.html") && t(b, "href", y), L & /*domain_name*/
-      2 && x !== (x = /*domain_name*/
-      k[1] + "/collections/lost-in-the-view.html") && t(m, "href", x), L & /*domain_name*/
+      Us !== (Us = jl(w)) && (ze.d(1), ze = Us(w), ze && (ze.c(), ze.m(a, null))), L & /*domain_name*/
+      2 && k !== (k = /*domain_name*/
+      w[1] + "/collections.html") && t(h, "href", k), L & /*domain_name*/
+      2 && _ !== (_ = /*domain_name*/
+      w[1] + "/collections/lost-in-the-view.html") && t(m, "href", _), L & /*domain_name*/
       2 && Le !== (Le = /*domain_name*/
-      k[1] + "/cutie-couture.html") && t(C, "href", Le), L & /*domain_name*/
+      w[1] + "/cutie-couture.html") && t(C, "href", Le), L & /*domain_name*/
       2 && Ce !== (Ce = /*domain_name*/
-      k[1] + "/gel-polish.html") && t(D, "href", Ce), L & /*domain_name*/
+      w[1] + "/gel-polish.html") && t(D, "href", Ce), L & /*domain_name*/
       2 && Te !== (Te = /*domain_name*/
-      k[1] + "/gel-polish.html") && t(pe, "href", Te), L & /*domain_name*/
+      w[1] + "/gel-polish.html") && t(pe, "href", Te), L & /*domain_name*/
       2 && Ne !== (Ne = /*domain_name*/
-      k[1] + "/professional/rubber-base-gel.html") && t(U, "href", Ne), L & /*domain_name*/
+      w[1] + "/professional/rubber-base-gel.html") && t(U, "href", Ne), L & /*domain_name*/
       2 && V !== (V = /*domain_name*/
-      k[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html") && t(ge, "href", V), L & /*domain_name*/
+      w[1] + "/entity-velvet-luxe-lavish-into-thin-air-magnet-reflection-soak-off-gel-0-5-fl-oz.html") && t(ge, "href", V), L & /*domain_name*/
       2 && Ae !== (Ae = /*domain_name*/
-      k[1] + "/professional/entity-gel-nail-art.html") && t(de, "href", Ae), L & /*domain_name*/
+      w[1] + "/professional/entity-gel-nail-art.html") && t(de, "href", Ae), L & /*domain_name*/
       2 && Re !== (Re = /*domain_name*/
-      k[1] + "/gel-polish/nu-bond-category.html") && t(X, "href", Re), L & /*domain_name*/
+      w[1] + "/gel-polish/nu-bond-category.html") && t(X, "href", Re), L & /*domain_name*/
       2 && W !== (W = /*domain_name*/
-      k[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html") && t(he, "href", W), L & /*domain_name*/
+      w[1] + "/entity-beauty-entity-one-color-couture-soak-off-top-coat-15ml-5-fl-oz-5101236.html") && t(he, "href", W), L & /*domain_name*/
       2 && G !== (G = /*domain_name*/
-      k[1] + "/no-wipe-top-coat.html") && t(xe, "href", G), L & /*domain_name*/
+      w[1] + "/no-wipe-top-coat.html") && t(xe, "href", G), L & /*domain_name*/
       2 && It !== (It = /*domain_name*/
-      k[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html") && t(A, "href", It), L & /*domain_name*/
+      w[1] + "/entity-beauty-entity-one-color-couture-soak-off-base-coat-15ml-5-fl-oz-5101237.html") && t(A, "href", It), L & /*domain_name*/
       2 && Pt !== (Pt = /*domain_name*/
-      k[1] + "/entity-beauty-the-essentials-nubond-top-base.html") && t(He, "href", Pt), L & /*domain_name*/
+      w[1] + "/entity-beauty-the-essentials-nubond-top-base.html") && t(He, "href", Pt), L & /*domain_name*/
       2 && Gt !== (Gt = /*domain_name*/
-      k[1] + "/gel-polish/pro-led-light.html") && t(Me, "href", Gt), L & /*domain_name*/
+      w[1] + "/gel-polish/pro-led-light.html") && t(Me, "href", Gt), L & /*domain_name*/
       2 && Mt !== (Mt = /*domain_name*/
-      k[1] + "/lacquer.html") && t(Ue, "href", Mt), L & /*domain_name*/
+      w[1] + "/lacquer.html") && t(Ue, "href", Mt), L & /*domain_name*/
       2 && Xt !== (Xt = /*domain_name*/
-      k[1] + "/lacquer/lacquer-colors.html") && t(Fe, "href", Xt), L & /*domain_name*/
+      w[1] + "/lacquer/lacquer-colors.html") && t(Fe, "href", Xt), L & /*domain_name*/
       2 && qt !== (qt = /*domain_name*/
-      k[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html") && t(qe, "href", qt), L & /*domain_name*/
+      w[1] + "/entity-beauty-entity-gel-lacquer-base-coat-5oz-15ml-entity-gel-lacquer.html") && t(qe, "href", qt), L & /*domain_name*/
       2 && Wt !== (Wt = /*domain_name*/
-      k[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html") && t(Ve, "href", Wt), L & /*domain_name*/
+      w[1] + "/entity-beauty-entity-gel-lacquer-top-coat-5oz-15ml-entity-gel-lacquer.html") && t(Ve, "href", Wt), L & /*domain_name*/
       2 && Qt !== (Qt = /*domain_name*/
-      k[1] + "/dip-buff.html") && t(Ye, "href", Qt), L & /*domain_name*/
+      w[1] + "/dip-buff.html") && t(Ye, "href", Qt), L & /*domain_name*/
       2 && Kt !== (Kt = /*domain_name*/
-      k[1] + "/dip-buff/dip-buff.html") && t(Ze, "href", Kt), L & /*domain_name*/
+      w[1] + "/dip-buff/dip-buff.html") && t(Je, "href", Kt), L & /*domain_name*/
       2 && ts !== (ts = /*domain_name*/
-      k[1] + "/dip-buff/perfect-french-colors.html") && t(Je, "href", ts), L & /*domain_name*/
+      w[1] + "/dip-buff/perfect-french-colors.html") && t(Ze, "href", ts), L & /*domain_name*/
       2 && ls !== (ls = /*domain_name*/
-      k[1] + "/dip-buff/essentials.html") && t(Ke, "href", ls), L & /*domain_name*/
+      w[1] + "/dip-buff/essentials.html") && t(Ke, "href", ls), L & /*domain_name*/
       2 && is !== (is = /*domain_name*/
-      k[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html") && t(et, "href", is), L & /*domain_name*/
+      w[1] + "/entity-beauty-entity-dip-buff-dip-jar-1-jar-5102005.html") && t(et, "href", is), L & /*domain_name*/
       2 && as !== (as = /*domain_name*/
-      k[1] + "/dip-french-kit.html") && t(tt, "href", as), L & /*domain_name*/
+      w[1] + "/dip-french-kit.html") && t(tt, "href", as), L & /*domain_name*/
       2 && cs !== (cs = /*domain_name*/
-      k[1] + "/argan-oil.html") && t(lt, "href", cs), L & /*domain_name*/
+      w[1] + "/argan-oil.html") && t(lt, "href", cs), L & /*domain_name*/
       2 && ps !== (ps = /*domain_name*/
-      k[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html") && t(it, "href", ps), L & /*domain_name*/
+      w[1] + "/entity-beauty-revitalizing-cuticle-drops-15ml-5-fl-oz-entity-argan-oil-5700103.html") && t(it, "href", ps), L & /*domain_name*/
       2 && gs !== (gs = /*domain_name*/
-      k[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html") && t(ot, "href", gs), L & /*domain_name*/
+      w[1] + "/entity-beauty-luminizing-dry-body-oil-spray-177ml-6-fl-oz-entity-argan-oil-5700104.html") && t(ot, "href", gs), L & /*domain_name*/
       2 && ms !== (ms = /*domain_name*/
-      k[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html") && t(at, "href", ms), L & /*domain_name*/
+      w[1] + "/entity-beauty-restorative-massage-butter-226g-8oz-entity-argan-oil-5700101.html") && t(at, "href", ms), L & /*domain_name*/
       2 && xs !== (xs = /*domain_name*/
-      k[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html") && t(rt, "href", xs), L & /*domain_name*/
+      w[1] + "/entity-beauty-daily-replenishing-lotion-240ml-8-fl-oz-entity-argan-oil-5700100.html") && t(rt, "href", xs), L & /*domain_name*/
       2 && bs !== (bs = /*domain_name*/
-      k[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html") && t(ct, "href", bs), L & /*domain_name*/
+      w[1] + "/entity-beauty-renewal-gelrub-226g-8-oz-entity-argan-oil-5700102.html") && t(ct, "href", bs), L & /*domain_name*/
       2 && ws !== (ws = /*domain_name*/
-      k[1] + "/professional.html") && t(ut, "href", ws), L & /*domain_name*/
+      w[1] + "/professional.html") && t(ut, "href", ws), L & /*domain_name*/
       2 && zs !== (zs = /*domain_name*/
-      k[1] + "/professional/entity-studio-one-soft-gel.html") && t(ft, "href", zs), L & /*domain_name*/
+      w[1] + "/professional/entity-studio-one-soft-gel.html") && t(ft, "href", zs), L & /*domain_name*/
       2 && Es !== (Es = /*domain_name*/
-      k[1] + "/professional/studio-one-contouring-gel.html") && t(gt, "href", Es), L & /*domain_name*/
+      w[1] + "/professional/studio-one-contouring-gel.html") && t(gt, "href", Es), L & /*domain_name*/
       2 && Ss !== (Ss = /*domain_name*/
-      k[1] + "/professional/hard-gels-entity-one-gel.html") && t(dt, "href", Ss), L & /*domain_name*/
+      w[1] + "/professional/hard-gels-entity-one-gel.html") && t(dt, "href", Ss), L & /*domain_name*/
       2 && Os !== (Os = /*domain_name*/
-      k[1] + "/professional/liquid-powder-acrylic-system.html") && t(mt, "href", Os), L & /*domain_name*/
+      w[1] + "/professional/liquid-powder-acrylic-system.html") && t(mt, "href", Os), L & /*domain_name*/
       2 && Bs !== (Bs = /*domain_name*/
-      k[1] + "/") && t(ht, "href", Bs), L & /*domain_name*/
+      w[1] + "/") && t(ht, "href", Bs), L & /*domain_name*/
       2 && Is !== (Is = /*domain_name*/
-      k[1] + "/professional/accessories.html") && t(xt, "href", Is), L & /*domain_name*/
+      w[1] + "/professional/accessories.html") && t(xt, "href", Is), L & /*domain_name*/
       2 && Ps !== (Ps = /*domain_name*/
-      k[1] + "/") && t(_t, "href", Ps), L & /*domain_name*/
+      w[1] + "/") && t(_t, "href", Ps), L & /*domain_name*/
       2 && Gs !== (Gs = /*domain_name*/
-      k[1] + "/") && t(kt, "href", Gs), L & /*country*/
+      w[1] + "/") && t(kt, "href", Gs), L & /*country*/
       1 && (Qs = /*country*/
-      ((Hl = k[0]) == null ? void 0 : Hl.toString().toLowerCase()) === "us"), Qs ? q ? q.p(k, L) : (q = Xl(k), q.c(), q.m(c, null)) : q && (q.d(1), q = null), L & /*clicked*/
+      ((Hl = w[0]) == null ? void 0 : Hl.toString().toLowerCase()) === "us"), Qs ? q ? q.p(w, L) : (q = Xl(w), q.c(), q.m(p, null)) : q && (q.d(1), q = null), L & /*clicked*/
       4 && Ms !== (Ms = Fs(
         /*clicked*/
-        k[2] ? "navbar-item-clicked" : "navbar-item"
-      ) + " svelte-x6v1sp") && t(v, "class", Ms), L & /*clicked*/
+        w[2] ? "navbar-item-clicked" : "navbar-item"
+      ) + " svelte-x6v1sp") && t(c, "class", Ms), L & /*clicked*/
       4 && Ds !== (Ds = Fs(
         /*clicked*/
-        k[2] ? "navbar-clicked" : "navbar"
+        w[2] ? "navbar-clicked" : "navbar"
       ) + " svelte-x6v1sp") && t(e, "class", Ds);
     },
     i: j,
     o: j,
-    d(k) {
-      k && S(e), ze.d(), q && q.d(), Zs = !1, je(Pl);
+    d(w) {
+      w && S(e), ze.d(), q && q.d(), Js = !1, je(Pl);
     }
   };
 }
 function jn(s, e, l) {
-  let i = window.innerWidth, a = !1, { country: u = "" } = e;
-  function v() {
+  let i = window.innerWidth, a = !1, { country: v = "" } = e;
+  function c() {
     i = window.innerWidth, i >= 1007 && l(2, a = !1);
   }
   const r = () => l(2, a = !a);
-  let { domain_name: c } = e;
-  return s.$$set = (p) => {
-    "country" in p && l(0, u = p.country), "domain_name" in p && l(1, c = p.domain_name);
-  }, [u, c, a, v, r];
+  let { domain_name: p } = e;
+  return s.$$set = (u) => {
+    "country" in u && l(0, v = u.country), "domain_name" in u && l(1, p = u.domain_name);
+  }, [v, p, a, c, r];
 }
 class an extends ie {
   constructor(e) {
@@ -791,7 +791,7 @@ function Gn(s) {
   Ge(s, "svelte-6di12x", '.mainbanner.svelte-6di12x #main-image.svelte-6di12x{max-width:100vw;margin:0 auto}.freeshipping.svelte-6di12x.svelte-6di12x{background-color:#d9d9d9;max-height:35px;letter-spacing:1px;width:100vw}.freeshipping.svelte-6di12x p.svelte-6di12x{text-align:center;font-size:12px;color:#000;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;font-weight:300;background-color:#d9d9d9;padding:10px 0px;margin:0px}.mainbanner.svelte-6di12x.svelte-6di12x{position:relative;text-align:center;margin-bottom:-50px}.mainbanner.svelte-6di12x img.svelte-6di12x{max-width:100%;height:auto}.logo.svelte-6di12x.svelte-6di12x{background-image:linear-gradient(to top, transparent, white 200%);position:absolute;top:0;width:100%;margin-left:auto;margin-right:auto;padding:20px 0 10px 0;display:block;background:transparent linear-gradient(180deg, #EF80B1 0%, #EF80B17A 49%, #EF80B100 100%) 0% 0% no-repeat padding-box;background:transparent linear-gradient(180deg, #52A6CB 0%,  #EF80B100 100%) 0% 0% no-repeat padding-box;width:100vw}.logo.svelte-6di12x img.svelte-6di12x{max-width:500px}.logo.svelte-6di12x.svelte-6di12x:hover{background-color:#d9d9d9;background-image:none;display:block}.logo.svelte-6di12x .logo-black.svelte-6di12x{display:none}.logo.svelte-6di12x:hover .logo-white.svelte-6di12x{display:none}.logo.svelte-6di12x:hover .logo-black.svelte-6di12x{display:contents}.collection.svelte-6di12x.svelte-6di12x{position:absolute;bottom:30%;left:33.5%;transform:translate(-50%, -75%)}.collection.svelte-6di12x a.svelte-6di12x{text-decoration:none;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0;margin-top:-1vw}.collection.svelte-6di12x span.svelte-6di12x{font-size:16px;line-height:19px;font-weight:500;font-family:"ITC Avant Garde Pro XLt";letter-spacing:0.8px;display:block;padding:15px 0px 11px 0px;color:#ffffff;box-shadow:0px 5px 10px  #345872;margin-bottom:-15px}.color.svelte-6di12x.svelte-6di12x{transform:translate(0%, -50%)}.color.svelte-6di12x img.svelte-6di12x{padding:5px;max-height:150px;max-width:100%}.shop-now-btn.svelte-6di12x.svelte-6di12x{background:#52A6CB;width:100%;max-width:150px;max-height:56px;border-radius:9px;position:relative}.collection-logo.svelte-6di12x.svelte-6di12x{width:15vw;max-width:257px}@media screen and (max-width: 1024px){.collection.svelte-6di12x.svelte-6di12x{bottom:25%;left:28%}.collection-logo.svelte-6di12x.svelte-6di12x{width:20vw}}@media screen and (max-width: 991px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-45px}.freeshipping.svelte-6di12x p.svelte-6di12x{font-size:1.2vw}.logo.svelte-6di12x img.svelte-6di12x{max-width:25vh}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-6di12x span.svelte-6di12x{font-size:1.5vw}.collection.svelte-6di12x a.svelte-6di12x{margin-top:3vw}.collection.svelte-6di12x.svelte-6di12x{bottom:22%}}@media screen and (max-width: 769px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-40px}.logo.svelte-6di12x img.svelte-6di12x{max-width:25vh}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:15vw;max-width:100%}.collection.svelte-6di12x span.svelte-6di12x{max-width:13vw;margin-top:8px;font-size:13px;padding:9px 0px 8px 0px}}@media screen and (max-width: 479px){.mainbanner.svelte-6di12x.svelte-6di12x{margin-bottom:-30px}.logo.svelte-6di12x.svelte-6di12x{padding:5px 0}.logo.svelte-6di12x img.svelte-6di12x{max-width:15vh}.collection.svelte-6di12x span.svelte-6di12x{max-width:70%;margin-top:0px;font-size:10px;padding:4px 6px 0}.color.svelte-6di12x img.svelte-6di12x{padding:1px;max-height:14vw;max-width:100%}.shop-now-btn.svelte-6di12x.svelte-6di12x{border-radius:5px}.collection-logo.svelte-6di12x.svelte-6di12x{width:24vw}}');
 }
 function Hn(s) {
-  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $, z, m, E, x, _, C, N, Le, R, Z, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G;
+  let e, l, i, a, v, c, r, p, u, h, x, k, g, d, y, $, z, m, E, _, b, C, N, Le, R, J, D, Ee, Ce, Se, ue, oe, te, T, pe, fe, Te, ke, U, Oe, Ne, Be, ge, ae, V, Tt, de, me, Ae, we, X, Ie, Re, Pe, he, re, W, Ot, xe, _e, G;
   return d = new an({
     props: {
       country: (
@@ -805,8 +805,8 @@ function Hn(s) {
     }
   }), {
     c() {
-      e = o("div"), l = o("div"), l.innerHTML = '<p class="svelte-6di12x">FREE SHIPPING ON $50</p>', i = f(), a = o("div"), u = o("img"), c = f(), p = o("div"), b = o("div"), b.innerHTML = '<img src="/img/BannerTop/entitylogo.png" srcset="/img/BannerTop/entitylogo@2x.png" alt="entity brand logo" class="svelte-6di12x"/>', h = f(), y = o("div"), y.innerHTML = '<img src="/img/BannerTop/entitylogo-black.png" srcset="/img/BannerTop/entitylogo-black@2x.png" alt="black entity brand logo" class="svelte-6di12x"/>', g = f(), be(d.$$.fragment), w = f(), $ = o("div"), z = o("a"), m = o("img"), _ = f(), C = o("span"), C.textContent = "SHOP NOW", Le = f(), R = o("div"), Z = o("a"), D = o("img"), ue = f(), oe = o("a"), te = o("img"), Te = f(), ke = o("a"), U = o("img"), ge = f(), ae = o("a"), V = o("img"), Ae = f(), we = o("a"), X = o("img"), he = f(), re = o("a"), W = o("img"), t(l, "class", "freeshipping svelte-6di12x"), t(u, "id", "main-image"), P(u.src, v = "/img/BannerTop/Summer2024/main-pink.jpg") || t(u, "src", v), Y(u, r = "/img/BannerTop/Summer2024/main-pink@2x.jpg") || t(u, "srcset", r), t(u, "alt", "Lost in the View"), t(u, "class", "svelte-6di12x"), t(b, "class", "logo-white svelte-6di12x"), t(y, "class", "logo-black svelte-6di12x"), t(p, "class", "logo svelte-6di12x"), t(m, "class", "collection-logo svelte-6di12x"), P(m.src, E = "/img/BannerTop/Summer2024/logo.png") || t(m, "src", E), Y(m, x = "/img/BannerTop/Summer2024/logo@2x.png") || t(m, "srcset", x), t(m, "alt", "Entity Beauty - Cutie Couture - Spring 2024"), t(C, "class", "shop-now-btn svelte-6di12x"), t(z, "href", N = /*domain_name*/
-      s[1] + "/collections/lost-in-the-view.html"), t(z, "class", "svelte-6di12x"), t($, "class", "collection svelte-6di12x"), P(D.src, Ee = "/img/BannerTop/Summer2024/color1.png") || t(D, "src", Ee), Y(D, Ce = "/img/BannerTop/Summer2024/color1@2x.png") || t(D, "srcset", Ce), t(D, "alt", "Swatch - Too Haute In Here"), t(D, "class", "svelte-6di12x"), t(Z, "href", Se = /*domain_name*/
+      e = o("div"), l = o("div"), l.innerHTML = '<p class="svelte-6di12x">FREE SHIPPING ON $50</p>', i = f(), a = o("div"), v = o("img"), p = f(), u = o("div"), h = o("div"), h.innerHTML = '<img src="/img/BannerTop/entitylogo.png" srcset="/img/BannerTop/entitylogo@2x.png" alt="entity brand logo" class="svelte-6di12x"/>', x = f(), k = o("div"), k.innerHTML = '<img src="/img/BannerTop/entitylogo-black.png" srcset="/img/BannerTop/entitylogo-black@2x.png" alt="black entity brand logo" class="svelte-6di12x"/>', g = f(), be(d.$$.fragment), y = f(), $ = o("div"), z = o("a"), m = o("img"), b = f(), C = o("span"), C.textContent = "SHOP NOW", Le = f(), R = o("div"), J = o("a"), D = o("img"), ue = f(), oe = o("a"), te = o("img"), Te = f(), ke = o("a"), U = o("img"), ge = f(), ae = o("a"), V = o("img"), Ae = f(), we = o("a"), X = o("img"), he = f(), re = o("a"), W = o("img"), t(l, "class", "freeshipping svelte-6di12x"), t(v, "id", "main-image"), P(v.src, c = "/img/BannerTop/Summer2024/main-pink.jpg") || t(v, "src", c), Y(v, r = "/img/BannerTop/Summer2024/main-pink@2x.jpg") || t(v, "srcset", r), t(v, "alt", "Lost in the View"), t(v, "class", "svelte-6di12x"), t(h, "class", "logo-white svelte-6di12x"), t(k, "class", "logo-black svelte-6di12x"), t(u, "class", "logo svelte-6di12x"), t(m, "class", "collection-logo svelte-6di12x"), P(m.src, E = "/img/BannerTop/Summer2024/logo.png") || t(m, "src", E), Y(m, _ = "/img/BannerTop/Summer2024/logo@2x.png") || t(m, "srcset", _), t(m, "alt", "Entity Beauty - Cutie Couture - Spring 2024"), t(C, "class", "shop-now-btn svelte-6di12x"), t(z, "href", N = /*domain_name*/
+      s[1] + "/collections/lost-in-the-view.html"), t(z, "class", "svelte-6di12x"), t($, "class", "collection svelte-6di12x"), P(D.src, Ee = "/img/BannerTop/Summer2024/color1.png") || t(D, "src", Ee), Y(D, Ce = "/img/BannerTop/Summer2024/color1@2x.png") || t(D, "srcset", Ce), t(D, "alt", "Swatch - Too Haute In Here"), t(D, "class", "svelte-6di12x"), t(J, "href", Se = /*domain_name*/
       s[1] + "/entity-color-couture-soak-off-gel-too-haute-in-here-0-5-fl-oz.html"), P(te.src, T = "/img/BannerTop/Summer2024/color2.png") || t(te, "src", T), Y(te, pe = "/img/BannerTop/Summer2024/color2@2x.png") || t(te, "srcset", pe), t(te, "alt", "Swatch - Meet Me On Sunset"), t(te, "class", "svelte-6di12x"), t(oe, "href", fe = /*domain_name*/
       s[1] + "/entity-color-couture-soak-off-gel-meet-me-on-sunset-0-5-fl-oz.html"), P(U.src, Oe = "/img/BannerTop/Summer2024/color3.png") || t(U, "src", Oe), Y(U, Ne = "/img/BannerTop/Summer2024/color3@2x.png") || t(U, "srcset", Ne), t(U, "alt", "Swatch - Soul-y Exclusive"), t(U, "class", "svelte-6di12x"), t(ke, "href", Be = /*domain_name*/
       s[1] + "/entity-color-couture-soak-off-gel-soul-y-exclusive-0-5-fl-oz.html"), P(V.src, Tt = "/img/BannerTop/Summer2024/color4.png") || t(V, "src", Tt), Y(V, de = "/img/BannerTop/Summer2024/color4@2x.png") || t(V, "srcset", de), t(V, "alt", "Swatch - Lavished In Lime"), t(V, "class", "svelte-6di12x"), t(ae, "href", me = /*domain_name*/
@@ -815,7 +815,7 @@ function Hn(s) {
       s[1] + "/entity-color-couture-soak-off-gel-members-only-0-5-fl-oz.html"), t(R, "class", "color svelte-6di12x"), t(a, "class", "mainbanner svelte-6di12x"), t(e, "class", "bannertop");
     },
     m(B, A) {
-      O(B, e, A), n(e, l), n(e, i), n(e, a), n(a, u), n(a, c), n(a, p), n(p, b), n(p, h), n(p, y), n(p, g), ce(d, p, null), n(a, w), n(a, $), n($, z), n(z, m), n(z, _), n(z, C), n(a, Le), n(a, R), n(R, Z), n(Z, D), n(R, ue), n(R, oe), n(oe, te), n(R, Te), n(R, ke), n(ke, U), n(R, ge), n(R, ae), n(ae, V), n(R, Ae), n(R, we), n(we, X), n(R, he), n(R, re), n(re, W), G = !0;
+      O(B, e, A), n(e, l), n(e, i), n(e, a), n(a, v), n(a, p), n(a, u), n(u, h), n(u, x), n(u, k), n(u, g), ce(d, u, null), n(a, y), n(a, $), n($, z), n(z, m), n(z, b), n(z, C), n(a, Le), n(a, R), n(R, J), n(J, D), n(R, ue), n(R, oe), n(oe, te), n(R, Te), n(R, ke), n(ke, U), n(R, ge), n(R, ae), n(ae, V), n(R, Ae), n(R, we), n(we, X), n(R, he), n(R, re), n(re, W), G = !0;
     },
     p(B, [A]) {
       const ye = {};
@@ -827,7 +827,7 @@ function Hn(s) {
       2 && N !== (N = /*domain_name*/
       B[1] + "/collections/lost-in-the-view.html")) && t(z, "href", N), (!G || A & /*domain_name*/
       2 && Se !== (Se = /*domain_name*/
-      B[1] + "/entity-color-couture-soak-off-gel-too-haute-in-here-0-5-fl-oz.html")) && t(Z, "href", Se), (!G || A & /*domain_name*/
+      B[1] + "/entity-color-couture-soak-off-gel-too-haute-in-here-0-5-fl-oz.html")) && t(J, "href", Se), (!G || A & /*domain_name*/
       2 && fe !== (fe = /*domain_name*/
       B[1] + "/entity-color-couture-soak-off-gel-meet-me-on-sunset-0-5-fl-oz.html")) && t(oe, "href", fe), (!G || A & /*domain_name*/
       2 && Be !== (Be = /*domain_name*/
@@ -852,8 +852,8 @@ function Hn(s) {
 }
 function Mn(s, e, l) {
   let { country: i = "" } = e, { domain_name: a = "" } = e;
-  return s.$$set = (u) => {
-    "country" in u && l(0, i = u.country), "domain_name" in u && l(1, a = u.domain_name);
+  return s.$$set = (v) => {
+    "country" in v && l(0, i = v.country), "domain_name" in v && l(1, a = v.domain_name);
   }, [i, a];
 }
 class rn extends ie {
@@ -913,35 +913,35 @@ function qn(s) {
   };
 }
 function Wl(s) {
-  let e, l, i, a, u, v, r, c, p = (
+  let e, l, i, a, v, c, r, p, u = (
     /*id*/
     s[21] + ""
-  ), b, h, y;
+  ), h, x, k;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("img"), r = f(), c = o("p"), b = sl(p), y = f(), P(i.src, a = /*src*/
-      s[18]) || t(i, "src", a), Y(i, u = /*srcset*/
-      s[19]) || t(i, "srcset", u), t(i, "alt", v = /*id*/
-      s[21]), t(i, "class", "svelte-t7s73g"), t(c, "class", "svelte-t7s73g"), t(l, "href", h = "" + /*domain_name*/
+      e = o("li"), l = o("a"), i = o("img"), r = f(), p = o("p"), h = sl(u), k = f(), P(i.src, a = /*src*/
+      s[18]) || t(i, "src", a), Y(i, v = /*srcset*/
+      s[19]) || t(i, "srcset", v), t(i, "alt", c = /*id*/
+      s[21]), t(i, "class", "svelte-t7s73g"), t(p, "class", "svelte-t7s73g"), t(l, "href", x = "" + /*domain_name*/
       (s[1] + /*link*/
       s[20])), t(l, "class", "svelte-t7s73g"), t(e, "class", "post svelte-t7s73g");
     },
     m(g, d) {
-      O(g, e, d), n(e, l), n(l, i), n(l, r), n(l, c), n(c, b), n(e, y);
+      O(g, e, d), n(e, l), n(l, i), n(l, r), n(l, p), n(p, h), n(e, k);
     },
     p(g, d) {
       d & /*images*/
       1 && !P(i.src, a = /*src*/
       g[18]) && t(i, "src", a), d & /*images*/
-      1 && u !== (u = /*srcset*/
-      g[19]) && t(i, "srcset", u), d & /*images*/
-      1 && v !== (v = /*id*/
-      g[21]) && t(i, "alt", v), d & /*images*/
-      1 && p !== (p = /*id*/
-      g[21] + "") && ln(b, p), d & /*domain_name, images*/
-      3 && h !== (h = "" + /*domain_name*/
+      1 && v !== (v = /*srcset*/
+      g[19]) && t(i, "srcset", v), d & /*images*/
+      1 && c !== (c = /*id*/
+      g[21]) && t(i, "alt", c), d & /*images*/
+      1 && u !== (u = /*id*/
+      g[21] + "") && ln(h, u), d & /*domain_name, images*/
+      3 && x !== (x = "" + /*domain_name*/
       (g[1] + /*link*/
-      g[20])) && t(l, "href", h);
+      g[20])) && t(l, "href", x);
     },
     d(g) {
       g && S(e);
@@ -949,17 +949,17 @@ function Wl(s) {
   };
 }
 function Vn(s) {
-  let e, l, i, a, u, v, r, c, p;
-  const b = (
+  let e, l, i, a, v, c, r, p, u;
+  const h = (
     /*#slots*/
     s[6]["left-control"]
-  ), h = zt(
-    b,
+  ), x = zt(
+    h,
     s,
     /*$$scope*/
     s[5],
     Vl
-  ), y = h || Fn(), g = (
+  ), k = x || Fn(), g = (
     /*#slots*/
     s[6]["right-control"]
   ), d = zt(
@@ -968,7 +968,7 @@ function Vn(s) {
     /*$$scope*/
     s[5],
     ql
-  ), w = d || qn();
+  ), y = d || qn();
   let $ = Ys(
     /*images*/
     s[0]
@@ -977,16 +977,16 @@ function Vn(s) {
     z[m] = Wl(Fl(s, $, m));
   return {
     c() {
-      e = o("div"), l = o("button"), y && y.c(), i = f(), a = o("button"), w && w.c(), u = f(), v = o("ul");
+      e = o("div"), l = o("button"), k && k.c(), i = f(), a = o("button"), y && y.c(), v = f(), c = o("ul");
       for (let m = 0; m < z.length; m += 1)
         z[m].c();
-      t(l, "id", "left"), t(l, "class", "svelte-t7s73g"), t(a, "id", "right"), t(a, "class", "svelte-t7s73g"), t(v, "class", "carousel-post svelte-t7s73g"), t(e, "class", "carousel svelte-t7s73g");
+      t(l, "id", "left"), t(l, "class", "svelte-t7s73g"), t(a, "id", "right"), t(a, "class", "svelte-t7s73g"), t(c, "class", "carousel-post svelte-t7s73g"), t(e, "class", "carousel svelte-t7s73g");
     },
     m(m, E) {
-      O(m, e, E), n(e, l), y && y.m(l, null), n(e, i), n(e, a), w && w.m(a, null), n(e, u), n(e, v);
-      for (let x = 0; x < z.length; x += 1)
-        z[x] && z[x].m(v, null);
-      s[7](v), r = !0, c || (p = [
+      O(m, e, E), n(e, l), k && k.m(l, null), n(e, i), n(e, a), y && y.m(a, null), n(e, v), n(e, c);
+      for (let _ = 0; _ < z.length; _ += 1)
+        z[_] && z[_].m(c, null);
+      s[7](c), r = !0, p || (u = [
         St(
           l,
           "click",
@@ -999,18 +999,18 @@ function Vn(s) {
           /*rotateRight*/
           s[4]
         )
-      ], c = !0);
+      ], p = !0);
     },
     p(m, [E]) {
-      if (h && h.p && (!r || E & /*$$scope*/
+      if (x && x.p && (!r || E & /*$$scope*/
       32) && Et(
+        x,
         h,
-        b,
         m,
         /*$$scope*/
         m[5],
         r ? Lt(
-          b,
+          h,
           /*$$scope*/
           m[5],
           E,
@@ -1044,84 +1044,84 @@ function Vn(s) {
           /*images*/
           m[0]
         );
-        let x;
-        for (x = 0; x < $.length; x += 1) {
-          const _ = Fl(m, $, x);
-          z[x] ? z[x].p(_, E) : (z[x] = Wl(_), z[x].c(), z[x].m(v, null));
+        let _;
+        for (_ = 0; _ < $.length; _ += 1) {
+          const b = Fl(m, $, _);
+          z[_] ? z[_].p(b, E) : (z[_] = Wl(b), z[_].c(), z[_].m(c, null));
         }
-        for (; x < z.length; x += 1)
-          z[x].d(1);
+        for (; _ < z.length; _ += 1)
+          z[_].d(1);
         z.length = $.length;
       }
     },
     i(m) {
-      r || (M(y, m), M(w, m), r = !0);
+      r || (M(k, m), M(y, m), r = !0);
     },
     o(m) {
-      F(y, m), F(w, m), r = !1;
+      F(k, m), F(y, m), r = !1;
     },
     d(m) {
-      m && S(e), y && y.d(m), w && w.d(m), sn(z, m), s[7](null), c = !1, je(p);
+      m && S(e), k && k.d(m), y && y.d(m), sn(z, m), s[7](null), p = !1, je(u);
     }
   };
 }
 function Wn(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e, { images: u } = e;
-  const v = (_) => {
-    l(0, u = [u[u.length - 1], ...u.slice(0, u.length - 1)]);
-  }, r = (_) => {
-    l(0, u = [...u.slice(1, u.length), u[0]]);
+  let { $$slots: i = {}, $$scope: a } = e, { images: v } = e;
+  const c = (b) => {
+    l(0, v = [v[v.length - 1], ...v.slice(0, v.length - 1)]);
+  }, r = (b) => {
+    l(0, v = [...v.slice(1, v.length), v[0]]);
   };
-  let c, p = !1, b, h;
+  let p, u = !1, h, x;
   nn(() => {
-    c.addEventListener("mousedown", y), c.addEventListener("mouseleave", g), c.addEventListener("mouseup", d), c.addEventListener("mousemove", w), c.addEventListener("touchstart", $), c.addEventListener("touchend", z), c.addEventListener("touchmove", m);
+    p.addEventListener("mousedown", k), p.addEventListener("mouseleave", g), p.addEventListener("mouseup", d), p.addEventListener("mousemove", y), p.addEventListener("touchstart", $), p.addEventListener("touchend", z), p.addEventListener("touchmove", m);
   });
-  function y(_) {
-    p = !0, b = _.pageX - c.offsetLeft, h = c.scrollLeft;
+  function k(b) {
+    u = !0, h = b.pageX - p.offsetLeft, x = p.scrollLeft;
   }
   function g() {
-    p = !1;
+    u = !1;
   }
   function d() {
-    p = !1;
+    u = !1;
   }
-  function w(_) {
-    if (!p)
+  function y(b) {
+    if (!u)
       return;
-    _.preventDefault();
-    const N = (_.pageX - c.offsetLeft - b) * 2;
-    l(2, c.scrollLeft = h - N, c);
+    b.preventDefault();
+    const N = (b.pageX - p.offsetLeft - h) * 2;
+    l(2, p.scrollLeft = x - N, p);
   }
-  function $(_) {
-    p = !0, b = _.touches[0].clientX - c.offsetLeft, h = c.scrollLeft;
+  function $(b) {
+    u = !0, h = b.touches[0].clientX - p.offsetLeft, x = p.scrollLeft;
   }
   function z() {
-    p = !1;
+    u = !1;
   }
-  function m(_) {
-    if (!p)
+  function m(b) {
+    if (!u)
       return;
-    _.preventDefault();
-    const N = (_.touches[0].clientX - c.offsetLeft - b) * 2;
-    l(2, c.scrollLeft = h - N, c);
+    b.preventDefault();
+    const N = (b.touches[0].clientX - p.offsetLeft - h) * 2;
+    l(2, p.scrollLeft = x - N, p);
   }
   let { domain_name: E = "" } = e;
-  function x(_) {
-    Ws[_ ? "unshift" : "push"](() => {
-      c = _, l(2, c);
+  function _(b) {
+    Ws[b ? "unshift" : "push"](() => {
+      p = b, l(2, p);
     });
   }
-  return s.$$set = (_) => {
-    "images" in _ && l(0, u = _.images), "domain_name" in _ && l(1, E = _.domain_name), "$$scope" in _ && l(5, a = _.$$scope);
+  return s.$$set = (b) => {
+    "images" in b && l(0, v = b.images), "domain_name" in b && l(1, E = b.domain_name), "$$scope" in b && l(5, a = b.$$scope);
   }, [
-    u,
-    E,
-    c,
     v,
+    E,
+    p,
+    c,
     r,
     a,
     i,
-    x
+    _
   ];
 }
 class cn extends ie {
@@ -1156,11 +1156,11 @@ function Yn(s) {
       )
     }
   });
-  const u = (
+  const v = (
     /*#slots*/
     s[3].default
-  ), v = zt(
-    u,
+  ), c = zt(
+    v,
     s,
     /*$$scope*/
     s[2],
@@ -1168,27 +1168,27 @@ function Yn(s) {
   );
   return {
     c() {
-      e = o("section"), be(l.$$.fragment), i = f(), v && v.c();
+      e = o("section"), be(l.$$.fragment), i = f(), c && c.c();
     },
-    m(r, c) {
-      O(r, e, c), ce(l, e, null), n(e, i), v && v.m(e, null), a = !0;
+    m(r, p) {
+      O(r, e, p), ce(l, e, null), n(e, i), c && c.m(e, null), a = !0;
     },
-    p(r, [c]) {
-      const p = {};
-      c & /*domain_name*/
-      1 && (p.domain_name = /*domain_name*/
-      r[0]), l.$set(p), v && v.p && (!a || c & /*$$scope*/
+    p(r, [p]) {
+      const u = {};
+      p & /*domain_name*/
+      1 && (u.domain_name = /*domain_name*/
+      r[0]), l.$set(u), c && c.p && (!a || p & /*$$scope*/
       4) && Et(
+        c,
         v,
-        u,
         r,
         /*$$scope*/
         r[2],
         a ? Lt(
-          u,
+          v,
           /*$$scope*/
           r[2],
-          c,
+          p,
           null
         ) : Ct(
           /*$$scope*/
@@ -1198,18 +1198,18 @@ function Yn(s) {
       );
     },
     i(r) {
-      a || (M(l.$$.fragment, r), M(v, r), a = !0);
+      a || (M(l.$$.fragment, r), M(c, r), a = !0);
     },
     o(r) {
-      F(l.$$.fragment, r), F(v, r), a = !1;
+      F(l.$$.fragment, r), F(c, r), a = !1;
     },
     d(r) {
-      r && S(e), ve(l), v && v.d(r);
+      r && S(e), ve(l), c && c.d(r);
     }
   };
 }
 function Qn(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e, { domain_name: u = "" } = e, v = [
+  let { $$slots: i = {}, $$scope: a } = e, { domain_name: v = "" } = e, c = [
     // {src:'/img/Posts2/DipOrBrush.jpg',  link: 'https://entityclean.at/NBb', id:'DIP OR BRUSH'},
     //   {src:'/img/Posts2/RubberBase.jpg',  link: 'https://entityclean.at/RXY', id:'RUBBER BASE'},
     //   {src:'/img/Posts2/StudioOneSoftGel.jpg', link: 'https://entityclean.at/L7U', id:'STUDIO ONE SOFT GEL'},
@@ -1268,8 +1268,8 @@ function Qn(s, e, l) {
     }
   ];
   return s.$$set = (r) => {
-    "domain_name" in r && l(0, u = r.domain_name), "$$scope" in r && l(2, a = r.$$scope);
-  }, [u, v, a, i];
+    "domain_name" in r && l(0, v = r.domain_name), "$$scope" in r && l(2, a = r.$$scope);
+  }, [v, c, a, i];
 }
 class vn extends ie {
   constructor(e) {
@@ -1283,26 +1283,26 @@ class vn extends ie {
   }
 }
 ne(vn, { domain_name: {} }, ["default"], [], !0);
-function Zn(s) {
+function Jn(s) {
   Ge(s, "svelte-c5ukak", ".collections.svelte-c5ukak.svelte-c5ukak{margin:20px auto;max-width:1240px;text-align:center}.collections_city-limits.svelte-c5ukak.svelte-c5ukak{position:relative;text-align:center}.collections_cutie-couture.svelte-c5ukak.svelte-c5ukak{position:relative;text-align:center}.buybutton.svelte-c5ukak.svelte-c5ukak{position:absolute;bottom:25px;right:20px}.buybutton.svelte-c5ukak.svelte-c5ukak{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-c5ukak h2.svelte-c5ukak{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}.collections.svelte-c5ukak a.svelte-c5ukak{gap:10px;text-decoration:none}.collections.svelte-c5ukak a img.svelte-c5ukak{width:49%}.collections.svelte-c5ukak .collections_city-limits.svelte-c5ukak{margin-right:15px}@media screen and (max-width: 991px){.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}.collections.svelte-c5ukak a img.svelte-c5ukak{width:100%;max-height:100%}.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:22px;padding:10px 10px 5px}}@media screen and (max-width: 769px){.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:15px;padding:10px 10px 5px}}@media screen and (max-width: 479px){.buybutton.svelte-c5ukak h2.svelte-c5ukak{font-size:10px}.collections_city-limits.svelte-c5ukak.svelte-c5ukak{display:none}}");
 }
-function Jn(s) {
-  let e, l, i, a, u, v, r, c, p, b, h, y, g, d, w, $;
+function Zn(s) {
+  let e, l, i, a, v, c, r, p, u, h, x, k, g, d, y, $;
   return {
     c() {
-      e = o("div"), l = o("a"), i = o("img"), v = f(), r = o("div"), r.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', p = f(), b = o("a"), h = o("img"), d = f(), w = o("div"), w.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', P(i.src, a = "/img/Collections/CutieCouture.jpg") || t(i, "src", a), Y(i, u = "/img/Collections/CutieCouture@2x.jpg") || t(i, "srcset", u), t(i, "alt", "Entity Beauty - Spring 2024 - CutieCouture"), t(i, "class", "svelte-c5ukak"), t(r, "class", "buybutton svelte-c5ukak"), t(l, "class", "collections_cutie-couture svelte-c5ukak"), t(l, "href", c = /*domain_name*/
-      s[0] + "/collections/cutie-couture.html"), P(h.src, y = "/img/Collections/city-limits.jpg") || t(h, "src", y), Y(h, g = "/img/Collections/city-limits@2x.jpg") || t(h, "srcset", g), t(h, "alt", "entity fall 2023 collection city limits"), t(h, "class", "svelte-c5ukak"), t(w, "class", "buybutton svelte-c5ukak"), t(b, "class", "collections_city-limits svelte-c5ukak"), t(b, "href", $ = /*domain_name*/
+      e = o("div"), l = o("a"), i = o("img"), c = f(), r = o("div"), r.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', u = f(), h = o("a"), x = o("img"), d = f(), y = o("div"), y.innerHTML = '<h2 class="svelte-c5ukak">SHOP NOW</h2>', P(i.src, a = "/img/Collections/CutieCouture.jpg") || t(i, "src", a), Y(i, v = "/img/Collections/CutieCouture@2x.jpg") || t(i, "srcset", v), t(i, "alt", "Entity Beauty - Spring 2024 - CutieCouture"), t(i, "class", "svelte-c5ukak"), t(r, "class", "buybutton svelte-c5ukak"), t(l, "class", "collections_cutie-couture svelte-c5ukak"), t(l, "href", p = /*domain_name*/
+      s[0] + "/collections/cutie-couture.html"), P(x.src, k = "/img/Collections/city-limits.jpg") || t(x, "src", k), Y(x, g = "/img/Collections/city-limits@2x.jpg") || t(x, "srcset", g), t(x, "alt", "entity fall 2023 collection city limits"), t(x, "class", "svelte-c5ukak"), t(y, "class", "buybutton svelte-c5ukak"), t(h, "class", "collections_city-limits svelte-c5ukak"), t(h, "href", $ = /*domain_name*/
       s[0] + "/collections/city-limits.html"), t(e, "class", "collections svelte-c5ukak");
     },
     m(z, m) {
-      O(z, e, m), n(e, l), n(l, i), n(l, v), n(l, r), n(e, p), n(e, b), n(b, h), n(b, d), n(b, w);
+      O(z, e, m), n(e, l), n(l, i), n(l, c), n(l, r), n(e, u), n(e, h), n(h, x), n(h, d), n(h, y);
     },
     p(z, [m]) {
       m & /*domain_name*/
-      1 && c !== (c = /*domain_name*/
-      z[0] + "/collections/cutie-couture.html") && t(l, "href", c), m & /*domain_name*/
+      1 && p !== (p = /*domain_name*/
+      z[0] + "/collections/cutie-couture.html") && t(l, "href", p), m & /*domain_name*/
       1 && $ !== ($ = /*domain_name*/
-      z[0] + "/collections/city-limits.html") && t(b, "href", $);
+      z[0] + "/collections/city-limits.html") && t(h, "href", $);
     },
     i: j,
     o: j,
@@ -1319,7 +1319,7 @@ function Kn(s, e, l) {
 }
 class un extends ie {
   constructor(e) {
-    super(), le(this, e, Kn, Jn, se, { domain_name: 0 }, Zn);
+    super(), le(this, e, Kn, Zn, se, { domain_name: 0 }, Jn);
   }
   get domain_name() {
     return this.$$.ctx[0];
@@ -1359,17 +1359,17 @@ function li(s) {
   Ge(s, "svelte-1p6gc7a", ".bannerbottom.svelte-1p6gc7a.svelte-1p6gc7a{position:relative;text-align:left;color:#000;line-height:0;max-width:1240px;margin:0 auto}.bannerbottom.svelte-1p6gc7a img.svelte-1p6gc7a{max-width:100%;margin-top:30px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:140px;right:70px;max-width:34vw}.bottom-right.svelte-1p6gc7a a.svelte-1p6gc7a{text-decoration:none}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:20px;margin-bottom:10px;line-height:20px}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{color:#000;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;font-size:30px;margin-top:0px;margin-bottom:10px;line-height:35px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{line-height:normal}.buybutton.svelte-1p6gc7a.svelte-1p6gc7a{background-color:#A7A9AC;color:white;text-decoration:none;display:inline-block;font-size:12px;cursor:pointer;border-radius:5px;border:none;display:inline-flex;flex-direction:row;justify-content:center;align-items:center}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{color:white;font-size:16px;font-weight:300;font-family:'ITC Avant Garde Pro XLt';letter-spacing:0.8px;padding:15.8px 15px 10px 15px;margin:auto;text-align:center}@media screen and (max-width: 1024px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 991px){.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:10vw;right:2vw}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:1.7vw}.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:2.8vw}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:1.5vw;padding:7.9px 7.5px 5px 7.5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{position:absolute;bottom:100px;right:30px;max-width:34vw}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:100px;right:10px;max-width:39vw}}@media screen and (max-width: 769px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{line-height:30px}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:15px;padding:10px 10px 5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:85px;right:10px;max-width:39vw}}@media screen and (max-width: 479px){.bannerbottom.svelte-1p6gc7a h1.svelte-1p6gc7a{font-size:12px;line-height:14px}.bannerbottom.svelte-1p6gc7a p.svelte-1p6gc7a{font-size:10px;letter-spacing:normal}.buybutton.svelte-1p6gc7a h2.svelte-1p6gc7a{font-size:10px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{padding-right:5px}.bottom-right.svelte-1p6gc7a.svelte-1p6gc7a{bottom:25px;right:5px;max-width:34vw}}");
 }
 function ni(s) {
-  let e, l, i, a, u, v, r, c, p, b, h, y, g;
+  let e, l, i, a, v, c, r, p, u, h, x, k, g;
   return {
     c() {
-      e = o("div"), l = o("img"), u = f(), v = o("div"), r = o("a"), c = o("p"), c.textContent = "Entity One Colour Couture", p = f(), b = o("h1"), b.innerHTML = "Everything You Love<br/> About Colour. Only Better.", h = f(), y = o("div"), y.innerHTML = '<h2 class="svelte-1p6gc7a">SHOP NOW</h2>', P(l.src, i = "/img/BannerBottom/banner.jpg") || t(l, "src", i), Y(l, a = "/img/BannerBottom/banner@2x.jpg 2x") || t(l, "srcset", a), t(l, "alt", "banner for entity one color conture"), t(l, "class", "svelte-1p6gc7a"), t(c, "class", "svelte-1p6gc7a"), t(b, "class", "svelte-1p6gc7a"), t(y, "class", "buybutton svelte-1p6gc7a"), t(r, "href", g = /*domain_name*/
-      s[0] + "/professional/studio-one-contouring-gel/colors.html"), t(r, "class", "svelte-1p6gc7a"), t(v, "class", "bottom-right svelte-1p6gc7a"), t(e, "class", "bannerbottom svelte-1p6gc7a");
+      e = o("div"), l = o("img"), v = f(), c = o("div"), r = o("a"), p = o("p"), p.textContent = "Entity One Colour Couture", u = f(), h = o("h1"), h.innerHTML = "Everything You Love<br/> About Colour. Only Better.", x = f(), k = o("div"), k.innerHTML = '<h2 class="svelte-1p6gc7a">SHOP NOW</h2>', P(l.src, i = "/img/BannerBottom/banner.jpg") || t(l, "src", i), Y(l, a = "/img/BannerBottom/banner@2x.jpg 2x") || t(l, "srcset", a), t(l, "alt", "banner for entity one color conture"), t(l, "class", "svelte-1p6gc7a"), t(p, "class", "svelte-1p6gc7a"), t(h, "class", "svelte-1p6gc7a"), t(k, "class", "buybutton svelte-1p6gc7a"), t(r, "href", g = /*domain_name*/
+      s[0] + "/professional/studio-one-contouring-gel/colors.html"), t(r, "class", "svelte-1p6gc7a"), t(c, "class", "bottom-right svelte-1p6gc7a"), t(e, "class", "bannerbottom svelte-1p6gc7a");
     },
-    m(d, w) {
-      O(d, e, w), n(e, l), n(e, u), n(e, v), n(v, r), n(r, c), n(r, p), n(r, b), n(r, h), n(r, y);
+    m(d, y) {
+      O(d, e, y), n(e, l), n(e, v), n(e, c), n(c, r), n(r, p), n(r, u), n(r, h), n(r, x), n(r, k);
     },
-    p(d, [w]) {
-      w & /*domain_name*/
+    p(d, [y]) {
+      y & /*domain_name*/
       1 && g !== (g = /*domain_name*/
       d[0] + "/professional/studio-one-contouring-gel/colors.html") && t(r, "href", g);
     },
@@ -1406,7 +1406,7 @@ function Ql(s, e, l) {
   const i = s.slice();
   return i[18] = e[l].src, i[19] = e[l].srcset, i[20] = e[l].link, i[21] = e[l].id, i;
 }
-const ri = (s) => ({}), Zl = (s) => ({});
+const ri = (s) => ({}), Jl = (s) => ({});
 function ci(s) {
   let e, l;
   return {
@@ -1422,39 +1422,39 @@ function ci(s) {
     }
   };
 }
-function Jl(s) {
-  let e, l, i, a, u, v, r, c, p = (
+function Zl(s) {
+  let e, l, i, a, v, c, r, p, u = (
     /*id*/
     s[21] + ""
-  ), b, h, y, g, d;
+  ), h, x, k, g, d;
   return {
     c() {
-      e = o("li"), l = o("a"), i = o("img"), r = f(), c = o("p"), b = sl(p), h = f(), y = o("div"), y.innerHTML = '<h2 class="svelte-1urkugz">SHOP NOW</h2>', d = f(), P(i.src, a = /*src*/
-      s[18]) || t(i, "src", a), Y(i, u = /*srcset*/
-      s[19]) || t(i, "srcset", u), t(i, "alt", v = /*id*/
-      s[21]), t(i, "class", "svelte-1urkugz"), t(c, "class", "svelte-1urkugz"), t(y, "class", "buybutton svelte-1urkugz"), t(l, "href", g = "" + /*domain_name*/
+      e = o("li"), l = o("a"), i = o("img"), r = f(), p = o("p"), h = sl(u), x = f(), k = o("div"), k.innerHTML = '<h2 class="svelte-1urkugz">SHOP NOW</h2>', d = f(), P(i.src, a = /*src*/
+      s[18]) || t(i, "src", a), Y(i, v = /*srcset*/
+      s[19]) || t(i, "srcset", v), t(i, "alt", c = /*id*/
+      s[21]), t(i, "class", "svelte-1urkugz"), t(p, "class", "svelte-1urkugz"), t(k, "class", "buybutton svelte-1urkugz"), t(l, "href", g = "" + /*domain_name*/
       (s[1] + /*link*/
       s[20])), t(l, "class", "svelte-1urkugz"), t(e, "class", "post svelte-1urkugz");
     },
-    m(w, $) {
-      O(w, e, $), n(e, l), n(l, i), n(l, r), n(l, c), n(c, b), n(l, h), n(l, y), n(e, d);
+    m(y, $) {
+      O(y, e, $), n(e, l), n(l, i), n(l, r), n(l, p), n(p, h), n(l, x), n(l, k), n(e, d);
     },
-    p(w, $) {
+    p(y, $) {
       $ & /*images*/
       1 && !P(i.src, a = /*src*/
-      w[18]) && t(i, "src", a), $ & /*images*/
-      1 && u !== (u = /*srcset*/
-      w[19]) && t(i, "srcset", u), $ & /*images*/
-      1 && v !== (v = /*id*/
-      w[21]) && t(i, "alt", v), $ & /*images*/
-      1 && p !== (p = /*id*/
-      w[21] + "") && ln(b, p), $ & /*domain_name, images*/
+      y[18]) && t(i, "src", a), $ & /*images*/
+      1 && v !== (v = /*srcset*/
+      y[19]) && t(i, "srcset", v), $ & /*images*/
+      1 && c !== (c = /*id*/
+      y[21]) && t(i, "alt", c), $ & /*images*/
+      1 && u !== (u = /*id*/
+      y[21] + "") && ln(h, u), $ & /*domain_name, images*/
       3 && g !== (g = "" + /*domain_name*/
-      (w[1] + /*link*/
-      w[20])) && t(l, "href", g);
+      (y[1] + /*link*/
+      y[20])) && t(l, "href", g);
     },
-    d(w) {
-      w && S(e);
+    d(y) {
+      y && S(e);
     }
   };
 }
@@ -1474,23 +1474,23 @@ function vi(s) {
   };
 }
 function ui(s) {
-  let e, l, i, a, u, v, r, c, p, b, h;
-  const y = (
+  let e, l, i, a, v, c, r, p, u, h, x;
+  const k = (
     /*#slots*/
     s[6]["left-control"]
   ), g = zt(
-    y,
+    k,
     s,
     /*$$scope*/
     s[5],
-    Zl
+    Jl
   ), d = g || ci();
-  let w = Ys(
+  let y = Ys(
     /*images*/
     s[0]
   ), $ = [];
-  for (let x = 0; x < w.length; x += 1)
-    $[x] = Jl(Ql(s, w, x));
+  for (let _ = 0; _ < y.length; _ += 1)
+    $[_] = Zl(Ql(s, y, _));
   const z = (
     /*#slots*/
     s[6]["right-control"]
@@ -1503,16 +1503,16 @@ function ui(s) {
   ), E = m || vi();
   return {
     c() {
-      e = o("h1"), e.textContent = "BEST SELLERS", l = f(), i = o("div"), a = o("button"), d && d.c(), u = f(), v = o("ul");
-      for (let x = 0; x < $.length; x += 1)
-        $[x].c();
-      r = f(), c = o("button"), E && E.c(), t(e, "class", "svelte-1urkugz"), t(a, "id", "left"), t(a, "class", "svelte-1urkugz"), t(v, "class", "carousel-post svelte-1urkugz"), t(c, "id", "right"), t(c, "class", "svelte-1urkugz"), t(i, "class", "carousel svelte-1urkugz");
+      e = o("h1"), e.textContent = "BEST SELLERS", l = f(), i = o("div"), a = o("button"), d && d.c(), v = f(), c = o("ul");
+      for (let _ = 0; _ < $.length; _ += 1)
+        $[_].c();
+      r = f(), p = o("button"), E && E.c(), t(e, "class", "svelte-1urkugz"), t(a, "id", "left"), t(a, "class", "svelte-1urkugz"), t(c, "class", "carousel-post svelte-1urkugz"), t(p, "id", "right"), t(p, "class", "svelte-1urkugz"), t(i, "class", "carousel svelte-1urkugz");
     },
-    m(x, _) {
-      O(x, e, _), O(x, l, _), O(x, i, _), n(i, a), d && d.m(a, null), n(i, u), n(i, v);
+    m(_, b) {
+      O(_, e, b), O(_, l, b), O(_, i, b), n(i, a), d && d.m(a, null), n(i, v), n(i, c);
       for (let C = 0; C < $.length; C += 1)
-        $[C] && $[C].m(v, null);
-      s[7](v), n(i, r), n(i, c), E && E.m(c, null), p = !0, b || (h = [
+        $[C] && $[C].m(c, null);
+      s[7](c), n(i, r), n(i, p), E && E.m(p, null), u = !0, h || (x = [
         St(
           a,
           "click",
@@ -1520,135 +1520,134 @@ function ui(s) {
           s[3]
         ),
         St(
-          c,
+          p,
           "click",
           /*rotateRight*/
           s[4]
         )
-      ], b = !0);
+      ], h = !0);
     },
-    p(x, [_]) {
-      if (g && g.p && (!p || _ & /*$$scope*/
+    p(_, [b]) {
+      if (g && g.p && (!u || b & /*$$scope*/
       32) && Et(
         g,
-        y,
-        x,
+        k,
+        _,
         /*$$scope*/
-        x[5],
-        p ? Lt(
-          y,
+        _[5],
+        u ? Lt(
+          k,
           /*$$scope*/
-          x[5],
-          _,
+          _[5],
+          b,
           ri
         ) : Ct(
           /*$$scope*/
-          x[5]
+          _[5]
         ),
-        Zl
-      ), _ & /*domain_name, images*/
+        Jl
+      ), b & /*domain_name, images*/
       3) {
-        w = Ys(
+        y = Ys(
           /*images*/
-          x[0]
+          _[0]
         );
         let C;
-        for (C = 0; C < w.length; C += 1) {
-          const N = Ql(x, w, C);
-          $[C] ? $[C].p(N, _) : ($[C] = Jl(N), $[C].c(), $[C].m(v, null));
+        for (C = 0; C < y.length; C += 1) {
+          const N = Ql(_, y, C);
+          $[C] ? $[C].p(N, b) : ($[C] = Zl(N), $[C].c(), $[C].m(c, null));
         }
         for (; C < $.length; C += 1)
           $[C].d(1);
-        $.length = w.length;
+        $.length = y.length;
       }
-      m && m.p && (!p || _ & /*$$scope*/
+      m && m.p && (!u || b & /*$$scope*/
       32) && Et(
         m,
         z,
-        x,
+        _,
         /*$$scope*/
-        x[5],
-        p ? Lt(
+        _[5],
+        u ? Lt(
           z,
           /*$$scope*/
-          x[5],
-          _,
+          _[5],
+          b,
           ai
         ) : Ct(
           /*$$scope*/
-          x[5]
+          _[5]
         ),
         Yl
       );
     },
-    i(x) {
-      p || (M(d, x), M(E, x), p = !0);
+    i(_) {
+      u || (M(d, _), M(E, _), u = !0);
     },
-    o(x) {
-      F(d, x), F(E, x), p = !1;
+    o(_) {
+      F(d, _), F(E, _), u = !1;
     },
-    d(x) {
-      x && (S(e), S(l), S(i)), d && d.d(x), sn($, x), s[7](null), E && E.d(x), b = !1, je(h);
+    d(_) {
+      _ && (S(e), S(l), S(i)), d && d.d(_), sn($, _), s[7](null), E && E.d(_), h = !1, je(x);
     }
   };
 }
 function pi(s, e, l) {
-  let { $$slots: i = {}, $$scope: a } = e, { images: u } = e;
-  const v = (_) => {
-    l(0, u = [u[u.length - 1], ...u.slice(0, u.length - 1)]);
-  }, r = (_) => {
-    l(0, u = [...u.slice(1, u.length), u[0]]);
+  let { $$slots: i = {}, $$scope: a } = e, { images: v = [] } = e, { domain_name: c = "" } = e;
+  const r = () => {
+    l(0, v = [v[v.length - 1], ...v.slice(0, v.length - 1)]);
+  }, p = () => {
+    l(0, v = [...v.slice(1, v.length), v[0]]);
   };
-  let c, p = !1, b, h;
+  let u, h = !1, x, k;
   nn(() => {
-    c.addEventListener("mousedown", y), c.addEventListener("mouseleave", g), c.addEventListener("mouseup", d), c.addEventListener("mousemove", w), c.addEventListener("touchstart", $), c.addEventListener("touchend", z), c.addEventListener("touchmove", m);
+    u.addEventListener("mousedown", g), u.addEventListener("mouseleave", d), u.addEventListener("mouseup", y), u.addEventListener("mousemove", $), u.addEventListener("touchstart", z), u.addEventListener("touchend", m), u.addEventListener("touchmove", E);
   });
-  function y(_) {
-    p = !0, b = _.pageX - c.offsetLeft, h = c.scrollLeft;
-  }
-  function g() {
-    p = !1;
+  function g(b) {
+    h = !0, x = b.pageX - u.offsetLeft, k = u.scrollLeft;
   }
   function d() {
-    p = !1;
+    h = !1;
   }
-  function w(_) {
-    if (!p)
+  function y() {
+    h = !1;
+  }
+  function $(b) {
+    if (!h)
       return;
-    _.preventDefault();
-    const N = (_.pageX - c.offsetLeft - b) * 2;
-    l(2, c.scrollLeft = h - N, c);
+    b.preventDefault();
+    const N = (b.pageX - u.offsetLeft - x) * 2;
+    l(2, u.scrollLeft = k - N, u);
   }
-  function $(_) {
-    p = !0, b = _.touches[0].clientX - c.offsetLeft, h = c.scrollLeft;
+  function z(b) {
+    h = !0, x = b.touches[0].clientX - u.offsetLeft, k = u.scrollLeft;
   }
-  function z() {
-    p = !1;
+  function m() {
+    h = !1;
   }
-  function m(_) {
-    if (!p)
+  function E(b) {
+    if (!h)
       return;
-    _.preventDefault();
-    const N = (_.touches[0].clientX - c.offsetLeft - b) * 2;
-    l(2, c.scrollLeft = h - N, c);
+    b.preventDefault();
+    const N = (b.touches[0].clientX - u.offsetLeft - x) * 2;
+    l(2, u.scrollLeft = k - N, u);
   }
-  let { domain_name: E = "" } = e;
-  function x(_) {
-    Ws[_ ? "unshift" : "push"](() => {
-      c = _, l(2, c);
+  function _(b) {
+    Ws[b ? "unshift" : "push"](() => {
+      u = b, l(2, u);
     });
   }
-  return s.$$set = (_) => {
-    "images" in _ && l(0, u = _.images), "domain_name" in _ && l(1, E = _.domain_name), "$$scope" in _ && l(5, a = _.$$scope);
+  return s.$$set = (b) => {
+    "images" in b && l(0, v = b.images), "domain_name" in b && l(1, c = b.domain_name), "$$scope" in b && l(5, a = b.$$scope);
   }, [
-    u,
-    E,
-    c,
     v,
+    c,
+    u,
     r,
+    p,
     a,
     i,
-    x
+    _
   ];
 }
 class fn extends ie {
@@ -1683,11 +1682,11 @@ function fi(s) {
       )
     }
   });
-  const u = (
+  const v = (
     /*#slots*/
     s[5].default
-  ), v = zt(
-    u,
+  ), c = zt(
+    v,
     s,
     /*$$scope*/
     s[4],
@@ -1695,27 +1694,29 @@ function fi(s) {
   );
   return {
     c() {
-      e = o("section"), be(l.$$.fragment), i = f(), v && v.c();
+      e = o("section"), be(l.$$.fragment), i = f(), c && c.c();
     },
-    m(r, c) {
-      O(r, e, c), ce(l, e, null), n(e, i), v && v.m(e, null), a = !0;
+    m(r, p) {
+      O(r, e, p), ce(l, e, null), n(e, i), c && c.m(e, null), a = !0;
     },
-    p(r, [c]) {
-      const p = {};
-      c & /*domain_name*/
-      1 && (p.domain_name = /*domain_name*/
-      r[0]), l.$set(p), v && v.p && (!a || c & /*$$scope*/
+    p(r, [p]) {
+      const u = {};
+      p & /*images*/
+      2 && (u.images = /*images*/
+      r[1]), p & /*domain_name*/
+      1 && (u.domain_name = /*domain_name*/
+      r[0]), l.$set(u), c && c.p && (!a || p & /*$$scope*/
       16) && Et(
+        c,
         v,
-        u,
         r,
         /*$$scope*/
         r[4],
         a ? Lt(
-          u,
+          v,
           /*$$scope*/
           r[4],
-          c,
+          p,
           null
         ) : Ct(
           /*$$scope*/
@@ -1725,23 +1726,28 @@ function fi(s) {
       );
     },
     i(r) {
-      a || (M(l.$$.fragment, r), M(v, r), a = !0);
+      a || (M(l.$$.fragment, r), M(c, r), a = !0);
     },
     o(r) {
-      F(l.$$.fragment, r), F(v, r), a = !1;
+      F(l.$$.fragment, r), F(c, r), a = !1;
     },
     d(r) {
-      r && S(e), ve(l), v && v.d(r);
+      r && S(e), ve(l), c && c.d(r);
     }
   };
 }
 function gi(s, e, l) {
   let { $$slots: i = {}, $$scope: a } = e;
-  const u = !0;
-  let { domain_name: v = "" } = e, { best_seller: r } = e, c = JSON.parse(r);
-  return s.$$set = (p) => {
-    "domain_name" in p && l(0, v = p.domain_name), "best_seller" in p && l(3, r = p.best_seller), "$$scope" in p && l(4, a = p.$$scope);
-  }, [v, c, u, r, a, i];
+  const v = !0;
+  let { domain_name: c = "" } = e, { best_seller: r } = e, p = [];
+  try {
+    p = JSON.parse(r);
+  } catch (u) {
+    console.error("Error parsing best_seller JSON:", u);
+  }
+  return s.$$set = (u) => {
+    "domain_name" in u && l(0, c = u.domain_name), "best_seller" in u && l(3, r = u.best_seller), "$$scope" in u && l(4, a = u.$$scope);
+  }, [c, p, v, r, a, i];
 }
 class gn extends ie {
   constructor(e) {
@@ -1769,7 +1775,7 @@ class gn extends ie {
 }
 ne(gn, { domain_name: {}, best_seller: {} }, ["default"], ["prerender"], !0);
 function di(s) {
-  let e, l, i, a, u, v, r, c, p, b, h, y;
+  let e, l, i, a, v, c, r, p, u, h, x, k;
   return i = new rn({
     props: {
       domain_name: (
@@ -1781,7 +1787,7 @@ function di(s) {
         s[0]
       )
     }
-  }), u = new vn({
+  }), v = new vn({
     props: { domain_name: (
       /*domain_name*/
       s[1]
@@ -1791,7 +1797,7 @@ function di(s) {
       /*domain_name*/
       s[1]
     ) }
-  }), p = new gn({
+  }), u = new gn({
     props: {
       domain_name: (
         /*domain_name*/
@@ -1802,29 +1808,29 @@ function di(s) {
         s[2]
       )
     }
-  }), h = new pn({
+  }), x = new pn({
     props: { domain_name: (
       /*domain_name*/
       s[1]
     ) }
   }), {
     c() {
-      e = o("link"), l = f(), be(i.$$.fragment), a = f(), be(u.$$.fragment), v = f(), be(r.$$.fragment), c = f(), be(p.$$.fragment), b = f(), be(h.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
+      e = o("link"), l = f(), be(i.$$.fragment), a = f(), be(v.$$.fragment), c = f(), be(r.$$.fragment), p = f(), be(u.$$.fragment), h = f(), be(x.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
     },
     m(g, d) {
-      n(document.head, e), O(g, l, d), ce(i, g, d), O(g, a, d), ce(u, g, d), O(g, v, d), ce(r, g, d), O(g, c, d), ce(p, g, d), O(g, b, d), ce(h, g, d), y = !0;
+      n(document.head, e), O(g, l, d), ce(i, g, d), O(g, a, d), ce(v, g, d), O(g, c, d), ce(r, g, d), O(g, p, d), ce(u, g, d), O(g, h, d), ce(x, g, d), k = !0;
     },
     p(g, [d]) {
-      const w = {};
+      const y = {};
       d & /*domain_name*/
-      2 && (w.domain_name = /*domain_name*/
+      2 && (y.domain_name = /*domain_name*/
       g[1]), d & /*country*/
-      1 && (w.country = /*country*/
-      g[0]), i.$set(w);
+      1 && (y.country = /*country*/
+      g[0]), i.$set(y);
       const $ = {};
       d & /*domain_name*/
       2 && ($.domain_name = /*domain_name*/
-      g[1]), u.$set($);
+      g[1]), v.$set($);
       const z = {};
       d & /*domain_name*/
       2 && (z.domain_name = /*domain_name*/
@@ -1834,28 +1840,28 @@ function di(s) {
       2 && (m.domain_name = /*domain_name*/
       g[1]), d & /*best_seller*/
       4 && (m.best_seller = /*best_seller*/
-      g[2]), p.$set(m);
+      g[2]), u.$set(m);
       const E = {};
       d & /*domain_name*/
       2 && (E.domain_name = /*domain_name*/
-      g[1]), h.$set(E);
+      g[1]), x.$set(E);
     },
     i(g) {
-      y || (M(i.$$.fragment, g), M(u.$$.fragment, g), M(r.$$.fragment, g), M(p.$$.fragment, g), M(h.$$.fragment, g), y = !0);
+      k || (M(i.$$.fragment, g), M(v.$$.fragment, g), M(r.$$.fragment, g), M(u.$$.fragment, g), M(x.$$.fragment, g), k = !0);
     },
     o(g) {
-      F(i.$$.fragment, g), F(u.$$.fragment, g), F(r.$$.fragment, g), F(p.$$.fragment, g), F(h.$$.fragment, g), y = !1;
+      F(i.$$.fragment, g), F(v.$$.fragment, g), F(r.$$.fragment, g), F(u.$$.fragment, g), F(x.$$.fragment, g), k = !1;
     },
     d(g) {
-      g && (S(l), S(a), S(v), S(c), S(b)), S(e), ve(i, g), ve(u, g), ve(r, g), ve(p, g), ve(h, g);
+      g && (S(l), S(a), S(c), S(p), S(h)), S(e), ve(i, g), ve(v, g), ve(r, g), ve(u, g), ve(x, g);
     }
   };
 }
 function mi(s, e, l) {
-  let { country: i = "" } = e, { domain_name: a = "" } = e, { best_seller: u } = e;
-  return s.$$set = (v) => {
-    "country" in v && l(0, i = v.country), "domain_name" in v && l(1, a = v.domain_name), "best_seller" in v && l(2, u = v.best_seller);
-  }, [i, a, u];
+  let { country: i = "" } = e, { domain_name: a = "" } = e, { best_seller: v } = e;
+  return s.$$set = (c) => {
+    "country" in c && l(0, i = c.country), "domain_name" in c && l(1, a = c.domain_name), "best_seller" in c && l(2, v = c.best_seller);
+  }, [i, a, v];
 }
 class dn extends ie {
   constructor(e) {
@@ -1900,18 +1906,18 @@ function hi(s) {
     c() {
       e = o("link"), l = f(), be(i.$$.fragment), t(e, "rel", "stylesheet"), t(e, "href", "app.css");
     },
-    m(u, v) {
-      n(document.head, e), O(u, l, v), ce(i, u, v), a = !0;
+    m(v, c) {
+      n(document.head, e), O(v, l, c), ce(i, v, c), a = !0;
     },
     p: j,
-    i(u) {
-      a || (M(i.$$.fragment, u), a = !0);
+    i(v) {
+      a || (M(i.$$.fragment, v), a = !0);
     },
-    o(u) {
-      F(i.$$.fragment, u), a = !1;
+    o(v) {
+      F(i.$$.fragment, v), a = !1;
     },
-    d(u) {
-      u && S(l), S(e), ve(i, u);
+    d(v) {
+      v && S(l), S(e), ve(i, v);
     }
   };
 }

@@ -1,127 +1,161 @@
 <?php
-/* Name: getComponentAttributes
-*  Description: Build a list of attributes to add to component tags (e.g. country="US")
-*/
+
+use Magento\Framework\App\ObjectManager;
+use Nailalliance\Masterkey\Block\ProductInfo;
+
+/**
+ * Build a list of attributes to add to component tags (e.g. country="US").
+ */
 function getComponentAttributes(string $baseUrl, string $categoryId, string $storeId, string $componentName)
 {
+    $objectManager = ObjectManager::getInstance();
+    $productInfoBlock = $objectManager->create(\Nailalliance\Masterkey\Block\ProductInfo::class);
 
-  $attributes = [];
+    $attributes = [];
 
-  // Example condition: add attributes based on url
-  switch ($baseUrl) {
-    case "https://entitybeauty.co.uk/":
-      $attributes['country'] = 'UK';
-      break;
-    case "https://entitybeauty.com/":
-      $attributes['country'] = 'US';
-    default:
-      break;
-  }
+    $trimmedUrl = rtrim($baseUrl, '/');
 
-  $trimmedUrl = rtrim($baseUrl, '/');
+    // Example condition: add attributes based on URL
+    switch ($baseUrl) {
+        case "https://entitybeauty.co.uk/":
+            $attributes['country'] = 'UK';
+            $attributes['domain_name'] = $trimmedUrl;
+            break;
+        case "https://entitybeauty.com/":
+            $attributes['country'] = 'US';
+            $attributes['domain_name'] = $trimmedUrl;
+            break;
+        case "https://upgrade.nailtechsupply.com/":
+            $attributes['country'] = 'US';
+            $attributes['domain_name'] = $trimmedUrl;
+            break;
+        default:
+            break;
+    }
 
-  // Custom attributes for collection-color-swatch-sampler.txt
-  switch ($componentName) {
-    case "collection-color-swatch-sampler":
-      $attributes['store_id'] = $storeId;
-      $attributes['categories_id'] = $categoryId;
-      $attribute['store_domain'] = $trimmedUrl;
-    default:
-      break;
-  }
 
-  // Apply domain to components by default
-  $attributes['domain_name'] = $trimmedUrl;
+    switch ($componentName) {
+        case "collection-color-swatch-sampler":
+            $attributes['store_id'] = $storeId;
+            $attributes['categories_id'] = $categoryId;
+            $attribute['store_domain'] = $trimmedUrl;
+            break;
+        case "entity-product-view":
+            $productData = json_decode($productInfoBlock->getProductData(), true);
+            $attributes['masterSku'] = $productData['masterSku'];
+            break;
+        case "entitybeauty-homepage":
+            $skus = ['5130002', '101638', '5800100', '101289']; // Replace with your actual list of SKUs
+            $bestSellers = $productInfoBlock->getProductsDataBySKUs($skus);
+            $attributes['best_seller'] = htmlspecialchars(json_encode(array_map(function ($product) {
+                return [
+                    'src' => $product['image_link'],
+                    'srcset' => $product['image_link'],
+                    'link' => '/' . $product['product_url'],
+                    'id' => $product['name']
+                ];
+            }, $bestSellers), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
+            break;
+        default:
+            break;
+    }
 
-  // Convert attributes array to string
-  $attrString = '';
-  foreach ($attributes as $key => $value) {
-    $attrString .= $key . '="' . $value . '" ';
-  }
-
-  return trim($attrString);  // Trim the final space
+    return $attributes;
 }
 
-// TODO: Temoroary URL trimmer for collection-color-swatch-sampler
-function getDomainName($url) {
-  $parsedUrl = parse_url($url);
-  $host = $parsedUrl['host'] ?? '';
-
-  // A basic list of second-level domain (SLD) TLDs
-  $secondLevelDomains = [
-      'co.uk', 'gov.uk', 'org.uk', 'com.au', 'co.in', 'net.in', 'org.in', 'gen.in', 'firm.in', 'ind.in'
-  ];
-
-  $parts = explode('.', $host);
-  $partsCount = count($parts);
-
-  // Check if the domain uses a known second-level domain
-  if ($partsCount > 1) {
-      $lastTwoParts = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
-      if (in_array($lastTwoParts, $secondLevelDomains)) {
-          if ($partsCount > 2) {
-              // Return the last three parts if second-level domain
-              return $parts[$partsCount - 3] . '.' . $lastTwoParts;
-          }
-          return $lastTwoParts; // for cases where the URL is like "example.co.uk"
-      } else {
-          // Return last two parts for normal TLDs
-          return $lastTwoParts;
-      }
-  }
-
-  return $host; // Return the original host if not enough parts
-}
-
-
-/* Name: includeComponentScript
-*  Description: Render web components from .txt files 
-*  Parameters: string $filename - File's full name && bool $isAllowed - check if ecommerce needs to be filtered for a visitor
-*/
+/**
+ * Render web components from .txt files.
+ * 
+ * @param string $filename File's full name.
+ * @param bool $isAllowed Check if ecommerce needs to be filtered for a visitor.
+ * @param mixed $block Block object.
+ * @param string $baseUrl Base URL.
+ * @return bool True if the component script is included successfully, false otherwise.
+ */
 function includeComponentScript(string $filename, bool $isAllowed, mixed $block, string $baseUrl)
 {
-  $currentStoreId = $block->getCurrentStoreId();
-  $currentCategoryId = $block->getCurrentCategoryId();
+    $currentStoreId = $block->getCurrentStoreId();
+    $currentCategoryId = $block->getCurrentCategoryId();
 
-  $filePath = dirname(__FILE__) . '/web-components/' . $filename;
+    $filePath = dirname(__FILE__) . '/web-components/' . $filename;
 
-  if (file_exists($filePath)) {
-    $fileData = file_get_contents($filePath);
+    if (file_exists($filePath)) {
+        $fileData = file_get_contents($filePath);
 
-    // Extract the base component name by removing the .txt extension
-    $componentName = basename($filename, '.txt');
+        // Extract the base component name by removing the .txt extension
+        $componentName = basename($filename, '.txt');
 
-    // Create the full component tag with opening and closing tags
-    $attributes = getComponentAttributes($baseUrl, $currentCategoryId, $currentStoreId, $componentName);
-    $componentTag = "<{$componentName} {$attributes}></{$componentName}>";
+        // Create the attributes array
+        $attributes = getComponentAttributes($baseUrl, $currentCategoryId, $currentStoreId, $componentName);
 
-    // Curate e-commerce for a specific page
-    if ($filename == "entitybeauty-homepage.txt" && !$isAllowed) {
-      $ecommerceFilter = '<?php echo .buybutton{display:none!important;}.buybutton h2{display:none!important;}.shop-now-btn{display:none!important;};?>';
-      $fileData = str_replace('thisisaplaceholder', $ecommerceFilter, $fileData);
+        // Convert attributes array to string
+        $attrString = '';
+        foreach ($attributes as $key => $value) {
+            $attrString .= $key . '="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '" ';
+        }
+
+        // Create the full component tag with opening and closing tags
+        $componentTag = "<{$componentName} {$attrString}></{$componentName}>";
+
+        // Curate e-commerce for a specific page
+        if ($filename == "entitybeauty-homepage.txt" && !$isAllowed) {
+            $ecommerceFilter = '<?php echo .buybutton{display:none!important;}.buybutton h2{display:none!important;}.shop-now-btn{display:none!important;};?>';
+            $fileData = str_replace('thisisaplaceholder', $ecommerceFilter, $fileData);
+        } else {
+            $fileData = str_replace('thisisaplaceholder', "", $fileData);
+        }
+
+        // Curate color swatch domain
+        if ($filename == "collection-color-swatch-sampler.txt") {
+            try {
+                $fileData = str_replace('color-swatch-domain', getDomainName($baseUrl), $fileData);
+            } catch (\Exception $e) {
+                // ...
+            }
+        }
+
+        // Render the script and component tag
+        echo "<script type='module'>$fileData</script>";
+        echo $componentTag;
+        return true;
     } else {
-      $fileData = str_replace('thisisaplaceholder', "", $fileData);
+        return false;
     }
 
-    // Curate color swatch domain
-    if ($filename == "collection-color-swatch-sampler.txt") {
-      try {
-        $fileData = str_replace('color-swatch-domain', getDomainName($baseUrl), $fileData);
-      } catch (\Exception $e) {
-        // ...
-      }
-    }
+    // TODO: Temoroary URL trimmer for collection-color-swatch-sampler
+    function getDomainName($url)
+    {
+        $parsedUrl = parse_url($url);
+        $host = $parsedUrl['host'] ?? '';
 
-    // Render the script and component tag
-    echo "<script type='module'>$fileData</script>";
-    echo $componentTag;
-    return true;
-  } else {
-    return false;
-  }
+        // A basic list of second-level domain (SLD) TLDs
+        $secondLevelDomains = [
+            'co.uk', 'gov.uk', 'org.uk', 'com.au', 'co.in', 'net.in', 'org.in', 'gen.in', 'firm.in', 'ind.in'
+        ];
+
+        $parts = explode('.', $host);
+        $partsCount = count($parts);
+
+        // Check if the domain uses a known second-level domain
+        if ($partsCount > 1) {
+            $lastTwoParts = $parts[$partsCount - 2] . '.' . $parts[$partsCount - 1];
+            if (in_array($lastTwoParts, $secondLevelDomains)) {
+                if ($partsCount > 2) {
+                    // Return the last three parts if second-level domain
+                    return $parts[$partsCount - 3] . '.' . $lastTwoParts;
+                }
+                return $lastTwoParts; // for cases where the URL is like "example.co.uk"
+            } else {
+                // Return last two parts for normal TLDs
+                return $lastTwoParts;
+            }
+        }
+
+        return $host; // Return the original host if not enough parts
+    }
 }
 
-// Get store url
+// Get store URL
 $baseUrl = $block->getCurrentBaseUrl();
 
 // Gather the relevant .txt string and files
@@ -129,15 +163,11 @@ $txtfiles = $block->getData('txtfiles');
 $componentList = explode("|", $txtfiles);
 
 // Check for international visitors...
-if($baseUrl == "https://entitybeauty.com/") {
-  $isAllowed = $block->isAllowed();
-} else {
-  $isAllowed = true;
-}
+$isAllowed = $block->isAllowed();
 
 // Render each web component...
 foreach ($componentList as $component) {
-  includeComponentScript($component, $isAllowed, $block, $baseUrl);
+    includeComponentScript($component, $isAllowed, $block, $baseUrl);
 }
 ?>
 

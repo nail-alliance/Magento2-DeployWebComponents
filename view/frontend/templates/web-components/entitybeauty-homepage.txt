@@ -15,20 +15,21 @@ function getComponentAttributes(string $baseUrl, string $categoryId, string $sto
 
     // Correct the base URL by ensuring it is properly formatted
     $trimmedUrl = rtrim(preg_replace('#^https?://#', '', $baseUrl), '/');
+    $baseUrlMinusSlash = rtrim($baseUrl, '/');
 
     // Example condition: add attributes based on URL
     switch ($baseUrl) {
         case "https://entitybeauty.co.uk/":
             $attributes['country'] = 'UK';
-            $attributes['domain_name'] = $trimmedUrl;
+            $attributes['domain_name'] = $baseUrlMinusSlash;
             break;
         case "https://entitybeauty.com/":
             $attributes['country'] = 'US';
-            $attributes['domain_name'] = $trimmedUrl;
+            $attributes['domain_name'] = $baseUrlMinusSlash;
             break;
         case "https://upgrade.nailtechsupply.com/":
             $attributes['country'] = 'US';
-            $attributes['domain_name'] = $trimmedUrl;
+            $attributes['domain_name'] = $baseUrlMinusSlash;
             break;
         default:
             break;
